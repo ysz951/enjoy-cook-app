@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import Header from './Header/Header'
-import RecipeListPage from './RecipeListPage/RecipeListPage'
-import RecipePage from './RecipePage/RecipePage'
-import NotFoundPage from './NotFoundPage/NotFoundPage'
-// import MainContent from './MainContent/MainContent';
-// import FolderNoteContext from './FolderNoteContext';
-// import config from './config';
+import Header from './Header/Header';
+import RecipeListPage from './RecipeListPage/RecipeListPage';
+import RecipePage from './RecipePage/RecipePage';
+import NotFoundPage from './NotFoundPage/NotFoundPage';
+import LoginForm from './LoginForm/LoginForm'
+import RegistrationForm from './RegistrationForm/RegistrationForm'
 
 class App extends Component {
 
@@ -24,6 +23,14 @@ class App extends Component {
               exact
               path={'/'}
               component={RecipeListPage}
+            />
+            <Route
+              path={'/login'}
+              component={LoginForm}
+            />
+            <Route
+              path={'/register'}
+              component={RegistrationForm}
             />
             <Route
               path={'/recipe/:recipeId'}
