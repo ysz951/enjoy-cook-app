@@ -1,0 +1,17 @@
+.editNoteBtn {
+    margin-left:20px;
+    background-color: rgb(38, 45, 70);
+    border: none;
+    color: white;
+    
+    display: none;
+}
+
+.editNoteBtn:hover {
+    /* color:  */
+    color: rgb(196, 166, 166)
+}
+
+.mainNoteItem:hover .editNoteBtn{
+    display: inline-block;
+}
