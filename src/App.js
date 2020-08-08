@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Header/Header'
 import RecipeListPage from './RecipeListPage/RecipeListPage'
 import RecipePage from './RecipePage/RecipePage'
+import NotFoundPage from './NotFoundPage/NotFoundPage'
 // import MainContent from './MainContent/MainContent';
 // import FolderNoteContext from './FolderNoteContext';
 // import config from './config';
@@ -28,6 +29,9 @@ class App extends Component {
               path={'/recipe/:recipeId'}
               component={RecipePage}
             />
+            <Route
+              component={NotFoundPage}
+            /> 
             {/* <Route
               path={'/login'}
               component={LoginPage}
