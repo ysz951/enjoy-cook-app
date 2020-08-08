@@ -1,0 +1,30 @@
+.Header__name{
+    /* height: 40px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Header__name h1 {
+    margin: 0;
+}
+
+.Header__name h1 a {
+    text-decoration: none;
+}
+
+.Header__name a {
+    color: #444;
+}
+  
+.Header__not-logged-in {
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.Header__not-logged-in a{
+    text-decoration: none;
+}
+  
+  
