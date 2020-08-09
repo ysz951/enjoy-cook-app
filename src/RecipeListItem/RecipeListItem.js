@@ -13,7 +13,7 @@ export default class RecipeListItem extends Component {
     const { recipe } = this.props;
     const user = this.getRecipeAuthor(recipe);
     return (
-        <Link to={`/recipe/${recipe.id}`} className='RecipeListItem'>
+        <Link to={`/recipe/${recipe.id}`} className="Recipe__list_item_link">
             <RecipeName recipe={recipe}/>
             <RecipeAuthor user={user}/>
             <RecipeDate recipe={recipe}/>
@@ -25,7 +25,7 @@ export default class RecipeListItem extends Component {
 function RecipeName({ recipe }) {
   return (
     <p className='RecipeListItem__name'>
-        by {recipe.name}
+        {recipe.name}
     </p>
   );
 };
@@ -33,7 +33,7 @@ function RecipeName({ recipe }) {
 function RecipeAuthor({ user }) {
     return (
     <p className='RecipeListItem__author'>
-        {user.user_name}
+        by {user.user_name}
     </p>
     );
 };

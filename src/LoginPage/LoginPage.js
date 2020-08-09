@@ -25,6 +25,6 @@ export default class LoginPage extends Component {
         />
         <Link to='/register'>Sign up</Link>
       </section>
-    )
-  }
-}
+    );
+  };
+};

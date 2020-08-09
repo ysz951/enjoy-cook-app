@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RecipeListContext from '../context/RecipeListContext';
-import CommentForm from '../CommentForm/CommentForm'
+import CommentForm from '../CommentForm/CommentForm';
 import './RecipePage.css';
 
 export default class RecipePage extends Component {
@@ -20,13 +20,13 @@ export default class RecipePage extends Component {
     const recipeComments = comments.filter(comment => comment.recipe_id === Number(recipeId));
     return (
         <>
-        <h2>{recipe.name}</h2>
-        <p>
-            <RecipeAuthor user={user}/>
-        </p>
-        <RecipeContent recipe={recipe} />
-        <RecipeComments comments={recipeComments} users={users}/>
-        <CommentForm />
+          <h2>{recipe.name}</h2>
+          <p>
+              <RecipeAuthor user={user}/>
+          </p>
+          <RecipeContent recipe={recipe} />
+          <RecipeComments comments={recipeComments} users={users}/>
+          <CommentForm />
         </>
     );
   };
@@ -59,7 +59,7 @@ function RecipeContent({ recipe }) {
 
 function RecipeComments({ comments, users  }) {
   return (
-    <ul className='RecipePage__comment-list'>
+    <ul className='RecipePage__comment_list'>
       {comments.map(comment =>
         {
             const user = users.find(user => user.id === comment.user_id);

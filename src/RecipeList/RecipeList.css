@@ -1,0 +1,17 @@
+.Recipe__list {
+    list-style: none;
+    padding: 0;
+}
+
+.Recipe__list_item {
+    border: 1px solid black;
+    margin-bottom: 5px; 
+}
+
+.Recipe__list_item:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+
+
+

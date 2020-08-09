@@ -20,6 +20,10 @@ p {
   color: #555;
 }
 
+a:visited{
+  color:black
+}
+
 .blue {
   color: #477ACC;
 }

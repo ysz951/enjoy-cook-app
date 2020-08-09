@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import RecipeListContext from '../context/RecipeListContext';
-import RecipeListItem from '../RecipeListItem/RecipeListItem';
-import CategoryLink from '../CategoryLink/CategoryLink';
+import SearchNav from '../SearchNav/SearchNav';
+import RecipeList from '../RecipeList/RecipeList'
+import './RecipeListPage.css'
 export default class RecipeListPage extends Component {
   static contextType = RecipeListContext;
 
-  renderRecipes() {
-    const { recipes= [] } = this.context;
-    return recipes.map(recipe =>
-      <RecipeListItem
-        key={recipe.id}
-        recipe={recipe}
-      />
-    );
-  };
-
   render() {
-
+    const { recipes= [] } = this.context;
     return (
       <section>
-          <CategoryLink/>
-          {this.renderRecipes()}
+          <SearchNav />
+          <RecipeList recipes={recipes}/>
       </section>
     );
   };

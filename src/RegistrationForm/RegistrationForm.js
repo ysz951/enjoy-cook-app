@@ -19,7 +19,7 @@ export default class RegistrationForm extends Component {
     user_name.value = '';
     password.value = '';
     this.props.onRegistrationSuccess();
-  }
+  };
 
   render() {
     const { error } = this.state;

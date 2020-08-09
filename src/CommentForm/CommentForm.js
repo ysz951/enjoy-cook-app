@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import RecipeListContext from '../context/RecipeListContext'
-import './CommentForm.css'
+import React, { Component } from 'react';
+import RecipeListContext from '../context/RecipeListContext';
+import './CommentForm.css';
 
 export default class CommentForm extends Component {
-  static contextType = RecipeListContext
+  static contextType = RecipeListContext;
 
   handleSubmit = ev => {
-    ev.preventDefault()
-    const { text } = ev.target
-    console.log(text.value)
-  }
+    ev.preventDefault();
+    const { text } = ev.target;
+    console.log(text.value);
+  };
 
   render() {
     return (
@@ -32,6 +32,6 @@ export default class CommentForm extends Component {
           Post comment
         </button>
       </form>
-    )
-  }
-}
+    );
+  };
+};

@@ -1,0 +1,19 @@
+.SearchNav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Categorylink a {
+    text-decoration: none;
+    /* border: 1px solid black; */
+    border-top: 1px solid black;
+}
+
+.Categorylink a:hover {
+    border-bottom: 1px solid grey;
+}
+
+.Categorylink .selected {
+    background-color: grey;
+    color: white;
+}
