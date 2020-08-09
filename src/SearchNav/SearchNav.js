@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 import './SearchNav.css'
 export default class SearchNav extends Component {
-    state = { search: "" };
+    state = { search: "" }
     
     updateName(search){
         this.setState({search});
-    };
+    }
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.state.search);
-    };
+    }
     render() {
         
     return (
@@ -25,9 +25,9 @@ export default class SearchNav extends Component {
           <button type="submit">search</button>
         </form>
       </div>
-    );
-  };
-};
+    )
+  }
+}
 function CategoryLink() {
   return (
       <div className="Categorylink">
@@ -43,5 +43,5 @@ function CategoryLink() {
               Lunch
           </NavLink>
       </div>
-  );
-};
+  )
+}

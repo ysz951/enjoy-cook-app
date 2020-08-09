@@ -9,14 +9,14 @@ export default class RecipeList extends Component {
                 recipe={recipe}
             />
         </li>
-    );
-  };
+    )
+  }
   render() {
     const { recipes } = this.props
     return (
           <ul className="Recipe__list">
             {this.renderRecipes(recipes)}
           </ul>
-    );
-  };
-};
+    )
+  }
+}

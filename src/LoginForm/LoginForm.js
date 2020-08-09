@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 export default class LoginForm extends Component {
   static defaultProps = {
     onLoginSuccess: () => {}
   };
 
-  state = { error: null };
+  state = { error: null }
 
   handleSubmitBasicAuth = ev => {
-    ev.preventDefault();
-    const { user_name, password } = ev.target;
+    ev.preventDefault()
+    const { user_name, password } = ev.target
 
-    console.log('login form submitted');
-    console.log({ user_name, password });
+    console.log('login form submitted')
+    console.log({ user_name, password })
 
-    user_name.value = '';
-    password.value = '';
-    this.props.onLoginSuccess();
+    user_name.value = ''
+    password.value = ''
+    this.props.onLoginSuccess()
   };
 
   render() {
@@ -25,9 +25,6 @@ export default class LoginForm extends Component {
         className='LoginForm'
         onSubmit={this.handleSubmitBasicAuth}
       >
-        {/* <div role='alert'>
-          {error && <p className='red'>{error}</p>}
-        </div> */}
         <div className='user_name'>
           <label htmlFor='LoginForm__user_name'>
             User name
@@ -56,6 +53,6 @@ export default class LoginForm extends Component {
         </button>
         
       </form>
-    );
-  };
-};
+    )
+  }
+}

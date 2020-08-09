@@ -1,25 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 export default class RegistrationForm extends Component {
   static defaultProps = {
     onRegistrationSuccess: () => {}
-  };
+  }
 
-  state = { error: null };
+  state = { error: null }
 
   handleSubmit = ev => {
-    ev.preventDefault();
-    const { full_name, nick_name, user_name, password } = ev.target;
+    ev.preventDefault()
+    const { full_name, nick_name, user_name, password } = ev.target
 
-    console.log('registration form submitted');
-    console.log({ full_name, nick_name, user_name, password });
+    console.log('registration form submitted')
+    console.log({ full_name, nick_name, user_name, password })
 
-    full_name.value = '';
-    nick_name.value = '';
-    user_name.value = '';
-    password.value = '';
-    this.props.onRegistrationSuccess();
-  };
+    full_name.value = ''
+    nick_name.value = ''
+    user_name.value = ''
+    password.value = ''
+    this.props.onRegistrationSuccess()
+  }
 
   render() {
     const { error } = this.state;
@@ -79,6 +79,6 @@ export default class RegistrationForm extends Component {
           Register
         </button>
       </form>
-    );
-  };
-};
+    )
+  }
+}

@@ -14,6 +14,6 @@ export default class CategoryListPage extends Component {
           <SearchNav />
           <RecipeList recipes = {cateRecipes}/>
       </section>
-    );
-  };
-};
+    )
+  }
+}
