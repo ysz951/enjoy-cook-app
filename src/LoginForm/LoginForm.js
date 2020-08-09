@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 export default class LoginForm extends Component {
   static defaultProps = {
     onLoginSuccess: () => {}
@@ -22,8 +21,6 @@ export default class LoginForm extends Component {
   render() {
     const { error } = this.state
     return (
-      <section>
-          <h2>login</h2>
       <form
         className='LoginForm'
         onSubmit={this.handleSubmitBasicAuth}
@@ -57,9 +54,8 @@ export default class LoginForm extends Component {
         <button type='submit'>
           Login
         </button>
-        <Link to='/register'>Sign up</Link>
+        
       </form>
-    </section>
     );
   };
 };
