@@ -17,17 +17,16 @@ export default class CommentForm extends Component {
         className='CommentForm'
         onSubmit={this.handleSubmit}
       >
-        <div className='text'>
-          <textarea
-            required
-            aria-label='Type a comment...'
-            name='text'
-            id='text'
-            cols='30'
-            rows='3'
-            placeholder='Type a comment..'/>
-          
-        </div>
+        <textarea
+          className='text'
+          required
+          aria-label='Type a comment...'
+          name='text'
+          id='text'
+          // cols='30'
+          rows='3'
+          placeholder='Type a comment..'
+        />
         <button type='submit'>
           Post comment
         </button>
