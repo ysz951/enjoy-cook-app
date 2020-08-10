@@ -4,7 +4,6 @@ export default class LoginForm extends Component {
     onLoginSuccess: () => {}
   };
 
-  state = { error: null }
 
   handleSubmitBasicAuth = ev => {
     ev.preventDefault()
@@ -19,7 +18,6 @@ export default class LoginForm extends Component {
   };
 
   render() {
-    const { error } = this.state
     return (
       <form
         className='LoginForm'

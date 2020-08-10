@@ -14,9 +14,9 @@ export default class RecipePage extends Component {
   renderRecipe() {
     const { recipes , comments, users } = this.context
     const { recipeId } = this.props.match.params
-    const recipe = recipes.find(recipe => recipe.id === Number(recipeId))
-    const user =  users.find(user => user.id === recipe.user_id)
-    const recipeComments = comments.filter(comment => comment.recipe_id === Number(recipeId))
+    const recipe = recipes.find(recipe => recipe.id === Number(recipeId)) || {}
+    const user =  users.find(user => user.id === recipe.user_id) || {}
+    const recipeComments = comments.filter(comment => comment.recipe_id === Number(recipeId)) || {}
     return (
         <>
           <h2>{recipe.name}</h2>

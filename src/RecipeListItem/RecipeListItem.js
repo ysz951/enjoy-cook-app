@@ -4,6 +4,11 @@ import RecipeListContext from '../context/RecipeListContext'
 import './RecipeListItem.css'
 
 export default class RecipeListItem extends Component {
+  static defaultProps = {
+    recipe: {
+      modified: '',
+    },
+  }
   static contextType = RecipeListContext
   getRecipeAuthor = (recipe) => {
       const { users } = this.context
@@ -11,9 +16,9 @@ export default class RecipeListItem extends Component {
   }
   render() {
     const { recipe } = this.props
-    const user = this.getRecipeAuthor(recipe)
+    const user = this.getRecipeAuthor(recipe) || {}
     return (
-        <Link to={`/recipe/${recipe.id}`} className="Recipe__list_item_link">
+        <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
             <RecipeName recipe={recipe}/>
             <RecipeAuthor user={user}/>
             <RecipeDate recipe={recipe}/>

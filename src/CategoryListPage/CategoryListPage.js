@@ -4,6 +4,9 @@ import SearchNav from '../SearchNav/SearchNav'
 import RecipeList from '../RecipeList/RecipeList'
 
 export default class CategoryListPage extends Component {
+  static defaultProps = {
+    match: { params: {} },
+  }
   static contextType = RecipeListContext
   render() {
     const { recipes= [] } = this.context
