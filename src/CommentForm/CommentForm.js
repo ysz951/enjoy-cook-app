@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
-import RecipeListContext from '../context/RecipeListContext'
+import RecipeContext from '../context/RecipeContext'
+import RecipeApiService from '../services/recipe-api-service'
 import './CommentForm.css'
 
 export default class CommentForm extends Component {
-  static contextType = RecipeListContext
+  static contextType = RecipeContext
 
   handleSubmit = ev => {
     ev.preventDefault()
+    const { recipe } = this.context
     const { text } = ev.target
-    console.log(text.value)
+    console.log(recipe)
+    RecipeApiService.postComment(recipe.id, text.value)
+      .then(this.context.addComment)
+      .then(() => {
+        text.value = ''
+      })
+      .catch(this.context.setError)
   }
 
   render() {

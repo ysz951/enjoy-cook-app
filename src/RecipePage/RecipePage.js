@@ -1,31 +1,37 @@
 import React, { Component } from 'react'
-import RecipeListContext from '../context/RecipeListContext'
+import RecipeContext from '../context/RecipeContext'
+import RecipeApiService from '../services/recipe-api-service'
 import CommentForm from '../CommentForm/CommentForm'
 import './RecipePage.css'
 
 export default class RecipePage extends Component {
   static defaultProps = {
-    match: { params: {} },
+    // match: { params: {} },
   }
 
-  static contextType = RecipeListContext
-
+  static contextType = RecipeContext
+  componentDidMount() {
+    const { recipeId } = this.props
+    this.context.clearError()
+    RecipeApiService.getRecipe(recipeId)
+      .then(this.context.setRecipe)
+      .catch(this.context.setError)
+    RecipeApiService.getRecipeComments(recipeId)
+      .then(this.context.setComments)
+      .catch(this.context.setError)
+  }
 
   renderRecipe() {
-    const { recipes , comments, users } = this.context
-    const { recipeId } = this.props.match.params
-    const recipe = recipes.find(recipe => recipe.id === Number(recipeId)) || {}
-    const user =  users.find(user => user.id === recipe.user_id) || {}
-    const recipeComments = comments.filter(comment => comment.recipe_id === Number(recipeId)) || {}
+    const { recipe , comments } = this.context
     return (
         <>
           <h2>{recipe.name}</h2>
-          <p>
-              <RecipeAuthor user={user}/>
-          </p>
+          
+          <RecipeAuthor recipe={recipe}/>
+          
           <RecipeContent recipe={recipe} />
-          <RecipeComments comments={recipeComments} users={users}/>
-          <CommentForm />
+          <RecipeComments comments={comments}/>
+          <CommentForm /> 
         </>
     )
   }
@@ -40,11 +46,11 @@ export default class RecipePage extends Component {
 }
 
 
-function RecipeAuthor({ user}) {
+function RecipeAuthor({ recipe }) {
   return (
-    <span className='RecipePage__author'>
-      {user.name}
-    </span>
+    <p className='RecipePage__author'>
+      {recipe.author.user_name}
+    </p>
   )
 }
 
@@ -56,20 +62,14 @@ function RecipeContent({ recipe }) {
   )
 }
 
-function RecipeComments({ comments, users  }) {
+function RecipeComments({ comments = [] }) {
   return (
     <ul className='RecipePage__comment_list'>
       {comments.map(comment =>
-        {
-            const user = users.find(user => user.id === comment.user_id);
-            
-            return (
-            <li key={comment.id} className='RecipePage__comment'>
-                <p>{comment.content}</p>
-                <p> {user.user_name}</p>
-            </li>
-            )
-        }
+        <li key={comment.id} className='RecipePage__comment'>
+            <p>{comment.content}</p>
+            <p> {comment.user.full_name}</p>
+        </li>   
       )}
     </ul>
   )

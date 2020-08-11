@@ -46,6 +46,17 @@ const RecipeApiService = {
             : res.json()
         )
     },
+    getSearchRecipes(query) {
+        return fetch(`${config.API_ENDPOINT}/search/${query}`, {
+        headers: {
+        },
+        })
+        .then(res =>
+            (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
+    },
     getRecipeComments(recipeId) {
         return fetch(`${config.API_ENDPOINT}/recipes/${recipeId}/comments`, {
         headers: {

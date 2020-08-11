@@ -6,16 +6,18 @@ import { BrowserRouter } from "react-router-dom"
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faDrumstickBite } from '@fortawesome/free-solid-svg-icons'
 import { RecipeListProvider } from './context/RecipeListContext'
-
+import { RecipeProvider } from './context/RecipeContext'
 library.add(
   faDrumstickBite
 )
 
 ReactDOM.render(
   <BrowserRouter>
-    <RecipeListProvider >
-      <App />
-    </RecipeListProvider > 
+    <RecipeListProvider>
+      <RecipeProvider>
+        <App />
+      </RecipeProvider>
+    </RecipeListProvider> 
   </BrowserRouter>,
   document.getElementById('root')
 )

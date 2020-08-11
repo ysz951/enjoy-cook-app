@@ -16,9 +16,10 @@ export default class CategoryListPage extends Component {
   
   render() {
     const { recipeList = [], error } = this.context
+    
     return (
       <section>
-          <SearchNav />
+          <SearchNav history={this.props.history}/>
           <RecipeList recipes = {recipeList}/>
       </section>
     )

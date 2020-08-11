@@ -8,6 +8,7 @@ import NotFoundPage from './NotFoundPage/NotFoundPage'
 import LoginPage from './LoginPage/LoginPage'
 import RegistrationPage from './RegistrationPage/RegistrationPage'
 import CategoryListPage from './CategoryListPage/CategoryListPage'
+import SearchListPage from './SearchListPage/SearchListPage'
 class App extends Component {
 
   render(){
@@ -21,7 +22,11 @@ class App extends Component {
             <Route
               exact
               path={'/'}
-              component={RecipeListPage}
+              render={(routerProps) => 
+                <RecipeListPage
+                  history={routerProps.history}
+                />
+              }
             />
             <Route
               path={'/login'}
@@ -31,33 +36,35 @@ class App extends Component {
               path={'/register'}
               component={RegistrationPage}
             />
-            {/* <Route
-              path={'/recipe/:recipeId'}
-              component={RecipePage}
-            /> */}
             <Route
               path='/recipe/:recipeId'
-              render={(routerProps) => {
-                  return (
-                    <RecipePage
-                      recipeId={routerProps.match.params.recipeId} 
-                      history={routerProps.history}
-                      key = {routerProps.match.params.recipeId}
-                    />
-                  )
-              }}
+              render={(routerProps) => 
+                <RecipePage
+                  recipeId={routerProps.match.params.recipeId} 
+                  history={routerProps.history}
+                  key = {routerProps.match.params.recipeId}
+                />
+              }
             />
             <Route
               path='/category/:categoryId'
-              render={(routerProps) => {
-                  return (
-                    <CategoryListPage 
-                      categoryId={routerProps.match.params.categoryId} 
-                      history={routerProps.history}
-                      key = {routerProps.match.params.categoryId}
-                    />
-                  )
-              }}
+              render={(routerProps) => 
+                <CategoryListPage 
+                  categoryId={routerProps.match.params.categoryId} 
+                  history={routerProps.history}
+                  key = {routerProps.match.params.categoryId}
+                />
+              }
+            />
+            <Route
+              path='/search/:query'
+              render={(routerProps) =>
+                <SearchListPage
+                  query={routerProps.match.params.query} 
+                  history={routerProps.history}
+                  key = {routerProps.match.params.query}
+                />
+              }
             />
              <Route
               component={NotFoundPage}

@@ -4,14 +4,17 @@ import RecipeListContext from '../context/RecipeListContext'
 import RecipeApiService from '../services/recipe-api-service'
 import './SearchNav.css'
 export default class SearchNav extends Component {
-  state = { search: "" }
+  state = { query: "" }
   static contextType = RecipeListContext
-  updateName(search){
-      this.setState({search});
+  updateQuery(query){
+      this.setState({query})
   }
   handleSubmit = e => {
       e.preventDefault();
-      console.log(this.state.search);
+      const {history} = this.props
+      // console.log(history)
+       history.push(this.state.query ? `/search/${this.state.query}` : '/')
+      // history.push(`/search/${this.state.query}`)
   }
   componentDidMount() {
     this.context.clearError()
@@ -21,7 +24,7 @@ export default class SearchNav extends Component {
   }
   render() {
     const {categoryList = []} = this.context
-    // console.log(categoryList)
+    
     return (
       <div className="SearchNav">
         <CategoryLink categories={categoryList}/>
@@ -30,7 +33,7 @@ export default class SearchNav extends Component {
             id="SearchForm_search"
             name="search"
             placeholder="search"
-            onKeyUp={e => this.updateName(e.target.value)}
+            onKeyUp={e => this.updateQuery(e.target.value)}
             type="text"
           />
           <button type="submit">search</button>
