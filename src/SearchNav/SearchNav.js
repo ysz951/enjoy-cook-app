@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import RecipeListContext from '../context/RecipeListContext'
+import RecipeApiService from '../services/recipe-api-service'
 import './SearchNav.css'
 export default class SearchNav extends Component {
   state = { search: "" }
@@ -12,11 +13,18 @@ export default class SearchNav extends Component {
       e.preventDefault();
       console.log(this.state.search);
   }
+  componentDidMount() {
+    this.context.clearError()
+    RecipeApiService.getCategories()
+      .then(this.context.setCategoryList)
+      .catch(this.context.setError)
+  }
   render() {
-    const {categories} = this.context || {}
+    const {categoryList = []} = this.context
+    // console.log(categoryList)
     return (
       <div className="SearchNav">
-        <CategoryLink categories={categories}/>
+        <CategoryLink categories={categoryList}/>
         <form className="SearchForm" onSubmit={this.handleSubmit}>
           <input
             id="SearchForm_search"

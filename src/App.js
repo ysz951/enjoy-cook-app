@@ -17,7 +17,7 @@ class App extends Component {
           <Header />
         </header>
         <main className='App__main'>
-          <Switch>
+          <Switch> 
             <Route
               exact
               path={'/'}
@@ -31,17 +31,37 @@ class App extends Component {
               path={'/register'}
               component={RegistrationPage}
             />
-            <Route
+            {/* <Route
               path={'/recipe/:recipeId'}
               component={RecipePage}
+            /> */}
+            <Route
+              path='/recipe/:recipeId'
+              render={(routerProps) => {
+                  return (
+                    <RecipePage
+                      recipeId={routerProps.match.params.recipeId} 
+                      history={routerProps.history}
+                      key = {routerProps.match.params.recipeId}
+                    />
+                  )
+              }}
             />
             <Route
-              path={'/category/:categoryId'}
-              component={CategoryListPage}
+              path='/category/:categoryId'
+              render={(routerProps) => {
+                  return (
+                    <CategoryListPage 
+                      categoryId={routerProps.match.params.categoryId} 
+                      history={routerProps.history}
+                      key = {routerProps.match.params.categoryId}
+                    />
+                  )
+              }}
             />
-            <Route
+             <Route
               component={NotFoundPage}
-            /> 
+            />  
           </Switch>
         </main>
       </div>
