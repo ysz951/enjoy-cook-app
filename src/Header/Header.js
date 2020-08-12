@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TokenService from '../services/token-service'
 import IdleService from '../services/idle-service'
 import './Header.css'
 
-export default class Header extends Component {
+class Header extends Component {
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
     /* when logging out, clear the callbacks to the refresh api and idle auto logout */
@@ -33,6 +33,10 @@ export default class Header extends Component {
           Register
         </Link>
         <Hyph /> */}
+        <Link
+          to='/register'>
+          Register
+        </Link>
         <Link
           to='/login'>
           Log in
@@ -67,3 +71,5 @@ export default class Header extends Component {
     )
   }
 }
+
+export default withRouter(Header)

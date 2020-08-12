@@ -31,7 +31,7 @@ export default class RecipePage extends Component {
           
           <RecipeContent recipe={recipe} />
           <RecipeComments comments={comments}/>
-          <CommentForm /> 
+          <CommentForm history={this.props.history}/> 
         </>
     )
   }
