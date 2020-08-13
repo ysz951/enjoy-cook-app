@@ -99,11 +99,24 @@ const RecipeApiService = {
               return res.json().then(error => Promise.reject(error))
             }
           })
-        // .then(res =>
-        //     (!res.ok)
-        //     ? res.json().then(e => Promise.reject(e))
-        //     : res.json()
-        // )
+    },
+    updateComment(recipeId, content, commentId) {
+        return fetch(`${config.API_ENDPOINT}/comments/${commentId}`, {
+        method: 'PATCH',
+        headers: {
+            'content-type': 'application/json',
+            'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
+        body: JSON.stringify({
+            recipe_id: recipeId,
+            content,
+        }),
+        })
+        .then(res => {
+            if (!res.ok) {
+              return res.json().then(error => Promise.reject(error))
+            }
+          })
     }
 }
 

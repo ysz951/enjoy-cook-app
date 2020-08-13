@@ -16,6 +16,7 @@ const RecipeContext = React.createContext({
   setComments: () => {},
   addComment: () => {},
   deleteComment: () => {},
+  updateComment: () => {},
 })
 
 export default RecipeContext
@@ -53,12 +54,20 @@ export class RecipeProvider extends Component {
                           Number(comment.id) !== Number(commentId))
     this.setComments(newComments)
   }
-
   addComment = comment => {
     this.setComments([
       ...this.state.comments,
       comment
     ])
+  }
+  updateComment = (content, commentId) => {
+    console.log('up',content)
+    const newComments = this.state.comments
+    
+    const index = newComments.findIndex(comment => comment.id === commentId)
+    // console.log(newComments, commentId)
+    newComments[index].content = content
+    this.setComments(newComments)
   }
 
   render() {
@@ -72,7 +81,8 @@ export class RecipeProvider extends Component {
       setComments: this.setComments,
       clearRecipe: this.clearRecipe,
       addComment: this.addComment,
-      deleteComment: this.deleteComment, 
+      deleteComment: this.deleteComment,
+      updateComment: this.updateComment, 
     }
     return (
       <RecipeContext.Provider value={value}>

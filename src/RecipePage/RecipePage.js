@@ -25,7 +25,7 @@ export default class RecipePage extends Component {
     this.context.clearRecipe()
   }
   renderRecipe() {
-    const { recipe , comments } = this.context
+    const { recipe } = this.context
     // console.log(recipe.author.id)
     return (
         <>
