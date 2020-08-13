@@ -3,10 +3,14 @@ import { Link, withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TokenService from '../services/token-service'
 import IdleService from '../services/idle-service'
+import RecipeContext from '../context/RecipeContext'
 import './Header.css'
 
 class Header extends Component {
+  static contextType = RecipeContext
   handleLogoutClick = () => {
+    this.context.clearLogInUser()
+    
     TokenService.clearAuthToken()
     /* when logging out, clear the callbacks to the refresh api and idle auto logout */
     TokenService.clearCallbackBeforeExpiry()
@@ -28,15 +32,6 @@ class Header extends Component {
   renderLoginLink() {
     return (
       <div className='Header__not-logged-in'>
-        {/* <Link
-          to='/register'>
-          Register
-        </Link>
-        <Hyph /> */}
-        <Link
-          to='/register'>
-          Register
-        </Link>
         <Link
           to='/login'>
           Log in
@@ -58,14 +53,6 @@ class Header extends Component {
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}
-            {/* <Link
-                to='/register'>
-                Register
-            </Link> */}
-            {/* <Link
-                to='/login'>
-                Log in
-            </Link> */}
         </div>
       </nav>
     )

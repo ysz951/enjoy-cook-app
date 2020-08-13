@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import RecipeContext from '../context/RecipeContext'
+import RecipeContext, { nullRecipe } from '../context/RecipeContext'
 import RecipeApiService from '../services/recipe-api-service'
 import CommentForm from '../CommentForm/CommentForm'
 import './RecipePage.css'
@@ -20,14 +20,17 @@ export default class RecipePage extends Component {
       .then(this.context.setComments)
       .catch(this.context.setError)
   }
-
+  componentWillUnmount() {
+    this.context.clearRecipe()
+  }
   renderRecipe() {
     const { recipe , comments } = this.context
+    // console.log(recipe.author.id)
     return (
         <>
           <h2>{recipe.name}</h2>
           
-          <RecipeAuthor recipe={recipe}/>
+          <RecipeAuthor recipe={recipe} user_id={this.context.user_id}/>
           
           <RecipeContent recipe={recipe} />
           <RecipeComments comments={comments}/>
@@ -46,10 +49,12 @@ export default class RecipePage extends Component {
 }
 
 
-function RecipeAuthor({ recipe }) {
+function RecipeAuthor({ recipe = nullRecipe,  user_id}) {
+  // console.log(recipe.author.user_id,'context_user_id', user_id)
   return (
+    
     <p className='RecipePage__author'>
-      {recipe.author.user_name}
+      {recipe.author.id === user_id ? <span className="red"> {recipe.author.user_name} </span>: recipe.author.user_name}
     </p>
   )
 }

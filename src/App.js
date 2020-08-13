@@ -98,7 +98,7 @@ class App extends Component {
               path={'/login'}
               component={LoginPage}
             />
-            <PrivateRoute
+            <PublicOnlyRoute
               path={'/register'}
               component={RegistrationPage}
             />

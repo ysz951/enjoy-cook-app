@@ -69,7 +69,6 @@ const RecipeApiService = {
         )
     },
     postComment(recipeId, content) {
-        console.log(TokenService.getAuthToken())
         return fetch(`${config.API_ENDPOINT}/comments`, {
         method: 'POST',
         headers: {
