@@ -3,12 +3,13 @@ import { Link, withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TokenService from '../services/token-service'
 import IdleService from '../services/idle-service'
-import RecipeContext from '../context/RecipeContext'
+import CollectionListContext from '../context/CollectionListContext'
 import './Header.css'
 
 class Header extends Component {
-  static contextType = RecipeContext
+  static contextType = CollectionListContext
   handleLogoutClick = () => {
+    this.context.clearCollectionList()
     TokenService.clearAuthToken()
     /* when logging out, clear the callbacks to the refresh api and idle auto logout */
     TokenService.clearCallbackBeforeExpiry()

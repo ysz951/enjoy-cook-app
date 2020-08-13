@@ -13,10 +13,12 @@ import PrivateRoute from './Route/PrivateRoute'
 import TokenService from './services/token-service'
 import AuthApiService from './services/auth-api-service'
 import IdleService from './services/idle-service'
+import CollectionListContext  from './context/CollectionListContext'
+import RecipeApiService from './services/recipe-api-service'
 import './App.css'
 class App extends Component {
   state = { hasError: false }
-
+  static contextType = CollectionListContext
   static getDerivedStateFromError(error) {
     console.error(error)
     return { hasError: true }
@@ -32,6 +34,9 @@ class App extends Component {
 
     /* if a user is logged in */
     if (TokenService.hasAuthToken()) {
+      RecipeApiService.getCollectionList()
+      .then(this.context.setCollectionList)
+      .catch(this.context.setError)
       // this.forceUpdate()
       /*
         tell the idle service to register event listeners
@@ -78,6 +83,8 @@ class App extends Component {
     this.forceUpdate()
   }
   render(){
+    // const {collectionList = []} = this.context
+    // console.log(collectionList)
     return (
       <div className='App'>
         <header className='App__header'>

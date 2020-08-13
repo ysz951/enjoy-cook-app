@@ -117,6 +117,22 @@ const RecipeApiService = {
               return res.json().then(error => Promise.reject(error))
             }
           })
+    },
+
+    getCollectionList() {
+        if (TokenService.hasAuthToken()){
+            return fetch(`${config.API_ENDPOINT}/users/collections`, {
+                headers: {
+                    'authorization': `bearer ${TokenService.getAuthToken()}`,
+                },
+                })
+                .then(res =>
+                    (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+                )
+        }
+        
     }
 }
 

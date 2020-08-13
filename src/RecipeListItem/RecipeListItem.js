@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import CollectionListContext  from '../context/CollectionListContext'
+import RecipeApiService from '../services/recipe-api-service'
+import TokenService from '../services/token-service'
 import './RecipeListItem.css'
 
 export default class RecipeListItem extends Component {
@@ -11,14 +14,26 @@ export default class RecipeListItem extends Component {
       }
     },
   }
+  static contextType = CollectionListContext
+  // componentDidMount() {
+  //   if (TokenService.hasAuthToken()) {
+  //     const userId = TokenService.readJwtToken().user_id;
+  //     RecipeApiService.getCollectionList()
+  //     .then(this.context.setCollectionList)
+  //     .catch(this.context.setError)
+  //   }
+  // }
   render() {
     const { recipe } = this.props
     // console.log(recipe)
+    const {collectionList = []} = this.context
+    console.log(collectionList)
     return (
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
             <RecipeName recipe={recipe}/>
             <RecipeAuthor recipe={recipe}/>
             <RecipeDate recipe={recipe}/>
+            {!!collectionList && collectionList.has(recipe.id) ?<p> {TokenService.readJwtToken().user_id} </p>: ''}
         </Link>
     )
   }
