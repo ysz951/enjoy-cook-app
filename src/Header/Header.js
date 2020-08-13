@@ -9,8 +9,6 @@ import './Header.css'
 class Header extends Component {
   static contextType = RecipeContext
   handleLogoutClick = () => {
-    this.context.clearLogInUser()
-    
     TokenService.clearAuthToken()
     /* when logging out, clear the callbacks to the refresh api and idle auto logout */
     TokenService.clearCallbackBeforeExpiry()

@@ -21,9 +21,6 @@ export default class LoginForm extends Component {
       .then(res => {
         user_name.value = ''
         password.value = ''
-        // console.log(TokenService.readJwtToken().user_id, typeof TokenService.readJwtToken().user_id)
-        this.context.setLogInUser(TokenService.readJwtToken().user_id)
-        // console.log(this.context.user_id)
         this.props.onLoginSuccess()
       })
       .catch(res => {

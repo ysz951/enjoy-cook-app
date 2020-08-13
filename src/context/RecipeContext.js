@@ -9,15 +9,13 @@ const RecipeContext = React.createContext({
   recipe: nullRecipe,
   comments: [],
   error: null,
-  user_id: null,
   setError: () => {},
   clearError: () => { },
   setRecipe: () => {},
   clearRecipe: () => {},
   setComments: () => {},
   addComment: () => {},
-  setLogInUser: () => {},
-  clearLogInUser: () => {},
+  deleteComment: () => {},
 })
 
 export default RecipeContext
@@ -26,7 +24,6 @@ export class RecipeProvider extends Component {
   state = {
     recipe: nullRecipe,
     error: null,
-    user_id: null,
   };
 
   setError = error => {
@@ -36,14 +33,6 @@ export class RecipeProvider extends Component {
 
   clearError = () => {
     this.setState({ error: null })
-  }
-
-  setLogInUser = user_id => {
-    this.setState({ user_id })
-  }
-
-  clearLogInUser = () => {
-    this.setState({user_id: null})
   }
 
   setRecipe = recipe => {
@@ -59,6 +48,12 @@ export class RecipeProvider extends Component {
     this.setComments([])
   }
 
+  deleteComment = commentId => {
+    const newComments = this.state.comments.filter(comment => 
+                          Number(comment.id) !== Number(commentId))
+    this.setComments(newComments)
+  }
+
   addComment = comment => {
     this.setComments([
       ...this.state.comments,
@@ -71,15 +66,13 @@ export class RecipeProvider extends Component {
       recipe: this.state.recipe,
       comments: this.state.comments,
       error: this.state.error,
-      user_id: this.state.user_id,
       setError: this.setError,
       clearError: this.clearError,
       setRecipe: this.setRecipe,
       setComments: this.setComments,
       clearRecipe: this.clearRecipe,
       addComment: this.addComment,
-      setLogInUser: this.setLogInUser,
-      clearLogInUser: this.clearLogInUser,
+      deleteComment: this.deleteComment, 
     }
     return (
       <RecipeContext.Provider value={value}>
