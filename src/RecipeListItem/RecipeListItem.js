@@ -15,26 +15,45 @@ export default class RecipeListItem extends Component {
     },
   }
   static contextType = CollectionListContext
-  // componentDidMount() {
-  //   if (TokenService.hasAuthToken()) {
-  //     const userId = TokenService.readJwtToken().user_id;
-  //     RecipeApiService.getCollectionList()
-  //     .then(this.context.setCollectionList)
-  //     .catch(this.context.setError)
-  //   }
-  // }
+  componentDidMount() {
+    if (TokenService.hasAuthToken()) {
+      RecipeApiService.getCollectionList()
+      .then(this.context.setCollectionList)
+      .catch(this.context.setError)
+    }
+  }
+  handleClick = (recId) => {
+    if (TokenService.hasAuthToken()) {
+      const {collectionList = new Set()} = this.context
+      if (!collectionList.has(recId)){
+        RecipeApiService.postCollectionList(recId)
+        .then(this.context.addCollection)
+        .catch(this.context.setError)
+      }
+      else{
+        RecipeApiService.deleteCollectionList(recId)
+        .then(this.context.deleteCollection(recId))
+        .catch(this.context.setError)
+      }
+    }
+  }
   render() {
     const { recipe } = this.props
     // console.log(recipe)
-    const {collectionList = []} = this.context
-    console.log(collectionList)
+    const {collectionList = new Set(), error} = this.context
+    // console.log(error)
     return (
+      <>
+      <button  onClick={() => this.handleClick(recipe.id)}> add collection </button>
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
             <RecipeName recipe={recipe}/>
             <RecipeAuthor recipe={recipe}/>
             <RecipeDate recipe={recipe}/>
-            {!!collectionList && collectionList.has(recipe.id) ?<p> {TokenService.readJwtToken().user_id} </p>: ''}
+            
+            {TokenService.hasAuthToken() && !!collectionList && collectionList.has(recipe.id) 
+            ? <p> {TokenService.readJwtToken().user_id} </p>: ''}
         </Link>
+      </>
     )
   }
 }

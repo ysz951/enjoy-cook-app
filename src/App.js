@@ -14,7 +14,7 @@ import TokenService from './services/token-service'
 import AuthApiService from './services/auth-api-service'
 import IdleService from './services/idle-service'
 import CollectionListContext  from './context/CollectionListContext'
-import RecipeApiService from './services/recipe-api-service'
+import CollectionListPage from './CollectionListPage/CollectionListPage'
 import './App.css'
 class App extends Component {
   state = { hasError: false }
@@ -34,9 +34,6 @@ class App extends Component {
 
     /* if a user is logged in */
     if (TokenService.hasAuthToken()) {
-      RecipeApiService.getCollectionList()
-      .then(this.context.setCollectionList)
-      .catch(this.context.setError)
       // this.forceUpdate()
       /*
         tell the idle service to register event listeners
@@ -70,6 +67,7 @@ class App extends Component {
   }
 
   logoutFromIdle = () => {
+    this.context.clearCollectionList()
     /* remove the token from localStorage */
     TokenService.clearAuthToken()
     /* remove any queued calls to the refresh endpoint */
@@ -98,6 +96,7 @@ class App extends Component {
               render={(routerProps) => 
                 <RecipeListPage
                   history={routerProps.history}
+                  location={routerProps.location}
                 />
               }
             />
@@ -109,6 +108,10 @@ class App extends Component {
               path={'/register'}
               component={RegistrationPage}
             />
+            <PrivateRoute
+              path={'/users/collections'}
+              component={CollectionListPage}
+            />
             <Route
               path='/recipe/:recipeId'
               render={(routerProps) => 
@@ -116,6 +119,7 @@ class App extends Component {
                   recipeId={routerProps.match.params.recipeId} 
                   history={routerProps.history}
                   key = {routerProps.match.params.recipeId}
+                  location={routerProps.location}
                 />
               }
             />

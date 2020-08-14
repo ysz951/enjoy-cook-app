@@ -24,6 +24,11 @@ class Header extends Component {
           to='/'>
           Logout
         </Link>
+        {' '}
+        <Link
+          to='/users/collections'>
+          Collection
+        </Link>
       </div>
     )
   }

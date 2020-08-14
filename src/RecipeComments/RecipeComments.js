@@ -52,9 +52,11 @@ export default class RecipeComments extends Component {
                     <p> {comment.id}</p>
                     <p> {comment.user.id === user_id ? <span className="red"> {comment.user.full_name} </span>: comment.user.full_name}</p>
                     {comment.user.id === user_id ? 
-                        <button type='button' onClick={() => this.handleClick(comment.id)}> delete </button>
-                         
-                        : ''}
+                      <button type='button' onClick={() => this.handleClick(comment.id)}> 
+                        delete 
+                      </button>
+                      : ''
+                    }
                     <button onClick={this.changeClass}>change </button>
                     {/* {comment.user.id === user_id ? 
                         <form

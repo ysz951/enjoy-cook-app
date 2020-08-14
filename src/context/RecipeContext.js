@@ -50,8 +50,8 @@ export class RecipeProvider extends Component {
   }
 
   deleteComment = commentId => {
-    const newComments = this.state.comments.filter(comment => 
-                          Number(comment.id) !== Number(commentId))
+    const newComments = this.state.comments
+                        .filter(comment => Number(comment.id) !== Number(commentId))
     this.setComments(newComments)
   }
   addComment = comment => {

@@ -7,6 +7,8 @@ const CollectionListContext = React.createContext({
   clearError: () => {},
   setCollectionList: () => {},
   clearCollectionList: () => {},
+  addCollection: () => {},
+  deleteCollection: () => {},
 })
 
 export default CollectionListContext
@@ -21,10 +23,21 @@ export class CollectionListProvider extends Component {
     collectionListObject.forEach(item => {
         collectionList.add(Object.values(item)[0])
     })
-    this.setState({ collectionList: collectionList})
+    this.setState({ collectionList })
+  }
+  addCollection = collection => {
+    const collectionList = this.state.collectionList
+    collectionList.add(Object.values(collection)[0])
+    this.setState({collectionList})
+    
+  }
+  deleteCollection = recId => {
+    const collectionList = this.state.collectionList
+    collectionList.delete(recId)
+    this.setState({collectionList})
   }
   clearCollectionList = () => {
-    this.setCollectionList([])
+    this.setCollectionList(new Set())
   }
   setError = error => {
     console.error(error)
@@ -43,6 +56,8 @@ export class CollectionListProvider extends Component {
       clearError: this.clearError,
       setCollectionList: this.setCollectionList,
       clearCollectionList: this.clearCollectionList,
+      addCollection: this.addCollection,
+      deleteCollection: this.deleteCollection
     }
     return (
       <CollectionListContext.Provider value={value}>
