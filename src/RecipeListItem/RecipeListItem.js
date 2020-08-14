@@ -44,14 +44,17 @@ export default class RecipeListItem extends Component {
     // console.log(error)
     return (
       <>
-      <button  onClick={() => this.handleClick(recipe.id)}> add collection </button>
+      
+        <button  onClick={() => this.handleClick(recipe.id)}> 
+        {!!collectionList && collectionList.has(recipe.id) ? 'delete' : 'add'}
+        </button>
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
             <RecipeName recipe={recipe}/>
             <RecipeAuthor recipe={recipe}/>
             <RecipeDate recipe={recipe}/>
             
-            {TokenService.hasAuthToken() && !!collectionList && collectionList.has(recipe.id) 
-            ? <p> {TokenService.readJwtToken().user_id} </p>: ''}
+            {/* {TokenService.hasAuthToken() && !!collectionList && collectionList.has(recipe.id) 
+            ? <p> {TokenService.readJwtToken().user_id} </p>: ''} */}
         </Link>
       </>
     )

@@ -26,7 +26,6 @@ export default class RecipePage extends Component {
   }
   renderRecipe() {
     const { recipe } = this.context
-    // console.log(recipe.author.id)
     return (
         <>
           <h2>{recipe.name}</h2>
@@ -35,7 +34,7 @@ export default class RecipePage extends Component {
           
           <RecipeContent recipe={recipe} />
           <RecipeComments recipeId={this.props.recipeId}/>
-          <CommentForm history={this.props.history}/> 
+          <CommentForm history={this.props.history} location = {this.props.location}/> 
         </>
     )
   }
