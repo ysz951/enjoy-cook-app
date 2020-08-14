@@ -2,11 +2,16 @@
     display: flex;
     justify-content: space-between;
 }
+.Categorylink p{
+    cursor: pointer;
+    margin-bottom: 0;
+    margin-top: 0;
+}
 
 .Categorylink a {
     text-decoration: none;
     /* border: 1px solid black; */
-    border-top: 1px solid black;
+    /* border-top: 1px solid black; */
 }
 
 .Categorylink a:hover {
@@ -16,4 +21,13 @@
 .Categorylink .selected {
     background-color: grey;
     color: white;
+}
+
+.Categorylink_menu {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: white
+    /* overflow: hidden; */
 }

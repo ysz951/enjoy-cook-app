@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from 'react'
+
 import RecipeListContext from '../context/RecipeListContext'
 import RecipeApiService from '../services/recipe-api-service'
+import CategoryLink from '../CategoryLink/CategoryLink'
 import './SearchNav.css'
 export default class SearchNav extends Component {
   state = { query: "" }
@@ -24,9 +25,9 @@ export default class SearchNav extends Component {
   }
   render() {
     const {categoryList = []} = this.context
-    
     return (
       <div className="SearchNav">
+        
         <CategoryLink categories={categoryList}/>
         <form className="SearchForm" onSubmit={this.handleSubmit}>
           <input
@@ -42,20 +43,4 @@ export default class SearchNav extends Component {
     )
   }
 }
-function CategoryLink({categories}) {
-  return (
-      <div className="Categorylink">
-            <NavLink key="all" exact to='/' activeClassName="selected">
-              All
-            </NavLink>     
-          {categories.map(categorie => 
-            <Fragment key={categorie.name}>
-              <span> </span>
-              <NavLink exact to={`/category/${categorie.id}`} activeClassName="selected">
-                {categorie.name}
-              </NavLink>
-            </Fragment>
-          )}
-      </div>
-  )
-}
+
