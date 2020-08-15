@@ -20,14 +20,14 @@ class Header extends Component {
     return (
       <div className='Header__logged-in'>
         <Link
-          onClick={this.handleLogoutClick}
-          to='/'>
-          Logout
+          to='/users/collections'>
+          Collection
         </Link>
         {' '}
         <Link
-          to='/users/collections'>
-          Collection
+          onClick={this.handleLogoutClick}
+          to='/'>
+          Logout
         </Link>
       </div>
     )
@@ -36,6 +36,11 @@ class Header extends Component {
   renderLoginLink() {
     return (
       <div className='Header__not-logged-in'>
+        <Link
+          to='/users/collections'>
+          Collection
+        </Link>
+        {' '}
         <Link
           to='/login'>
           Log in

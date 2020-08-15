@@ -61,11 +61,8 @@ export class RecipeProvider extends Component {
     ])
   }
   updateComment = (content, commentId) => {
-    console.log('up',content)
     const newComments = this.state.comments
-    
     const index = newComments.findIndex(comment => comment.id === commentId)
-    // console.log(newComments, commentId)
     newComments[index].content = content
     this.setComments(newComments)
   }

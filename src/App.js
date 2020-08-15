@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Header from './Header/Header'
 import RecipeListPage from './RecipeListPage/RecipeListPage'
 import RecipePage from './RecipePage/RecipePage'
@@ -23,7 +23,15 @@ class App extends Component {
     console.error(error)
     return { hasError: true }
   }
-
+  componentDidUpdate(prevProps) {
+    if (window.localStorage.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+  onRouteChanged() {
+    // console.log("ROUTE CHANGED")
+    if (window.location.pathname !== '/login' ) window.localStorage.pathname = window.location.pathname
+  }
   componentDidMount() {
     // console.log(TokenService.hasAuthToken())
     /*
@@ -83,6 +91,8 @@ class App extends Component {
   render(){
     // const {collectionList = []} = this.context
     // console.log(collectionList)
+    // console.log(window.location.pathname)
+    
     return (
       <div className='App'>
         <header className='App__header'>
@@ -153,4 +163,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default withRouter(App)
