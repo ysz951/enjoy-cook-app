@@ -20,7 +20,7 @@ export default class SearchListPage extends Component {
     return (
       <section>
           <SearchNav history={this.props.history}/>
-          <RecipeList recipes = {recipeList}/>
+          <RecipeList recipes = {recipeList} history={this.props.history}/>
       </section>
     )
   }

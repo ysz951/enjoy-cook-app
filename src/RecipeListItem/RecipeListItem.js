@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faStar} from '@fortawesome/free-solid-svg-icons'
 import CollectionListContext  from '../context/CollectionListContext'
 import RecipeApiService from '../services/recipe-api-service'
 import TokenService from '../services/token-service'
@@ -8,7 +10,7 @@ import './RecipeListItem.css'
 export default class RecipeListItem extends Component {
   static defaultProps = {
     recipe: {
-      modified: '',
+      date_created: '',
       author: {
         user_name: '',
       }
@@ -36,25 +38,27 @@ export default class RecipeListItem extends Component {
         .catch(this.context.setError)
       }
     }
+    else{
+      this.props.history.push('/login')
+    }
   }
   render() {
     const { recipe } = this.props
-    // console.log(recipe)
     const {collectionList = new Set(), error} = this.context
-    // console.log(error)
+    // console.log(recipe.number_of_comments)
     return (
       <>
       
-        <button  onClick={() => this.handleClick(recipe.id)}> 
-        {!!collectionList && collectionList.has(recipe.id) ? 'delete' : 'add'}
+        <button  className="RecipeListItem_collect_btn" onClick={() => this.handleClick(recipe.id)}> 
+        {!!collectionList && collectionList.has(recipe.id) ? 
+          <FontAwesomeIcon icon={faStar}/> 
+        : <FontAwesomeIcon icon={faStar} className="light-grey" />}
         </button>
+        
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
             <RecipeName recipe={recipe}/>
             <RecipeAuthor recipe={recipe}/>
             <RecipeDate recipe={recipe}/>
-            
-            {/* {TokenService.hasAuthToken() && !!collectionList && collectionList.has(recipe.id) 
-            ? <p> {TokenService.readJwtToken().user_id} </p>: ''} */}
         </Link>
       </>
     )

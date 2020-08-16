@@ -1,3 +1,12 @@
 .RecipeListItem_link {
     text-decoration: none;
 }
+.light-grey{
+    color: rgb(173, 170, 170)
+}
+
+.RecipeListItem_collect_btn{
+    cursor: pointer;
+    border: none;
+    background: none;
+}

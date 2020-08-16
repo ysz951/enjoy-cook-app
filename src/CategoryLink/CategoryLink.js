@@ -1,9 +1,9 @@
 import React, {useState, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import onClickOutside from 'react-onclickoutside'
-  
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './CategoryLink.css'
 function CategoryLink(props) {
-
     const [open, setOpen] = useState(false)
     const toggle =() => setOpen(!open)
     const {categories} = props
@@ -11,9 +11,9 @@ function CategoryLink(props) {
     return (
         <div className="Categorylink">
             <p type="button" onKeyPress={() => toggle(!open)} onClick={() => toggle(!open)}>
-            select 
+                <FontAwesomeIcon className="CategoryLink_bars" icon='bars'/> 
+                <span> Categories</span>
             </p>
-        
             {open && (
             <div className="Categorylink_menu">
                 <NavLink key="all" exact to='/' activeClassName="selected">
