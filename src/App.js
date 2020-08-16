@@ -15,6 +15,7 @@ import AuthApiService from './services/auth-api-service'
 import IdleService from './services/idle-service'
 import CollectionListContext  from './context/CollectionListContext'
 import CollectionListPage from './CollectionListPage/CollectionListPage'
+import Home from './Home'
 import './App.css'
 class App extends Component {
   state = { hasError: false }
@@ -98,6 +99,7 @@ class App extends Component {
         <header className='App__header'>
           <Header />
         </header>
+        <Home />
         <main className='App__main'>
           <Switch>
             <Route
