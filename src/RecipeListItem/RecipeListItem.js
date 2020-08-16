@@ -45,20 +45,22 @@ export default class RecipeListItem extends Component {
   render() {
     const { recipe } = this.props
     const {collectionList = new Set(), error} = this.context
-    // console.log(recipe.number_of_comments)
+    // console.log(recipe.img_src)
     return (
       <>
-      
+      {/* <img src= 'https://upload.wikimedia.org/wikipedia/commons/4/47/Fried_double-yolk_egg.jpg'/> */}
         <button  className="RecipeListItem_collect_btn" onClick={() => this.handleClick(recipe.id)}> 
-        {!!collectionList && collectionList.has(recipe.id) ? 
-          <FontAwesomeIcon icon={faStar}/> 
-        : <FontAwesomeIcon icon={faStar} className="light-grey" />}
+        {!!collectionList && collectionList.has(recipe.id) 
+          ? <FontAwesomeIcon icon={faStar}/> 
+          : <FontAwesomeIcon icon={faStar} className="light-grey" />}
         </button>
-        
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
-            <RecipeName recipe={recipe}/>
-            <RecipeAuthor recipe={recipe}/>
-            <RecipeDate recipe={recipe}/>
+          <div className="RecipeListItem_image">
+            {recipe.img_src ? <img src={recipe.img_src} alt='err'/> : ''}
+          </div>
+          <RecipeName recipe={recipe}/>
+          <RecipeAuthor recipe={recipe}/>
+          <RecipeDate recipe={recipe}/>
         </Link>
       </>
     )

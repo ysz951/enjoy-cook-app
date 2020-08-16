@@ -26,6 +26,7 @@ export default class RecipePage extends Component {
   }
   renderRecipe() {
     const { recipe } = this.context
+    
     return (
         <>
           <h2>{recipe.name}</h2>
