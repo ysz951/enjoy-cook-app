@@ -9,6 +9,7 @@
     cursor: pointer;
     border: none;
     background: none;
+    padding:10px;
 }
 .RecipeListItem_image {
     width: 300px;
