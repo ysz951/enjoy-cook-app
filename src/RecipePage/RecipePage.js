@@ -17,9 +17,6 @@ export default class RecipePage extends Component {
     RecipeApiService.getRecipe(recipeId)
       .then(this.context.setRecipe)
       .catch(this.context.setError)
-    // RecipeApiService.getRecipeComments(recipeId)
-    //   .then(this.context.setComments)
-    //   .catch(this.context.setError)
   }
   componentWillUnmount() {
     this.context.clearRecipe()
@@ -30,9 +27,7 @@ export default class RecipePage extends Component {
     return (
         <>
           <h2>{recipe.name}</h2>
-          
           <RecipeAuthor recipe={recipe}/>
-          
           <RecipeContent recipe={recipe} />
           <RecipeComments recipeId={this.props.recipeId}/>
           <CommentForm history={this.props.history} location = {this.props.location}/> 
@@ -51,7 +46,6 @@ export default class RecipePage extends Component {
 
 
 function RecipeAuthor({ recipe = nullRecipe}) {
-  // console.log(recipe.author.user_id,'context_user_id', user_id)
   return (
     
     <p className='RecipePage__author'>
@@ -68,16 +62,3 @@ function RecipeContent({ recipe }) {
   )
 }
 
-// function RecipeComments({ comments = [] ,user_id}) {
-//   return (
-//     <ul className='RecipePage__comment_list'>
-//       {comments.map(comment =>
-//         <li key={comment.id} className='RecipePage__comment'>
-//             <p>{comment.content}</p>
-//             <p> {comment.user.id === user_id ? <span className="red"> {comment.user.full_name} </span>: comment.user.full_name}</p>
-//             
-//         </li>   
-//       )}
-//     </ul>
-//   )
-// }

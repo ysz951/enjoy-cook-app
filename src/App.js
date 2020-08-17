@@ -29,7 +29,7 @@ class App extends Component {
     }
   }
   onRouteChanged() {
-    // console.log("ROUTE CHANGED")
+    // store the previous location
     if (window.location.pathname !== '/login' ) window.localStorage.pathname = window.location.pathname
   }
   componentDidMount() {
@@ -89,10 +89,6 @@ class App extends Component {
     this.forceUpdate()
   }
   render(){
-    // const {collectionList = []} = this.context
-    // console.log(collectionList)
-    // console.log(window.location.pathname)
-    
     return (
       <div className='App'>
         <header className='App__header'>
