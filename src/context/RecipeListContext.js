@@ -16,8 +16,9 @@ export class RecipeListProvider extends Component {
   state = {
     recipeList: [],
     categoryList: [],
-    error: null
+    error: null,
   }
+
   setRecipeList = recipeList => {
     this.setState({ recipeList })
   }

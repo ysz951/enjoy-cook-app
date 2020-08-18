@@ -2,18 +2,49 @@
   height: 90vh;
   padding-top: 10px;
   padding-bottom: 20px;
-  max-width: 500px;
+  max-width: 700px;
+
   margin: 0 auto;
 }
 
 .App__header {
-  padding-left: 20px;
-  padding-right: 20px;
+  width: 100%;
+  max-width: 700px;
+  /* margin: 0 auto; */
+  top: 0%;
+  position: fixed;
+  background-color: white;
+  /* padding-left: 20px;
+  padding-right: 20px; */
 }
 
 .App__main {
-  height: calc(100vh - 70px);
+  width: 100%;
+  /* height: calc(100vh - 70px);
   overflow: auto;
   margin-top: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 40px; */
+}
+
+.goTop-btn{
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgb(223, 223, 223);
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+
+.goTop-icon{
+  color: rgb(112, 112, 112);
+  font-size: large;
+}
+
+.goTop-btn:hover{
+  background-color: rgb(112, 112, 112);
+}
+
+.goTop-btn:hover .goTop-icon{
+  color: rgb(223, 223, 223);
 }

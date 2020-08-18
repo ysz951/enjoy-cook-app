@@ -108,17 +108,21 @@ export default class RecipeComments extends Component {
             {comments.map(comment =>
               <li key={comment.id} className='RecipePage__comment'>
                 { this.commentContentArea(comment, user_id)}
-                <p> 
-                  {comment.user.id === user_id ? <span className="red"> {comment.user.full_name} </span>: comment.user.full_name}
-                </p>
-                { comment.user.id === user_id 
-                  ? !this.state.textAreaActive && !this.state.selectedCommentId 
-                  ? this.manipulateCommentButton(comment)
-                  : comment.id !== this.state.selectedCommentId && this.state.textAreaActive 
-                  ? this.manipulateCommentButton(comment)
-                  : ''
-                  : ''
-                }
+                <div className="RecipePage__comment_poster_control_group">
+                  <p className="RecipePage__comment_poster"> 
+                    {comment.user.id === user_id 
+                    ? <span className="brown"> {comment.user.full_name}</span>
+                    : comment.user.full_name}
+                  </p>
+                  { comment.user.id === user_id 
+                    ? !this.state.textAreaActive && !this.state.selectedCommentId 
+                    ? this.manipulateCommentButton(comment)
+                    : comment.id !== this.state.selectedCommentId && this.state.textAreaActive 
+                    ? this.manipulateCommentButton(comment)
+                    : ''
+                    : ''
+                  }
+                </div>
               </li>   
             )} 
     </ul>

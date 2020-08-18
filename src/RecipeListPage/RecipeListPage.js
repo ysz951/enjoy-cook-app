@@ -18,6 +18,7 @@ export default class RecipeListPage extends Component {
     return (
       <section>
           <SearchNav history={this.props.history}/>
+          <div className="dummy_space"> </div>
           <RecipeList recipes={recipeList} history={this.props.history}/>
       </section>
     )

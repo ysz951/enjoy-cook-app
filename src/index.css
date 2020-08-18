@@ -1,16 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:200, 400');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Crimson+Text&family=Lustria&display=swap');
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
 h1, h2, h3, h4, h5, h6 {
   color: #222;
@@ -24,7 +29,52 @@ a:visited{
   color:black
 }
 
-.blue {
+/* button style */
+.btn_type_1{
+  cursor: pointer;
+  order: 1px solid #aaa;
+  background-color: #eee;
+  font-size: 0.9em;
+  border-radius: 4px;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.btn_type_1:hover{
+  color:rgb(90, 90, 90);
+  background-color: rgb(201, 201, 201);
+}
+.btn_type_1:active{
+  box-shadow: 5px 5px 14px -6px rgba(0, 0, 0, 0.5);
+}
+
+/* font style */
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+/* font-family */
+.Acme {
+  font-family: 'Acme', sans-serif;
+}
+
+.Lustria{
+  font-family: 'Lustria', serif;
+}
+
+.Crimson{
+  font-family: 'Crimson Text', serif;
+}
+/* color */
+
+.brown{
+  color:brown
+}
+/* .blue {
   color: #477ACC;
 }
 
@@ -42,4 +92,4 @@ a:visited{
 
 .orange {
   color: #FB4D3D;
-}
+} */

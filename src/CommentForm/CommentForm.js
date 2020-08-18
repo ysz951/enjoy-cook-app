@@ -36,16 +36,16 @@ export default class CommentForm extends Component {
         onSubmit={this.handleSubmit}
       >
         <textarea
-          className='text'
+          className='CommentForm_textarea'
           required
           aria-label='Type a comment...'
-          name='text'
-          id='text'
+          name='comment_post_textarea'
+          id='comment_post_textarea'
           // cols='30'
           rows='3'
           placeholder='Type a comment..'
         />
-        <button type='submit'>
+        <button className="btn_type_1" type='submit'>
           Post comment
         </button>
       </form>

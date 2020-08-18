@@ -1,0 +1,17 @@
+.LoginPage{
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 90%;
+}
+
+.LoginPage_Sign_up{
+    color: red
+}
+
+.LoginPage_Sign_up:visited{
+    color: red;
+}
+
+.LoginPage_Sign_up:active{
+    color:black;
+}

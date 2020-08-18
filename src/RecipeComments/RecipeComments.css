@@ -3,7 +3,7 @@
 }
 
 .Recipepage__comment_manipulateCommentButton{
-    display: flex;
+    /* display: flex; */
     /* justify-content: flex-end; */
 }
 
@@ -15,4 +15,9 @@
 .Recipepage__comment_manipulateCommentForm_textarea {
     margin-top: 25px;
     width: 98%
+}
+
+.Recipepage__comment_poster_control_group{
+    display: flex;
+    flex-direction: row;
 }

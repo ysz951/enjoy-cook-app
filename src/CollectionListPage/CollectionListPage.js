@@ -17,7 +17,7 @@ export default class CollectionListPage extends Component {
       const {recipeList = []} = this.context
       return (
       <>
-        <div className="whiteSpace_25px"></div>
+        <h2 className="Favorite_title">Favorite Recipes</h2>
         <CollectionList recipes={recipeList}/>
       </>
       )

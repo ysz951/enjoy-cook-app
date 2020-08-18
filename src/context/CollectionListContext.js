@@ -3,12 +3,14 @@ import React, { Component } from 'react'
 const CollectionListContext = React.createContext({
   collectionList: new Set(),
   error: null,
+  
   setError: () => {},
   clearError: () => {},
   setCollectionList: () => {},
   clearCollectionList: () => {},
   addCollection: () => {},
   deleteCollection: () => {},
+  
 })
 
 export default CollectionListContext
@@ -16,8 +18,10 @@ export default CollectionListContext
 export class CollectionListProvider extends Component {
   state = {
     collectionList: new Set(),
+    
     error: null
   }
+  
   setCollectionList = collectionListObject => {
     const collectionList = new Set()
     collectionListObject.forEach(item => {
@@ -52,8 +56,10 @@ export class CollectionListProvider extends Component {
     const value = {
       collectionList: this.state.collectionList,
       error: this.state.error,
+      
       setError: this.setError,
       clearError: this.clearError,
+      
       setCollectionList: this.setCollectionList,
       clearCollectionList: this.clearCollectionList,
       addCollection: this.addCollection,

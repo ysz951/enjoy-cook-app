@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-
 import RecipeListContext from '../context/RecipeListContext'
 import RecipeApiService from '../services/recipe-api-service'
 import CategoryLink from '../CategoryLink/CategoryLink'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SearchNav.css'
 export default class SearchNav extends Component {
-  state = { query: "" }
+  state = { 
+    query: "",
+    searchCategory: "",
+  }
   static contextType = RecipeListContext
   updateQuery(query){
       this.setState({query})
@@ -13,7 +16,7 @@ export default class SearchNav extends Component {
   handleSubmit = e => {
       e.preventDefault();
       const {history} = this.props
-       history.push(this.state.query ? `/search/${this.state.query}` : '/')
+      history.push(this.state.query ? `/search/${this.state.query}` : '/')
   }
   componentDidMount() {
     this.context.clearError()
@@ -21,22 +24,26 @@ export default class SearchNav extends Component {
       .then(this.context.setCategoryList)
       .catch(this.context.setError)
   }
+
   render() {
     const {categoryList = []} = this.context
+    // console.log(this.context.searchCategory)
     return (
       <div className="SearchNav">
-        
-        <CategoryLink categories={categoryList}/>
-        <form className="SearchForm" onSubmit={this.handleSubmit}>
-          <input
-            id="SearchForm_search"
-            name="search"
-            placeholder="search"
-            onKeyUp={e => this.updateQuery(e.target.value)}
-            type="text"
-          />
-          <button type="submit">search</button>
-        </form>
+        <div className="SearchNav_group">
+          <CategoryLink categories={categoryList}/>
+          <form className="SearchForm" onSubmit={this.handleSubmit}>
+            <input
+              id="SearchForm_search"
+              className="SearchForm_input"
+              name="SearchForm_search"
+              placeholder="Search recipes"
+              onKeyUp={e => this.updateQuery(e.target.value)}
+              type="text"
+            />
+            <button className="SearchNav_btn" type="submit"><FontAwesomeIcon icon="search"/></button>
+          </form>
+        </div>
       </div>
     )
   }

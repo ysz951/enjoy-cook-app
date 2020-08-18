@@ -17,7 +17,7 @@ function CategoryLink(props) {
             {open && (
             <div className="Categorylink_menu">
                 <NavLink key="all" exact to='/' activeClassName="selected">
-                All
+                    All
                 </NavLink>     
                 {categories.map(categorie => 
                 <Fragment key={categorie.id}>

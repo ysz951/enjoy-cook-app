@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faStar} from '@fortawesome/free-solid-svg-icons'
 import CollectionListContext  from '../context/CollectionListContext'
 import RecipeApiService from '../services/recipe-api-service'
 import TokenService from '../services/token-service'
@@ -45,21 +44,37 @@ export default class RecipeListItem extends Component {
   render() {
     const { recipe } = this.props
     const {collectionList = new Set(), error} = this.context
+    // console.log(recipe)
     return (
       <>
-        <button  className="RecipeListItem_collect_btn" onClick={() => this.handleClick(recipe.id)}> 
-        {!!collectionList && collectionList.has(recipe.id) 
-          ? <FontAwesomeIcon icon={faStar}/> 
-          : <FontAwesomeIcon icon={faStar} className="light-grey" />}
-        </button>
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
-          <div className="RecipeListItem_image">
-            {recipe.img_src ? <img src={recipe.img_src} alt='err'/> : ''}
+          <div className="RecipeListItem_image" style={{backgroundImage: `url(${recipe.img_src})`}}>
+            {/* {recipe.img_src ? <img src={recipe.img_src} alt='err'/> : ''} */}
           </div>
-          <RecipeName recipe={recipe}/>
-          <RecipeAuthor recipe={recipe}/>
-          <RecipeDate recipe={recipe}/>
-        </Link>
+          </Link>
+          <div className="RecipeListItem_group">
+            <div className="RecipeListItem_name_favorite_group">
+              <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
+                <RecipeName recipe={recipe}/>
+              </Link>
+              <button className="RecipeListItem_collect_btn" 
+                onClick={() => this.handleClick(recipe.id)}
+              > 
+                {!!collectionList && collectionList.has(recipe.id) 
+                ? <FontAwesomeIcon icon='star'/> 
+                : <FontAwesomeIcon icon='star' className="light-grey" />}
+              </button>
+            </div>
+            <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
+              <div className="RecipeListItem_autho_commentNum_group">
+                <RecipeAuthor recipe={recipe}/>
+                <RecipeNumberOfComments recipe={recipe}/>
+              </div>
+              <RecipeContent recipe={recipe}/>
+              {/* <RecipeDate recipe={recipe}/> */}
+            </Link>
+          </div>
+        
       </>
     )
   }
@@ -67,23 +82,55 @@ export default class RecipeListItem extends Component {
 
 function RecipeName({ recipe }) {
   return (
-    <p className='RecipeListItem__name'>
-        {recipe.name}
+    <p className='RecipeListItem_name Lustria'>
+        {truncate(recipe.name, 20)}
+    </p>
+  )
+}
+function RecipeContent({recipe}){
+  return (
+    <p className='RecipeListItem_content Crimson'>
+        {truncate(recipe.content, 10, 'split')}
     </p>
   )
 }
 
+function truncate(text, limitLength, method='') {
+  switch(method){
+    case 'split':
+      const words = text.split(' ')
+      if (words.length > limitLength) {
+        return words.slice(0, limitLength).join(' ') + ' ...'
+      }
+      return text
+    default:
+      if (text.length > limitLength) {
+        return text.slice(0, limitLength) + ' ...'
+      }
+      return text
+  }
+ 
+}
+
 function RecipeAuthor({ recipe }) {
     return (
-    <p className='RecipeListItem__author'>
-        by {recipe.author.user_name}
+    <p className='RecipeListItem_author'>
+        By <span className="bold Acme">{truncate(recipe.author.user_name, 20)}</span>
     </p>
     )
 }
 
+function RecipeNumberOfComments({recipe}){
+  return (
+    <p className='RecipeListItem_NumberOfComments'>
+        {recipe.number_of_comments} <FontAwesomeIcon icon='comment-dots'/> 
+    </p>
+  )
+}
+
 function RecipeDate({ recipe }) {
   return (
-    <p className='RecipeListItem__date'>
+    <p className='RecipeListItem_date'>
         {recipe.date_created.slice(0, 10)}
     </p>
   )
