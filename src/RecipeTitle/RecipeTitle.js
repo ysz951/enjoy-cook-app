@@ -41,19 +41,21 @@ export default class RecipeTitle extends Component {
     const { recipe } = this.props
     const {collectionList = new Set(), error} = this.context
     return (
-      <div className="RecipePage_title_collect_group">
+      <>
         <div role='alert'>
-          {error && <p className='red'>{error}</p>}
+            {error && <p className='red'>{error}</p>}
         </div>
-        {recipe.name && <RecipeName recipe={recipe}/>}
-        <button className="RecipePage_collect_btn" 
-            onClick={() => this.handleClick(recipe.id)}
-        > 
-            {!!collectionList && collectionList.has(recipe.id) 
-            ? <FontAwesomeIcon icon='star'/> 
-            : <FontAwesomeIcon icon='star' className="light-grey" />}
-        </button>
-      </div>
+        <div className="RecipePage_title_collect_group">
+          {recipe.name && <RecipeName recipe={recipe}/>}
+          <button className="RecipePage_collect_btn" 
+              onClick={() => this.handleClick(recipe.id)}
+          > 
+              {!!collectionList && collectionList.has(recipe.id) 
+              ? <FontAwesomeIcon icon='star'/> 
+              : <FontAwesomeIcon icon='star' className="light-grey" />}
+          </button>
+        </div>
+      </>
     )
   }
 }

@@ -116,7 +116,7 @@ export default class RecipeComments extends Component {
     return (
       <>
         <div role='alert'>
-              {error && <p className='red'>{error}</p>}
+          {error && <p className='red'>{error}</p>}
         </div>
         <ul className='RecipePage__comment_list'>
             {comments.map(comment =>
