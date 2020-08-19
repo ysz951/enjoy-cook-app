@@ -38,18 +38,15 @@
 .Header__log_part a:last-child{
     margin-left: 5px;
     display: inline-block;
-    width: 65px;
     text-align: right;
 }
 
 
 @media screen and (min-width: 400px) {
     .Header__log_part a {
-        /* color: rgb(114, 88, 88); */
         font-size: initial;
     }
     .Header__log_part a:last-child{
         margin-left: 15px;
-        width: 75px;
     }
   }
