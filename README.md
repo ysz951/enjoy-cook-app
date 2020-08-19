@@ -13,13 +13,13 @@ An online recipes search & share app. Find your want, make your like!
 
 ## Screenshoots
 ### Main Page:
-![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/main_page)
+![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/main_page.png)
 
 ### Favorite page:
-![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/favorite_page)
+![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/favorite_page.png)
 
 ### Recipe page:
-![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/recipe_page.jpg)
+![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/recipe_page.png)
 
 ## Built With
 ### Front-End
