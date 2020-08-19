@@ -18,16 +18,20 @@ class Header extends Component {
 
   renderLogoutLink() {
     return (
-      <div className='Header__logged-in'>
+      <div className='Header__log_part'>
         <Link
           to='/users/collections'>
-          Collection
+          <FontAwesomeIcon icon='star' />
+          {' '}
+          Favorite
         </Link>
         {' '}
         <Link
           onClick={this.handleLogoutClick}
           to='/'>
-          Logout
+            <FontAwesomeIcon icon='sign-in-alt' />
+            {' '}
+          Log out
         </Link>
       </div>
     )
@@ -35,14 +39,18 @@ class Header extends Component {
 
   renderLoginLink() {
     return (
-      <div className='Header__not-logged-in'>
+      <div className='Header__log_part'>
         <Link
           to='/users/collections'>
-          Collection
+          <FontAwesomeIcon icon='star' />
+          {' '}
+          Favorite
         </Link>
         {' '}
         <Link
           to='/login'>
+            <FontAwesomeIcon icon='sign-out-alt' />
+            {' '}
           Log in
         </Link>
       </div>
@@ -51,18 +59,18 @@ class Header extends Component {
   render() {
     return (
       <nav className='Header__name'>
-        <h1>
+        <h1 className="Header_app_name">
           <Link to='/'>
             <FontAwesomeIcon icon='drumstick-bite' />
             {' '}
             Enjoy Cook
           </Link>
         </h1>
-        <div className='Header__not-logged-in'>
+        
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()
           : this.renderLoginLink()}
-        </div>
+        
       </nav>
     )
   }

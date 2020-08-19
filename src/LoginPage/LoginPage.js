@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import LoginForm from '../LoginForm/LoginForm'
 import { Link } from 'react-router-dom'
+import './LoginPage.css'
 export default class LoginPage extends Component {
   static defaultProps = {
     location: {},
@@ -24,10 +25,10 @@ export default class LoginPage extends Component {
         <LoginForm
           onLoginSuccess={this.handleLoginSuccess}
         />
-        <div>
+        <p>
           <span>Don't have an acount? </span>
-          <Link to='/register'>Sign up</Link>
-        </div>
+          <Link className="LoginPage_Sign_up" to='/register'>Sign up</Link>
+        </p>
       </section>
     )
   }

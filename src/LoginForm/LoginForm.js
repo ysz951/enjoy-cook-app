@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AuthApiService from '../services/auth-api-service'
-import TokenService from '../services/token-service'
 import RecipeContext from '../context/RecipeContext'
+import './LoginForm.css'
 export default class LoginForm extends Component {
   static defaultProps = {
     onLoginSuccess: () => {}
@@ -61,7 +61,7 @@ export default class LoginForm extends Component {
             required
           />
         </div>
-        <button type='submit'>
+        <button className="LoginFrom_submit_btn btn_type_1" type='submit'>
           Login
         </button>
         

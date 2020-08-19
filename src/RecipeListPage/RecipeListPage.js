@@ -14,11 +14,14 @@ export default class RecipeListPage extends Component {
   }
   render() {
     const { recipeList = [], error } = this.context
-    const {location} = this.props
     return (
       <section>
-          <SearchNav history={this.props.history}/>
-          <RecipeList recipes={recipeList} history={this.props.history}/>
+        <div role='alert'>
+          {error && <p className='red'>{error}</p>}
+        </div>
+        <SearchNav history={this.props.history}/>
+        <div className="dummy_space"> </div>
+        <RecipeList recipes={recipeList} history={this.props.history}/>
       </section>
     )
   }

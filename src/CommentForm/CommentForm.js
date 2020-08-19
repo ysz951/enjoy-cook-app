@@ -8,7 +8,8 @@ export default class CommentForm extends Component {
   static defaultProps = {
     history: {
       push: () => {},
-    }
+    },
+    updateCommentNumber: () => {},
   };
   static contextType = RecipeContext
 
@@ -19,36 +20,50 @@ export default class CommentForm extends Component {
     }
     else{
       const { recipe } = this.context
-      const { text } = ev.target
-      RecipeApiService.postComment(recipe.id, text.value)
+      const { comment_post_textarea } = ev.target
+      this.context.clearError()
+      RecipeApiService.postComment(recipe.id, comment_post_textarea.value)
         .then(this.context.addComment)
         .then(() => {
-          text.value = ''
+          comment_post_textarea.value = ''
+          // go to bottom
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth"
+          })
+          this.props.updateCommentNumber()
         })
         .catch(this.context.setError)
     }
   }
 
   render() {
+    const {error} = this.context
     return (
-      <form
-        className='CommentForm'
-        onSubmit={this.handleSubmit}
-      >
-        <textarea
-          className='text'
-          required
-          aria-label='Type a comment...'
-          name='text'
-          id='text'
-          // cols='30'
-          rows='3'
-          placeholder='Type a comment..'
-        />
-        <button type='submit'>
-          Post comment
-        </button>
-      </form>
+      <>
+        <div role='alert'>
+            {error && <p className='red'>{error}</p>}
+        </div>
+        <form
+          className='CommentForm'
+          onSubmit={this.handleSubmit}
+        >
+          <textarea
+            className='CommentForm_textarea'
+            required
+            aria-label='Type a comment...'
+            name='comment_post_textarea'
+            id='comment_post_textarea'
+            // cols='30'
+            rows='3'
+            placeholder='Type a comment..'
+          />
+          <button className="btn_type_1" type='submit'>
+            Post
+          </button>
+        </form>
+      </>
     )
   }
 }
+

@@ -1,8 +1,4 @@
-/* .CategoryLink_bars{
-    cursor: pointer;
-    margin-bottom: 0;
-    margin-top: 0;
-} */
+
 .Categorylink p{
     cursor: pointer;
     margin-bottom: 0;
@@ -10,12 +6,16 @@
 }
 .Categorylink a {
     text-decoration: none;
-    /* border: 1px solid black; */
-    /* border-top: 1px solid black; */
+    padding: 8px 10px;
+    
 }
 
 .Categorylink a:hover {
     border-bottom: 1px solid grey;
+}
+
+.Categorylink {
+    margin-left: 10px;
 }
 
 .Categorylink .selected {
@@ -28,6 +28,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    background: white
+    background: rgb(240, 240, 240);
+    width: 96px;
+    /* border: 1px solid grey; */
+    border-radius: 0 0 10px 10px;
     /* overflow: hidden; */
 }

@@ -15,9 +15,17 @@ import AuthApiService from './services/auth-api-service'
 import IdleService from './services/idle-service'
 import CollectionListContext  from './context/CollectionListContext'
 import CollectionListPage from './CollectionListPage/CollectionListPage'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './App.css'
 class App extends Component {
-  state = { hasError: false }
+  constructor(props) {
+    super(props)
+    this.state={ 
+      hasError: false, 
+      is_visible: false 
+    }
+  }
+  // state = { hasError: false, is_visible:false }
   static contextType = CollectionListContext
   static getDerivedStateFromError(error) {
     console.error(error)
@@ -32,7 +40,29 @@ class App extends Component {
     // store the previous location
     if (window.location.pathname !== '/login' ) window.localStorage.pathname = window.location.pathname
   }
+
+  toggleVisibility() {
+    if (window.pageYOffset > 300) {
+      this.setState({
+        is_visible: true
+      })
+    } else {
+      this.setState({
+        is_visible: false
+      })
+    }
+  }
+  scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }
   componentDidMount() {
+    const scrollComponent = this;
+    document.addEventListener("scroll", function(e) {
+      scrollComponent.toggleVisibility()
+    })
     // console.log(TokenService.hasAuthToken())
     /*
       set the function (callback) to call when a user goes idle
@@ -91,6 +121,11 @@ class App extends Component {
   render(){
     return (
       <div className='App'>
+        {this.state.is_visible && (
+          <button className="goTop-btn" onClick={this.scrollToTop}>
+             <FontAwesomeIcon className="goTop-icon" icon="arrow-up"/>
+          </button>
+        )}
         <header className='App__header'>
           <Header />
         </header>
