@@ -8,6 +8,7 @@ import './RecipeComments.css'
 
 export default class RecipeComments extends Component {
   static defaultProps = {
+    updateCommentNumber: () => {},
   }
   state = {
     textAreaActive: false,
@@ -24,7 +25,10 @@ export default class RecipeComments extends Component {
 
   deleteComment = (commentId) => {
       RecipeApiService.deleteComment(commentId)
-        .then(res => this.context.deleteComment(commentId))
+        .then(res => {
+          this.context.deleteComment(commentId)
+          this.props.updateCommentNumber()
+        })
         .catch(this.context.setError)
   }
   submitUpdateComment = ev => {
@@ -108,35 +112,39 @@ export default class RecipeComments extends Component {
   }
   render() {
     const user_id = TokenService.hasAuthToken() ? TokenService.readJwtToken().user_id : null
-    const { comments = [] } = this.context
+    const { comments = [], error } = this.context
     return (
-      <ul className='RecipePage__comment_list'>
-          {comments.map(comment =>
-            <li key={comment.id} className='RecipePage__comment'>
-              <div className="RecipePage__comment_poster_control_group">
-                <p className="RecipePage__comment_poster"> 
-                  {/* {comment.user.full_name} */}
-                  {comment.user.id === user_id 
-                  ? <span className="bold"> {comment.user.user_name}</span>
-                  : comment.user.user_name}
-                </p>
-                {comment.date_created && 
-                  <p className="RecipePage__comment_dateCreated">
-                    {format(new Date(comment.date_created), 'MM-dd-yyyy')}
+      <>
+        <div role='alert'>
+              {error && <p className='red'>{error}</p>}
+        </div>
+        <ul className='RecipePage__comment_list'>
+            {comments.map(comment =>
+              <li key={comment.id} className='RecipePage__comment'>
+                <div className="RecipePage__comment_poster_control_group">
+                  <p className="RecipePage__comment_poster"> 
+                    {comment.user.id === user_id 
+                    ? <span className="bold"> {comment.user.user_name}</span>
+                    : comment.user.user_name}
                   </p>
-                }
-                { comment.user.id === user_id 
-                  ? !this.state.textAreaActive && !this.state.selectedCommentId 
-                  ? this.manipulateCommentButton(comment)
-                  : comment.id !== this.state.selectedCommentId && this.state.textAreaActive 
-                  ? this.manipulateCommentButton(comment)
-                  : ''
-                  : ''
-                }
-              </div>
-              { this.commentContentArea(comment, user_id)}
-            </li>   
-          )} 
-      </ul>
+                  {comment.date_created && 
+                    <p className="RecipePage__comment_dateCreated">
+                      {format(new Date(comment.date_created), 'MM-dd-yyyy')}
+                    </p>
+                  }
+                  { comment.user.id === user_id 
+                    ? !this.state.textAreaActive && !this.state.selectedCommentId 
+                    ? this.manipulateCommentButton(comment)
+                    : comment.id !== this.state.selectedCommentId && this.state.textAreaActive 
+                    ? this.manipulateCommentButton(comment)
+                    : ''
+                    : ''
+                  }
+                </div>
+                { this.commentContentArea(comment, user_id)}
+              </li>   
+            )} 
+        </ul>
+      </>
   )}
 }

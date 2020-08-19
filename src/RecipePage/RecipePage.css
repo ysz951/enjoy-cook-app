@@ -33,3 +33,8 @@
     padding: 5px;
     color:black;
 }
+
+.CommentForm_textarea{
+    width: 100%;
+}
+

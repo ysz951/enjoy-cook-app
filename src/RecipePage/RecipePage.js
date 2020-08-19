@@ -9,12 +9,13 @@ import RecipeTitle from '../RecipeTitle/RecipeTitle'
 import './RecipePage.css'
 
 export default class RecipePage extends Component {
-  static defaultProps = {
-    // match: { params: {} },
-  }
+  // static defaultProps = {
+ 
+  // }
 
   static contextType = RecipeContext
   componentDidMount() {
+    
     const { recipeId } = this.props
     this.context.clearError()
     RecipeApiService.getRecipe(recipeId)
@@ -24,12 +25,22 @@ export default class RecipePage extends Component {
   componentWillUnmount() {
     this.context.clearRecipe()
   }
+  
+  updateCommentNumber = () => {
+    const { recipeId } = this.props
+    this.context.clearError()
+    RecipeApiService.getRecipe(recipeId)
+      .then(this.context.setRecipe)
+      .catch(this.context.setError)
+  }
 
   renderRecipe() {
-    const { recipe } = this.context
-    // console.log(recipe)
+    const { recipe, error } = this.context
     return (
         <>
+          <div role='alert'>
+            {error && <p className='red'>{error}</p>}
+          </div>
           <RecipeTitle recipe={recipe} history={this.props.history}/>
           <div className="RecipePage_image">
             {recipe.img_src && <img src={recipe.img_src} alt="error"/>}
@@ -46,8 +57,9 @@ export default class RecipePage extends Component {
             {' '}
             Comments: {recipe.number_of_comments}
           </p>
-          <CommentForm history={this.props.history} /> 
-          <RecipeComments recipeId={this.props.recipeId}/>
+          {/* {this.CommentForm()} */}
+          <CommentForm history={this.props.history} updateCommentNumber={this.updateCommentNumber} /> 
+          <RecipeComments recipeId={this.props.recipeId} updateCommentNumber={this.updateCommentNumber}/>
         </>
     )
   }
