@@ -8,7 +8,7 @@ This is the front end for `Enjoy Cook`. The back end can be found at https://git
 * Easy to log in and register.
 * Add the recipes you like to your favorites link.
 * Display the number of comments of the recipe in real time.
-* Post, edit or delte your comments about the recipe.
+* Post, edit or delete your comments about the recipe.
 
 ## Demo
 * [Live Demo](https://enjoy-cook-app.vercel.app/)
