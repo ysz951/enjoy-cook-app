@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import RecipeListContext from '../context/RecipeListContext'
 import RecipeApiService from '../services/recipe-api-service'
 import CategoryLink from '../CategoryLink/CategoryLink'
+import CategoryLinkSpread from '../CategoryLinkSpread/CategoryLinkSpread'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './SearchNav.css'
 export default class SearchNav extends Component {
@@ -32,6 +33,7 @@ export default class SearchNav extends Component {
       <div className="SearchNav">
         <div className="SearchNav_group">
           <CategoryLink categories={categoryList}/>
+          <CategoryLinkSpread categories={categoryList}/>
           <form className="SearchForm" onSubmit={this.handleSubmit}>
             <input
               id="SearchForm_search"

@@ -10,18 +10,18 @@ export default class RegistrationForm extends Component {
 
   handleSubmit = ev => {
     ev.preventDefault()
-    const { full_name, nick_name, user_name, password } = ev.target
-
+    // const { full_name, nick_name, user_name, password } = ev.target
+    const { user_name, password } = ev.target
     this.setState({ error: null })
     AuthApiService.postUser({
       user_name: user_name.value,
       password: password.value,
-      full_name: full_name.value,
-      nickname: nick_name.value,
+      // full_name: full_name.value,
+      // nickname: nick_name.value,
     })
       .then(user => {
-        full_name.value = ''
-        nick_name.value = ''
+        // full_name.value = ''
+        // nick_name.value = ''
         user_name.value = ''
         password.value = ''
         this.props.onRegistrationSuccess()
@@ -41,7 +41,7 @@ export default class RegistrationForm extends Component {
         <div role='alert'>
           {error && <p className='red'>{error}</p>}
         </div>
-        <div className='full_name'>
+        {/* <div className='full_name'>
           <label htmlFor='RegistrationForm__full_name'>
             Full name 
             <span className='Required'>
@@ -54,11 +54,11 @@ export default class RegistrationForm extends Component {
             required
             id='RegistrationForm__full_name'/>
           
-        </div>
+        </div> */}
         <div className='user_name'>
           <label htmlFor='RegistrationForm__user_name'>
             User name
-            <span className='Required'>
+            <span className='Required red'>
               &#42;
             </span>  
           </label>
@@ -72,7 +72,7 @@ export default class RegistrationForm extends Component {
         <div className='password'>
           <label htmlFor='RegistrationForm__password'>
             Password
-            <span className='Required'>
+            <span className='Required red'>
               &#42;
             </span> 
           </label>
@@ -83,7 +83,7 @@ export default class RegistrationForm extends Component {
             id='RegistrationForm__password'/>
           
         </div>
-        <div className='nick_name'>
+        {/* <div className='nick_name'>
           <label htmlFor='RegistrationForm__nick_name'>
             Nickname
           </label>
@@ -93,7 +93,7 @@ export default class RegistrationForm extends Component {
             required
             id='RegistrationForm__nick_name'>
           </input>
-        </div>
+        </div> */}
         <button className="RegistrationForm_submit_btn btn_type_1" type='submit'>
           Register
         </button>

@@ -24,6 +24,11 @@ export default class CommentForm extends Component {
         .then(this.context.addComment)
         .then(() => {
           comment_post_textarea.value = ''
+          // go to bottom
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth"
+          })
         })
         .catch(this.context.setError)
     }

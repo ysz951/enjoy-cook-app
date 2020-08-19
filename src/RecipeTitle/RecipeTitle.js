@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CollectionListContext  from '../context/CollectionListContext'
 import RecipeApiService from '../services/recipe-api-service'
@@ -41,9 +40,11 @@ export default class RecipeTitle extends Component {
   render() {
     const { recipe } = this.props
     const {collectionList = new Set(), error} = this.context
-    // console.log(recipe)
     return (
       <div className="RecipePage_title_collect_group">
+        <div role='alert'>
+          {error && <p className='red'>{error}</p>}
+        </div>
         {recipe.name && <RecipeName recipe={recipe}/>}
         <button className="RecipePage_collect_btn" 
             onClick={() => this.handleClick(recipe.id)}
@@ -61,25 +62,6 @@ function RecipeName({ recipe }) {
   return (
     <h2 className='Lustria RecipePage_title'>
         {recipe.name}
-        {/* {truncate(recipe.name, 20)} */}
     </h2>
   )
-}
-
-
-function truncate(text, limitLength, method='') {
-  switch(method){
-    case 'split':
-      const words = text.split(' ')
-      if (words.length > limitLength) {
-        return words.slice(0, limitLength).join(' ') + ' ...'
-      }
-      return text
-    default:
-      if (text.length > limitLength) {
-        return text.slice(0, limitLength) + ' ...'
-      }
-      return text
-  }
- 
 }

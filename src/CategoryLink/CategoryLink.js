@@ -9,7 +9,7 @@ function CategoryLink(props) {
     const {categories} = props
     CategoryLink.handleClickOutside = () => setOpen(false);
     return (
-        <div className="Categorylink">
+        <div className="Categorylink mobile-only">
             <p type="button" onKeyPress={() => toggle(!open)} onClick={() => toggle(!open)}>
                 <FontAwesomeIcon className="CategoryLink_bars" icon='bars'/> 
                 <span> Categories</span>

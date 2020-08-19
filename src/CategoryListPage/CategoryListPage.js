@@ -5,7 +5,6 @@ import SearchNav from '../SearchNav/SearchNav'
 import RecipeList from '../RecipeList/RecipeList'
 import './CategoryListPage.css'
 export default class CategoryListPage extends Component {
-
   static contextType = RecipeListContext
   componentDidMount() {
     const { categoryId } = this.props
@@ -14,20 +13,21 @@ export default class CategoryListPage extends Component {
       .catch(this.context.setError)
     
   }
-  
   render() {
     const { recipeList = [], error } = this.context
     const {categoryId} = this.props
     const selectedCategory = 
       (this.context.categoryList || [])
       .find(category => Number(category.id) === Number(categoryId))
-    // console.log(selectedCategory)
     return (
       <section>
-          <SearchNav history={this.props.history}/>
-          { selectedCategory && selectedCategory.name && 
-          (<p className="selectedCategory italic">"{selectedCategory.name}"</p>)}
-          <RecipeList recipes = {recipeList} history={this.props.history}/>
+        <div role='alert'>
+          {error && <p className='red'>{error}</p>}
+        </div>
+        <SearchNav history={this.props.history}/>
+        { selectedCategory && selectedCategory.name && 
+        (<p className="selectedCategory italic">"{selectedCategory.name}"</p>)}
+        <RecipeList recipes = {recipeList} history={this.props.history}/>
       </section>
     )
   }

@@ -10,6 +10,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll;
+  background-color: rgb(233, 233, 233);
 }
 
 /* code {
@@ -17,7 +18,7 @@ body {
     monospace;
 } */
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 a{
   color: #222;
 }
 
@@ -25,8 +26,16 @@ p {
   color: #555;
 }
 
+a:link{
+  color: #222;
+}
+
 a:visited{
-  color:black
+  color: #222;
+}
+
+a:active{
+  color: #222;
 }
 
 /* button style */
@@ -121,6 +130,10 @@ button{
 
 .brown{
   color:rgb(110, 39, 39)
+}
+
+.red {
+  color: #CA1551;
 }
 /* .blue {
   color: #477ACC;

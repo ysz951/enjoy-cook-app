@@ -24,6 +24,7 @@ export default class RecipePage extends Component {
   componentWillUnmount() {
     this.context.clearRecipe()
   }
+
   renderRecipe() {
     const { recipe } = this.context
     // console.log(recipe)
@@ -45,7 +46,7 @@ export default class RecipePage extends Component {
             {' '}
             Comments: {recipe.number_of_comments}
           </p>
-          <CommentForm history={this.props.history} location = {this.props.location}/> 
+          <CommentForm history={this.props.history} /> 
           <RecipeComments recipeId={this.props.recipeId}/>
         </>
     )

@@ -45,24 +45,24 @@ class App extends Component {
     if (window.pageYOffset > 300) {
       this.setState({
         is_visible: true
-      });
+      })
     } else {
       this.setState({
         is_visible: false
-      });
+      })
     }
   }
   scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth"
-    });
+    })
   }
   componentDidMount() {
     const scrollComponent = this;
     document.addEventListener("scroll", function(e) {
       scrollComponent.toggleVisibility()
-    });
+    })
     // console.log(TokenService.hasAuthToken())
     /*
       set the function (callback) to call when a user goes idle

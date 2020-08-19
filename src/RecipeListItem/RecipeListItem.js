@@ -10,6 +10,7 @@ export default class RecipeListItem extends Component {
   static defaultProps = {
     recipe: {
       name: '',
+      content:'',
       date_created: '',
       author: {
         user_name: '',
@@ -47,9 +48,11 @@ export default class RecipeListItem extends Component {
     const {collectionList = new Set(), error} = this.context
     return (
       <>
+        <div role='alert'>
+          {error && <p className='red'>{error}</p>}
+        </div>
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
           <div className="RecipeListItem_image" style={{backgroundImage: `url(${recipe.img_src})`}}>
-            {/* {recipe.img_src ? <img src={recipe.img_src} alt='err'/> : ''} */}
           </div>
           </Link>
           <div className="RecipeListItem_group">
@@ -115,7 +118,7 @@ function truncate(text, limitLength, method='') {
 function RecipeAuthor({ recipe }) {
     return (
     <p className='RecipeListItem_author'>
-        By <span className="bold Acme">{truncate(recipe.author.user_name, 20)}</span>
+        By <span className="bold Acme">{recipe.author.user_name}</span>
     </p>
     )
 }
@@ -124,14 +127,6 @@ function RecipeNumberOfComments({recipe}){
   return (
     <p className='RecipeListItem_NumberOfComments'>
         {recipe.number_of_comments} <FontAwesomeIcon icon='comment-dots'/> 
-    </p>
-  )
-}
-
-function RecipeDate({ recipe }) {
-  return (
-    <p className='RecipeListItem_date'>
-        {recipe.date_created.slice(0, 10)}
     </p>
   )
 }
