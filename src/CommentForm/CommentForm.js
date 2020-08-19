@@ -19,11 +19,11 @@ export default class CommentForm extends Component {
     }
     else{
       const { recipe } = this.context
-      const { text } = ev.target
-      RecipeApiService.postComment(recipe.id, text.value)
+      const { comment_post_textarea } = ev.target
+      RecipeApiService.postComment(recipe.id, comment_post_textarea.value)
         .then(this.context.addComment)
         .then(() => {
-          text.value = ''
+          comment_post_textarea.value = ''
         })
         .catch(this.context.setError)
     }
@@ -46,7 +46,7 @@ export default class CommentForm extends Component {
           placeholder='Type a comment..'
         />
         <button className="btn_type_1" type='submit'>
-          Post comment
+          Post
         </button>
       </form>
     )

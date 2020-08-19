@@ -9,6 +9,7 @@ import './RecipeListItem.css'
 export default class RecipeListItem extends Component {
   static defaultProps = {
     recipe: {
+      name: '',
       date_created: '',
       author: {
         user_name: '',
@@ -44,7 +45,6 @@ export default class RecipeListItem extends Component {
   render() {
     const { recipe } = this.props
     const {collectionList = new Set(), error} = this.context
-    // console.log(recipe)
     return (
       <>
         <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">

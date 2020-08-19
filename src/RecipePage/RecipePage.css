@@ -1,9 +1,22 @@
-.RecipePage__comment_list {
-    padding-left:20px;
-    padding-right: 20px;
-}
+
 .RecipePage {
     margin: 0 auto;
     margin-top: 50px;
     width: 90%;
 }
+
+.RecipePage_image{
+    width: 100%;
+}
+
+.RecipePage_image img{
+    width: 100%;
+}
+.RecipePage_numberOfComments{
+    margin-bottom: 10px;
+}
+.RecipePage_author_crateDate_group{
+    display: flex;
+    justify-content: space-between;
+}
+

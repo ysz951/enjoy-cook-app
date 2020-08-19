@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import RecipeContext, { nullRecipe } from '../context/RecipeContext'
+import {format} from 'date-fns'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import RecipeApiService from '../services/recipe-api-service'
 import CommentForm from '../CommentForm/CommentForm'
 import RecipeComments from '../RecipeComments/RecipeComments'
+import RecipeTitle from '../RecipeTitle/RecipeTitle'
 import './RecipePage.css'
 
 export default class RecipePage extends Component {
@@ -23,14 +26,26 @@ export default class RecipePage extends Component {
   }
   renderRecipe() {
     const { recipe } = this.context
-    
+    console.log(recipe)
     return (
         <>
-          <h2>{recipe.name}</h2>
-          <RecipeAuthor recipe={recipe}/>
+          <RecipeTitle recipe={recipe} history={this.props.history}/>
+          <div className="RecipePage_image">
+            {recipe.img_src && <img src={recipe.img_src} alt="error"/>}
+          </div>
+          <div className="RecipePage_author_crateDate_group">
+            <RecipeAuthor recipe={recipe}/>
+            {recipe.date_created && <RecipeDate recipe={recipe}/>}
+          </div>
           <RecipeContent recipe={recipe} />
-          <RecipeComments recipeId={this.props.recipeId}/>
+          <hr/>
+          <p className="RecipePage_numberOfComments">
+            <FontAwesomeIcon icon="comment-dots"/>
+            {' '}
+            Comments: {recipe.number_of_comments}
+          </p>
           <CommentForm history={this.props.history} location = {this.props.location}/> 
+          <RecipeComments recipeId={this.props.recipeId}/>
         </>
     )
   }
@@ -44,19 +59,29 @@ export default class RecipePage extends Component {
   }
 }
 
+function RecipeDate({ recipe }) {
+  return (
+    <p className='RecipeListItem_date'>
+        {format(new Date(recipe.date_created), 'MM-dd-yyyy')}
+    </p>
+  )
+}
 
 function RecipeAuthor({ recipe = nullRecipe}) {
   return (
-    
-    <p className='RecipePage__author'>
-      {recipe.author.user_name}
+    <p>
+      <FontAwesomeIcon icon="user-edit"/>
+      {' '}
+      <span className='RecipePage__author bold Acme'>
+        {recipe.author.user_name}
+      </span>
     </p>
   )
 }
 
 function RecipeContent({ recipe }) {
   return (
-    <p className='RecipePage__content'>
+    <p className='RecipePage__content Lora bold'>
       {recipe.content}
     </p>
   )

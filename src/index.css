@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:200, 400');
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Crimson+Text&family=Lustria&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Crimson+Text&family=Fredoka+One&family=Libre+Caslon+Display&family=Lora&family=Lustria&display=swap');
 * {
   box-sizing: border-box;
 }
@@ -30,8 +30,11 @@ a:visited{
 }
 
 /* button style */
-.btn_type_1{
+button{
   cursor: pointer;
+}
+
+.btn_type_1{
   order: 1px solid #aaa;
   background-color: #eee;
   font-size: 0.9em;
@@ -47,6 +50,34 @@ a:visited{
 .btn_type_1:active{
   box-shadow: 5px 5px 14px -6px rgba(0, 0, 0, 0.5);
 }
+
+.btn_type_2{
+  order: none;
+  background-color: rgb(255, 255, 255);
+  color: rgb(100, 100, 100);
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.btn_type_2:hover{
+  color:rgb(0, 0, 0);
+  background-color: rgb(201, 201, 201);
+}
+
+.btn_type_3{
+  order: none;
+  background-color: rgb(43, 69, 92);
+  border-color:rgb(67, 103, 133);
+  color: rgb(247, 247, 247);
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.btn_type_3:hover{
+  /* color:rgb(0, 0, 0); */
+  background-color:rgb(67, 103, 133);
+}
+
 
 /* font style */
 
@@ -69,10 +100,27 @@ a:visited{
 .Crimson{
   font-family: 'Crimson Text', serif;
 }
+
+.Fredoka{
+  font-family: 'Fredoka One', cursive;
+}
+
+.Libre{
+  font-family: 'Libre Caslon Display', serif;
+}
+
+.Lora{
+  font-family: 'Lora', serif;
+}
+
 /* color */
 
+.light-grey{
+  color: rgb(173, 170, 170)
+}
+
 .brown{
-  color:brown
+  color:rgb(110, 39, 39)
 }
 /* .blue {
   color: #477ACC;

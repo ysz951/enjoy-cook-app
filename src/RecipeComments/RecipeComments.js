@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import RecipeContext  from '../context/RecipeContext'
 import RecipeApiService from '../services/recipe-api-service'
 import TokenService from '../services/token-service'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {format} from 'date-fns'
 import './RecipeComments.css'
 
 export default class RecipeComments extends Component {
@@ -60,10 +62,14 @@ export default class RecipeComments extends Component {
     return(
       <div className="Recipepage__comment_manipulateCommentButton">
         <button type='button' onClick={() => this.deleteComment(comment.id)}> 
-          delete 
+          <FontAwesomeIcon icon="trash-alt"/>
+          {' '}
+          Delete 
         </button>
-        <button onClick={() => this.changeComment(comment.id)}>
-          change 
+        <button type='button' onClick={() => this.changeComment(comment.id)}>
+          <FontAwesomeIcon icon="edit"/>
+          {' '}
+          Edit 
         </button> 
       </div>
     )
@@ -89,15 +95,15 @@ export default class RecipeComments extends Component {
             // placeholder='Type a comment..'
           />
           <div className="Recipepage__comment_CommentFormButton">
-            <button type='button' onClick={this.closeTextArea}>
-              Close
+            <button className="btn_type_2" type='button' onClick={this.closeTextArea}>
+              Cancel
             </button>
-            <button type='submit'>
-              Post
+            <button className="btn_type_3" type='submit'>
+              Update
             </button>
           </div>
         </form>
-      : <p className="RecipePage__coment_content">{comment.content}</p>
+      : <p className="RecipePage__coment_content Crimson">{comment.content}</p>
     )
   }
   render() {
@@ -107,13 +113,18 @@ export default class RecipeComments extends Component {
         <ul className='RecipePage__comment_list'>
             {comments.map(comment =>
               <li key={comment.id} className='RecipePage__comment'>
-                { this.commentContentArea(comment, user_id)}
                 <div className="RecipePage__comment_poster_control_group">
                   <p className="RecipePage__comment_poster"> 
+                    {/* {comment.user.full_name} */}
                     {comment.user.id === user_id 
-                    ? <span className="brown"> {comment.user.full_name}</span>
+                    ? <span className="bold"> {comment.user.full_name}</span>
                     : comment.user.full_name}
                   </p>
+                  {comment.date_created && 
+                    <p className="RecipePage__comment_dateCreated">
+                      {format(new Date(comment.date_created), 'MM-dd-yyyy')}
+                    </p>
+                  }
                   { comment.user.id === user_id 
                     ? !this.state.textAreaActive && !this.state.selectedCommentId 
                     ? this.manipulateCommentButton(comment)
@@ -123,6 +134,7 @@ export default class RecipeComments extends Component {
                     : ''
                   }
                 </div>
+                { this.commentContentArea(comment, user_id)}
               </li>   
             )} 
     </ul>

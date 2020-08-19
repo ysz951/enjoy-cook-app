@@ -29,7 +29,7 @@ class Header extends Component {
         <Link
           onClick={this.handleLogoutClick}
           to='/'>
-            <FontAwesomeIcon icon='user' />
+            <FontAwesomeIcon icon='sign-in-alt' />
             {' '}
           Log out
         </Link>
@@ -49,7 +49,7 @@ class Header extends Component {
         {' '}
         <Link
           to='/login'>
-            <FontAwesomeIcon icon='user' />
+            <FontAwesomeIcon icon='sign-out-alt' />
             {' '}
           Log in
         </Link>

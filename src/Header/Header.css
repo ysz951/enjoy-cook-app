@@ -28,7 +28,7 @@
 
 .Header__log_part a {
     color: rgb(114, 88, 88);
-    font-size: smaller
+    font-size: smaller;
 }
 
 .Header__log_part a:hover {
@@ -38,7 +38,7 @@
 .Header__log_part a:last-child{
     margin-left: 5px;
     display: inline-block;
-    width: 60px;
+    width: 65px;
     text-align: right;
 }
 

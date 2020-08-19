@@ -28,17 +28,17 @@
 
 .goTop-btn{
   position: fixed;
-  bottom: 10px;
-  left: 10px;
+  bottom: 20vh;
+  right: 5px;
   background-color: rgb(223, 223, 223);
   outline: none;
   border: none;
-  padding: 10px;
+  padding: 4px;
 }
 
 .goTop-icon{
   color: rgb(112, 112, 112);
-  font-size: large;
+  font-size: small;
 }
 
 .goTop-btn:hover{
@@ -47,4 +47,31 @@
 
 .goTop-btn:hover .goTop-icon{
   color: rgb(223, 223, 223);
+}
+
+@media screen and (min-width: 400px) {
+  .goTop-icon{
+    font-size:initial;
+  }
+
+}
+
+@media screen and (min-width: 500px) {
+  .goTop-btn{
+    right: 10px;
+  }
+  .goTop-icon{
+    font-size:larger;
+  }
+
+}
+
+@media screen and (min-width: 600px) {
+  .goTop-btn{
+    right: 15px;
+  }
+  .goTop-icon{
+    font-size:large;
+  }
+
 }
