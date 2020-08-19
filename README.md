@@ -4,7 +4,7 @@ An online recipes search & share app. Find your want, make your like!
 This is the front end for `Enjoy Cook`. The back end can be found at https://github.com/ysz951/enjoy-cook-api.
 
 ## Features
-* Search recipes by categories or the key word.
+* Search recipes by category or keyword.
 * Easy to log in and register.
 * Add the recipes you like to your favorites link.
 * Display the number of comments of the recipe in real time.
