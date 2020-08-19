@@ -3,12 +3,10 @@
     top: 45px;
     padding-top: 10px;
     padding-bottom: 10px;
-    /* left: 10%; */
     max-width: 900px;
     width: 100%;
     background-color: white;
     border-bottom: 1px solid rgb(189, 188, 188)
-    /* margin-top: 10px; */
 }
 
 .SearchNav_group {
@@ -31,7 +29,6 @@
     cursor: pointer;
     outline:none;
     color: rgb(114, 88, 88);
-    /* font-size: large; */
 }
 
 .SearchNav_btn:hover{
