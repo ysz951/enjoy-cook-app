@@ -118,7 +118,7 @@ export default class RecipeComments extends Component {
                     {/* {comment.user.full_name} */}
                     {comment.user.id === user_id 
                     ? <span className="bold"> {comment.user.full_name}</span>
-                    : comment.user.full_name}
+                    : comment.user.user_name}
                   </p>
                   {comment.date_created && 
                     <p className="RecipePage__comment_dateCreated">

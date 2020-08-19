@@ -2,6 +2,7 @@
     list-style: none;
     padding-left:20px;
     padding-right: 20px;
+    /* background-color:rgb(245, 245, 245); */
 }
 
 .RecipePage__comment:hover .Recipepage__comment_manipulateCommentButton{

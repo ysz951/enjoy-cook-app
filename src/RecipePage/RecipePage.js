@@ -26,7 +26,7 @@ export default class RecipePage extends Component {
   }
   renderRecipe() {
     const { recipe } = this.context
-    console.log(recipe)
+    // console.log(recipe)
     return (
         <>
           <RecipeTitle recipe={recipe} history={this.props.history}/>
@@ -37,6 +37,7 @@ export default class RecipePage extends Component {
             <RecipeAuthor recipe={recipe}/>
             {recipe.date_created && <RecipeDate recipe={recipe}/>}
           </div>
+          <hr/>
           <RecipeContent recipe={recipe} />
           <hr/>
           <p className="RecipePage_numberOfComments">
