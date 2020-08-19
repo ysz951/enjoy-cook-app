@@ -1,5 +1,5 @@
 {
-  "name": "noteful",
+  "name": "enjoy-cook",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -28,6 +28,7 @@
     "predeploy": "npm run build",
     "deploy": "vercel --prod"
   },
+  "author": "Shengyang Zhou <shengyang_zhou@hotmail.com>",
   "eslintConfig": {
     "extends": "react-app"
   },
