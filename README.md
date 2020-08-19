@@ -1,5 +1,5 @@
 # Enjoy Cook
-An online recipes search & share app. Find your want, make your like!
+An online recipes search & share app. Find you want, make you like!
 
 This is the front end for `Enjoy Cook`. The back end can be found at https://github.com/ysz951/enjoy-cook-api.
 
