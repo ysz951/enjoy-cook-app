@@ -1,3 +1,21 @@
 .RecipeListItem_link {
     text-decoration: none;
 }
+.light-grey{
+    color: rgb(173, 170, 170)
+}
+
+.RecipeListItem_collect_btn{
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding:10px;
+}
+.RecipeListItem_image {
+    width: 300px;
+    height: 200px;
+}
+
+.RecipeListItem_image img{
+    height: 100%;
+} 

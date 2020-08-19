@@ -1,6 +1,7 @@
 .Recipe__list {
     list-style: none;
     padding: 0;
+    margin-top: 50px;
 }
 
 .Recipe__list_item {

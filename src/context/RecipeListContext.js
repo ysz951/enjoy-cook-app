@@ -1,28 +1,47 @@
 import React, { Component } from 'react'
-import STORE from '../dummy-story'
+
 const RecipeListContext = React.createContext({
-  recipes: [],
-  categories: [],
-  comments: [],
-  users: [],
+  recipeList: [],
+  categoryList: [],
+  error: null,
+  setError: () => {},
+  clearError: () => {},
+  setRecipeList: () => {},
+  setCategoryList: () => {},
 })
 
 export default RecipeListContext
 
 export class RecipeListProvider extends Component {
   state = {
-    recipes: STORE.recipes,
-    categories: STORE.categories,
-    users: STORE.users,
-    comments: STORE.comments,
+    recipeList: [],
+    categoryList: [],
+    error: null
+  }
+  setRecipeList = recipeList => {
+    this.setState({ recipeList })
+  }
+  setCategoryList = categoryList => {
+    this.setState({ categoryList })
+  }
+  setError = error => {
+    console.error(error)
+    this.setState({ error })
+  }
+
+  clearError = () => {
+    this.setState({ error: null })
   }
 
   render() {
     const value = {
-      recipes: this.state.recipes,
-      categories: this.state.categories,
-      users: this.state.users,
-      comments: this.state.comments
+      recipeList: this.state.recipeList,
+      categoryList: this.state.categoryList,
+      error: this.state.error,
+      setError: this.setError,
+      clearError: this.clearError,
+      setRecipeList: this.setRecipeList,
+      setCategoryList: this.setCategoryList,
     }
     return (
       <RecipeListContext.Provider value={value}>

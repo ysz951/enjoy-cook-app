@@ -1,0 +1,18 @@
+.RecipePage__comment_list {
+    list-style: none;
+}
+
+.Recipepage__comment_manipulateCommentButton{
+    display: flex;
+    /* justify-content: flex-end; */
+}
+
+.Recipepage__comment_CommentFormButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Recipepage__comment_manipulateCommentForm_textarea {
+    margin-top: 25px;
+    width: 98%
+}
