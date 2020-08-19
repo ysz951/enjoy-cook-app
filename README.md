@@ -21,6 +21,9 @@ An online recipes search & share app. Find your want, make your like!
 ### Recipe page:
 ![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/recipe_page.png)
 
+### Mobile view:
+![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/mobile_search.png)
+
 ## Built With
 ### Front-End
 * #### HTML
