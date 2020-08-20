@@ -16,12 +16,8 @@ export default class RegistrationForm extends Component {
     AuthApiService.postUser({
       user_name: user_name.value,
       password: password.value,
-      // full_name: full_name.value,
-      // nickname: nick_name.value,
     })
       .then(user => {
-        // full_name.value = ''
-        // nick_name.value = ''
         user_name.value = ''
         password.value = ''
         this.props.onRegistrationSuccess()
@@ -41,20 +37,6 @@ export default class RegistrationForm extends Component {
         <div role='alert'>
           {error && <p className='red'>{error}</p>}
         </div>
-        {/* <div className='full_name'>
-          <label htmlFor='RegistrationForm__full_name'>
-            Full name 
-            <span className='Required'>
-              &#42;
-            </span>
-          </label>
-          <input
-            name='full_name'
-            type='text'
-            required
-            id='RegistrationForm__full_name'/>
-          
-        </div> */}
         <div className='user_name'>
           <label htmlFor='RegistrationForm__user_name'>
             User name
@@ -83,17 +65,6 @@ export default class RegistrationForm extends Component {
             id='RegistrationForm__password'/>
           
         </div>
-        {/* <div className='nick_name'>
-          <label htmlFor='RegistrationForm__nick_name'>
-            Nickname
-          </label>
-          <input
-            name='nick_name'
-            type='text'
-            required
-            id='RegistrationForm__nick_name'>
-          </input>
-        </div> */}
         <button className="RegistrationForm_submit_btn btn_type_1" type='submit'>
           Register
         </button>

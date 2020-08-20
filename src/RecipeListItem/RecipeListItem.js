@@ -74,7 +74,6 @@ export default class RecipeListItem extends Component {
                 <RecipeNumberOfComments recipe={recipe}/>
               </div>
               <RecipeContent recipe={recipe}/>
-              {/* <RecipeDate recipe={recipe}/> */}
             </Link>
           </div>
         

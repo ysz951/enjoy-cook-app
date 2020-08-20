@@ -28,7 +28,6 @@ export default class SearchNav extends Component {
 
   render() {
     const {categoryList = []} = this.context
-    // console.log(this.context.searchCategory)
     return (
       <div className="SearchNav">
         <div className="SearchNav_group">
