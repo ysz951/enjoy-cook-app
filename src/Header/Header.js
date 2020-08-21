@@ -60,7 +60,7 @@ class Header extends Component {
     return (
       <nav className='Header__name'>
         <h1 className="Header_app_name">
-          <Link to='/'>
+          <Link to='/main'>
             <FontAwesomeIcon icon='drumstick-bite' />
             {' '}
             Enjoy Cook

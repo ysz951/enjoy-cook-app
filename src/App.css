@@ -4,6 +4,7 @@
   max-width: 900px;
   background-color: white;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 .App__header {

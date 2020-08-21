@@ -15,6 +15,7 @@ import AuthApiService from './services/auth-api-service'
 import IdleService from './services/idle-service'
 import CollectionListContext  from './context/CollectionListContext'
 import CollectionListPage from './CollectionListPage/CollectionListPage'
+import LandingPage from './LandingPage/LandingPage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './App.css'
 class App extends Component {
@@ -131,9 +132,23 @@ class App extends Component {
         </header>
         <main className='App__main'>
           <Switch>
-            <Route
+            <PublicOnlyRoute
               exact
               path={'/'}
+              component={LandingPage}
+            />
+          {/* <Route
+              exact
+              path={'/'}
+              render={(routerProps) => 
+                <LandingPage
+                  history={routerProps.history}
+                />
+              }
+            /> */}
+            <Route
+              exact
+              path={'/main'}
               render={(routerProps) => 
                 <RecipeListPage
                   history={routerProps.history}
