@@ -89,7 +89,7 @@ class App extends Component {
       */
       TokenService.queueCallbackBeforeExpiry(() => {
         /* the timoue will call this callback just before the token expires */
-        AuthApiService.postRefreshToken()
+        AuthApiService.postRefreshToken();
       });
     }
   }
