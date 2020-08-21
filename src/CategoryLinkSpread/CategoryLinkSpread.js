@@ -1,8 +1,8 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import './CategoryLinkSpread.css'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './CategoryLinkSpread.css';
 function CategoryLinkSpread(props) {
-    const {categories=[]} = props
+    const {categories=[]} = props;
     return (
         <ul className="CategorylinkSpread wide-screen-only">   
             <li key="all_categories">
@@ -19,7 +19,7 @@ function CategoryLinkSpread(props) {
             </li>
             )}  
         </ul>
-    )
+    );
 }
 
 export default CategoryLinkSpread;

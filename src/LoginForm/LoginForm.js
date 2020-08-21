@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import AuthApiService from '../services/auth-api-service'
-import RecipeContext from '../context/RecipeContext'
-import './LoginForm.css'
+import React, { Component } from 'react';
+import AuthApiService from '../services/auth-api-service';
+import RecipeContext from '../context/RecipeContext';
+import './LoginForm.css';
 export default class LoginForm extends Component {
   static defaultProps = {
-    onLoginSuccess: () => {}
-  }
-  static contextType = RecipeContext
-  state = { error: null }
+    onLoginSuccess: () => {},
+  };
+  static contextType = RecipeContext;
+  state = { error: null };
 
   handleSubmitBasicAuth = ev => {
-    ev.preventDefault()
-    this.setState({ error: null })
-    const { user_name, password } = ev.target
+    ev.preventDefault();
+    this.setState({ error: null });
+    const { user_name, password } = ev.target;
 
     AuthApiService.postLogin({
       user_name: user_name.value,
@@ -29,7 +29,7 @@ export default class LoginForm extends Component {
   };
 
   render() {
-    const {error} = this.state
+    const {error} = this.state;
     return (
       <form
         className='LoginForm'
@@ -46,6 +46,7 @@ export default class LoginForm extends Component {
             className="user_name"
             name='user_name'
             id='LoginForm__user_name'
+            placeholder="test"
             required
           />
         </div>
@@ -58,14 +59,14 @@ export default class LoginForm extends Component {
             name='password'
             type='password'
             id='LoginForm__password'
+            placeholder="password"
             required
           />
         </div>
         <button className="LoginFrom_submit_btn btn_type_1" type='submit'>
           Login
         </button>
-        
       </form>
-    )
+    );
   }
 }

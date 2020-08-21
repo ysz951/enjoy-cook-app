@@ -46,17 +46,18 @@
     text-align: center;
 }
 
+
 .LandingPage_feature{
     text-align: center;
     margin: 5vh;
+    
 }
 
 .LandingPage_feature_last{
     text-align: center;
     margin-bottom: 10vh;
+    
 }
-
-
 
 .LandingPage_findMore{
     /* margin:0 auto; */

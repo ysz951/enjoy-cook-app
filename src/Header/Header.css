@@ -21,10 +21,6 @@
 .Header__name a {
     color: #444;
 }
- 
-.Header_app_name{
-    /* margin-left: 10px; */
-}
 
 .Header__log_part a {
     color: rgb(114, 88, 88);

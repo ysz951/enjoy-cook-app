@@ -17,7 +17,7 @@ export default class SearchNav extends Component {
   handleSubmit = e => {
       e.preventDefault();
       const {history} = this.props
-      history.push(this.state.query ? `/search/${this.state.query}` : '/')
+      history.push(this.state.query ? `/search/${this.state.query}` : '/main')
   }
   componentDidMount() {
     this.context.clearError()
