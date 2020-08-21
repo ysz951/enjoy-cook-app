@@ -1,5 +1,5 @@
-import config from '../config'
-import TokenService from '../services/token-service'
+import config from '../config';
+import TokenService from '../services/token-service';
 const RecipeApiService = {
     getRecipes() {
         return fetch(`${config.API_ENDPOINT}/recipes`, {
@@ -164,6 +164,6 @@ const RecipeApiService = {
                 }
             })
     },
-}
+};
 
-export default RecipeApiService
+export default RecipeApiService;

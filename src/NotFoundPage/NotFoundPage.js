@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import './NotFoundPage.css'
+import React, { Component } from 'react';
+import './NotFoundPage.css';
 
 export default class NotFoundPage extends Component {
   render() {
@@ -8,6 +8,6 @@ export default class NotFoundPage extends Component {
         <h2>404 - Page not found</h2>
         <p>Try going back to your previous page.</p>
       </section>
-    )
+    );
   }
 }

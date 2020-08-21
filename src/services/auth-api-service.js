@@ -1,6 +1,6 @@
-import config from '../config'
-import TokenService from './token-service'
-import IdleService from './idle-service'
+import config from '../config';
+import TokenService from './token-service';
+import IdleService from './idle-service';
 
 const AuthApiService = {
   postUser(user) {
@@ -38,12 +38,12 @@ const AuthApiService = {
           3. queue a call to the refresh endpoint based on the JWT's exp value
         */
         
-        TokenService.saveAuthToken(res.authToken)
-        IdleService.regiserIdleTimerResets()
+        TokenService.saveAuthToken(res.authToken);
+        IdleService.regiserIdleTimerResets();
         TokenService.queueCallbackBeforeExpiry(() => {
           AuthApiService.postRefreshToken()
         })
-        return res
+        return res;
       })
   },
   postRefreshToken() {
@@ -64,17 +64,17 @@ const AuthApiService = {
           - we don't need to queue the idle timers again as the user is already logged in.
           - we'll catch the error here as this refresh is happening behind the scenes
         */
-        TokenService.saveAuthToken(res.authToken)
+        TokenService.saveAuthToken(res.authToken);
         TokenService.queueCallbackBeforeExpiry(() => {
           AuthApiService.postRefreshToken()
-        })
-        return res
+        });
+        return res;
       })
       .catch(err => {
-        console.log('refresh token request error')
-        console.error(err)
+        console.log('refresh token request error');
+        console.error(err);
       })
   },
-}
+};
 
-export default AuthApiService
+export default AuthApiService;

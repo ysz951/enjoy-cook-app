@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export const nullRecipe = {
   author: {},
   tags: [],
-}
+};
 
 const RecipeContext = React.createContext({
   recipe: nullRecipe,
@@ -17,9 +17,9 @@ const RecipeContext = React.createContext({
   addComment: () => {},
   deleteComment: () => {},
   updateComment: () => {},
-})
+});
 
-export default RecipeContext
+export default RecipeContext;
 
 export class RecipeProvider extends Component {
   state = {
@@ -28,43 +28,43 @@ export class RecipeProvider extends Component {
   };
 
   setError = error => {
-    console.error(error)
-    this.setState({ error })
+    console.error(error);
+    this.setState({ error });
   }
 
   clearError = () => {
-    this.setState({ error: null })
+    this.setState({ error: null });
   }
 
   setRecipe = recipe => {
-    this.setState({ recipe })
+    this.setState({ recipe });
   }
 
   setComments = comments => {
-    this.setState({ comments })
+    this.setState({ comments });
   }
 
   clearRecipe = () => {
-    this.setRecipe(nullRecipe)
-    this.setComments([])
+    this.setRecipe(nullRecipe);
+    this.setComments([]);
   }
 
   deleteComment = commentId => {
-    const newComments = this.state.comments
-                        .filter(comment => Number(comment.id) !== Number(commentId))
-    this.setComments(newComments)
+    const newComments = 
+      this.state.comments.filter(comment => Number(comment.id) !== Number(commentId));
+    this.setComments(newComments);
   }
   addComment = comment => {
     this.setComments([
       ...this.state.comments,
       comment
-    ])
+    ]);
   }
   updateComment = (content, commentId) => {
-    const newComments = this.state.comments
-    const index = newComments.findIndex(comment => comment.id === commentId)
-    newComments[index].content = content
-    this.setComments(newComments)
+    const newComments = this.state.comments;
+    const index = newComments.findIndex(comment => comment.id === commentId);
+    newComments[index].content = content;
+    this.setComments(newComments);
   }
 
   render() {
@@ -80,11 +80,11 @@ export class RecipeProvider extends Component {
       addComment: this.addComment,
       deleteComment: this.deleteComment,
       updateComment: this.updateComment, 
-    }
+    };
     return (
       <RecipeContext.Provider value={value}>
         {this.props.children}
       </RecipeContext.Provider>
-    )
+    );
   }
 }

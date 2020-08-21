@@ -13,7 +13,6 @@
 .LandingPage_image{
     max-width: 900px;
     margin: 0 auto;
-    /* padding-top: 10vh; */
     opacity: 0.5;
     height: 80vh;
     background: url("https://enjoycook-upload.s3.us-east-2.amazonaws.com/enjoycook-landingPage.jpg");

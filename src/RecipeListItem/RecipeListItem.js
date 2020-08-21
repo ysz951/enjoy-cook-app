@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import CollectionListContext  from '../context/CollectionListContext'
-import RecipeApiService from '../services/recipe-api-service'
-import TokenService from '../services/token-service'
-import './RecipeListItem.css'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CollectionListContext  from '../context/CollectionListContext';
+import RecipeApiService from '../services/recipe-api-service';
+import TokenService from '../services/token-service';
+import './RecipeListItem.css';
 
 export default class RecipeListItem extends Component {
   static defaultProps = {
@@ -16,8 +16,8 @@ export default class RecipeListItem extends Component {
         user_name: '',
       }
     },
-  }
-  static contextType = CollectionListContext
+  };
+  static contextType = CollectionListContext;
   componentDidMount() {
     if (TokenService.hasAuthToken()) {
       RecipeApiService.getCollectionList()
@@ -27,7 +27,7 @@ export default class RecipeListItem extends Component {
   }
   handleClick = (recId) => {
     if (TokenService.hasAuthToken()) {
-      const {collectionList = new Set()} = this.context
+      const {collectionList = new Set()} = this.context;
       if (!collectionList.has(recId)){
         RecipeApiService.postCollectionList(recId)
         .then(this.context.addCollection)
@@ -40,12 +40,12 @@ export default class RecipeListItem extends Component {
       }
     }
     else{
-      this.props.history.push('/login')
+      this.props.history.push('/login');
     }
   }
   render() {
-    const { recipe } = this.props
-    const {collectionList = new Set(), error} = this.context
+    const { recipe } = this.props;
+    const {collectionList = new Set(), error} = this.context;
     return (
       <>
         <div role='alert'>
@@ -78,7 +78,7 @@ export default class RecipeListItem extends Component {
           </div>
         
       </>
-    )
+    );
   }
 }
 
@@ -87,31 +87,30 @@ function RecipeName({ recipe }) {
     <p className='RecipeListItem_name Lustria'>
         {truncate(recipe.name, 20)}
     </p>
-  )
+  );
 }
 function RecipeContent({recipe}){
   return (
     <p className='RecipeListItem_content Crimson'>
         {truncate(recipe.content, 10, 'split')}
     </p>
-  )
+  );
 }
 
 function truncate(text, limitLength, method='') {
   switch(method){
     case 'split':
-      const words = text.split(' ')
+      const words = text.split(' ');
       if (words.length > limitLength) {
-        return words.slice(0, limitLength).join(' ') + ' ...'
+        return words.slice(0, limitLength).join(' ') + ' ...';
       }
-      return text
+      return text;
     default:
       if (text.length > limitLength) {
-        return text.slice(0, limitLength) + ' ...'
+        return text.slice(0, limitLength) + ' ...';
       }
-      return text
-  }
- 
+      return text;
+  };
 }
 
 function RecipeAuthor({ recipe }) {
@@ -119,7 +118,7 @@ function RecipeAuthor({ recipe }) {
     <p className='RecipeListItem_author'>
         By <span className="bold Acme">{recipe.author.user_name}</span>
     </p>
-    )
+    );
 }
 
 function RecipeNumberOfComments({recipe}){
@@ -127,6 +126,6 @@ function RecipeNumberOfComments({recipe}){
     <p className='RecipeListItem_NumberOfComments'>
         {recipe.number_of_comments} <FontAwesomeIcon icon='comment-dots'/> 
     </p>
-  )
+  );
 }
 
