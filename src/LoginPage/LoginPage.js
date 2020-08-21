@@ -1,21 +1,19 @@
-import React, { Component } from 'react'
-import LoginForm from '../LoginForm/LoginForm'
-import { Link } from 'react-router-dom'
-import './LoginPage.css'
+import React, { Component } from 'react';
+import LoginForm from '../LoginForm/LoginForm';
+import { Link } from 'react-router-dom';
+import './LoginPage.css';
 export default class LoginPage extends Component {
   static defaultProps = {
     location: {},
     history: {
       push: () => {},
     },
-  }
+  };
 
   handleLoginSuccess = () => {
-    const { location, history } = this.props
-    const destination = (location.state || {}).from || window.localStorage.pathname || '/'
-    // console.log(destination)
-    history.push(destination)
-    // history.push(window.localStorage.pathname)
+    const { location, history } = this.props;
+    const destination = (location.state || {}).from || window.localStorage.pathname || '/main';
+    history.push(destination);
   };
 
   render() {
@@ -30,6 +28,6 @@ export default class LoginPage extends Component {
           <Link className="LoginPage_Sign_up" to='/register'>Sign up</Link>
         </p>
       </section>
-    )
+    );
   }
 }

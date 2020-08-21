@@ -1,5 +1,5 @@
 .Header__name{
-    /* height: 40px; */
+    /* height: 5vh; */
     width: 90%;
     margin:0 auto;
     display: flex;
@@ -21,7 +21,7 @@
 .Header__name a {
     color: #444;
 }
- 
+
 .Header__log_part a {
     color: rgb(114, 88, 88);
     font-size: smaller;

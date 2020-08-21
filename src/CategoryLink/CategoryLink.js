@@ -1,12 +1,12 @@
-import React, {useState, Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
-import onClickOutside from 'react-onclickoutside'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './CategoryLink.css'
+import React, {useState, Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
+import onClickOutside from 'react-onclickoutside';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './CategoryLink.css';
 function CategoryLink(props) {
-    const [open, setOpen] = useState(false)
-    const toggle =() => setOpen(!open)
-    const {categories} = props
+    const [open, setOpen] = useState(false);
+    const toggle =() => setOpen(!open);
+    const {categories} = props;
     CategoryLink.handleClickOutside = () => setOpen(false);
     return (
         <div className="Categorylink mobile-only">
@@ -16,7 +16,7 @@ function CategoryLink(props) {
             </p>
             {open && (
             <div className="Categorylink_menu">
-                <NavLink key="all" exact to='/' activeClassName="selected">
+                <NavLink key="all" exact to='/main' activeClassName="selected">
                     All
                 </NavLink>     
                 {categories.map(categorie => 
@@ -30,10 +30,10 @@ function CategoryLink(props) {
             </div>
             )} 
         </div>
-    )
+    );
 }
 const clickOutsideConfig = {
     handleClickOutside: () => CategoryLink.handleClickOutside,
-}
+};
 
 export default onClickOutside(CategoryLink, clickOutsideConfig);

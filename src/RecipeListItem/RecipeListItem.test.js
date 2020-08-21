@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom'
-import RecipeListItem from './RecipeListItem'
-import { BrowserRouter } from 'react-router-dom'
+import RecipeListItem from './RecipeListItem';
+import { BrowserRouter } from 'react-router-dom';
 it('renders without crashing', () => {
-  const div = document.createElement('div')
+  const div = document.createElement('div');
   ReactDOM.render(
     <BrowserRouter>
         <RecipeListItem />

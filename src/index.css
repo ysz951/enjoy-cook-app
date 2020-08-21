@@ -87,6 +87,13 @@ button{
   background-color:rgb(67, 103, 133);
 }
 
+/* font size */
+.larger{
+  font-size:larger
+}
+.x-large{
+  font-size:x-large
+}
 
 /* font style */
 
@@ -132,10 +139,11 @@ button{
   color:rgb(110, 39, 39)
 }
 
-.red {
-  color: #CA1551;
+.black{
+  color: black;
 }
-/* .blue {
+
+ .blue {
   color: #477ACC;
 }
 
@@ -153,4 +161,4 @@ button{
 
 .orange {
   color: #FB4D3D;
-} */
+} 

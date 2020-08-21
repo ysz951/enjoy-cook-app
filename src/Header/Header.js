@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import TokenService from '../services/token-service'
-import IdleService from '../services/idle-service'
-import CollectionListContext from '../context/CollectionListContext'
-import './Header.css'
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import TokenService from '../services/token-service';
+import IdleService from '../services/idle-service';
+import CollectionListContext from '../context/CollectionListContext';
+import './Header.css';
 
 class Header extends Component {
-  static contextType = CollectionListContext
+  static contextType = CollectionListContext;
   handleLogoutClick = () => {
-    this.context.clearCollectionList()
-    TokenService.clearAuthToken()
+    this.context.clearCollectionList();
+    TokenService.clearAuthToken();
     /* when logging out, clear the callbacks to the refresh api and idle auto logout */
-    TokenService.clearCallbackBeforeExpiry()
-    IdleService.unRegisterIdleResets()
+    TokenService.clearCallbackBeforeExpiry();
+    IdleService.unRegisterIdleResets();
   }
 
   renderLogoutLink() {
@@ -34,7 +34,7 @@ class Header extends Component {
           Log out
         </Link>
       </div>
-    )
+    );
   }
 
   renderLoginLink() {
@@ -54,16 +54,16 @@ class Header extends Component {
           Log in
         </Link>
       </div>
-    )
+    );
   }
   render() {
     return (
       <nav className='Header__name'>
         <h1 className="Header_app_name">
-          <Link to='/'>
-            <FontAwesomeIcon icon='drumstick-bite' />
+          <Link to='/main'>
+            <FontAwesomeIcon className="red" icon='drumstick-bite' />
             {' '}
-            Enjoy Cook
+            <span className="brown">Enjoy</span> <span className="orange">Cook</span>
           </Link>
         </h1>
         
@@ -72,8 +72,8 @@ class Header extends Component {
           : this.renderLoginLink()}
         
       </nav>
-    )
+    );
   }
 }
 
-export default withRouter(Header)
+export default withRouter(Header);

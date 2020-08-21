@@ -1,14 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
-import { BrowserRouter } from "react-router-dom"
-import { library } from '@fortawesome/fontawesome-svg-core'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import { BrowserRouter } from "react-router-dom";
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faDrumstickBite, faBars, faSearch, faCommentDots, faStar, faUser, 
-faArrowUp, faSignInAlt, faSignOutAlt, faUserEdit, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { RecipeListProvider } from './context/RecipeListContext'
-import { RecipeProvider } from './context/RecipeContext'
-import { CollectionListProvider } from './context/CollectionListContext'
+faArrowUp, faSignInAlt, faSignOutAlt, faUserEdit, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { RecipeListProvider } from './context/RecipeListContext';
+import { RecipeProvider } from './context/RecipeContext';
+import { CollectionListProvider } from './context/CollectionListContext';
 library.add(
   faDrumstickBite,
   faBars,
@@ -22,7 +22,7 @@ library.add(
   faUserEdit,
   faEdit,
   faTrashAlt,
-)
+);
 
 ReactDOM.render(
   <BrowserRouter>
@@ -35,6 +35,6 @@ ReactDOM.render(
     </CollectionListProvider> 
   </BrowserRouter>,
   document.getElementById('root')
-)
+);
 
 

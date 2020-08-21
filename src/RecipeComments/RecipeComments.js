@@ -1,23 +1,23 @@
-import React, { Component } from 'react'
-import RecipeContext  from '../context/RecipeContext'
-import RecipeApiService from '../services/recipe-api-service'
-import TokenService from '../services/token-service'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {format} from 'date-fns'
-import './RecipeComments.css'
+import React, { Component } from 'react';
+import RecipeContext  from '../context/RecipeContext';
+import RecipeApiService from '../services/recipe-api-service';
+import TokenService from '../services/token-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {format} from 'date-fns';
+import './RecipeComments.css';
 
 export default class RecipeComments extends Component {
   static defaultProps = {
     updateCommentNumber: () => {},
-  }
+  };
   state = {
     textAreaActive: false,
     selectedCommentId: null,
-  }
-  static contextType = RecipeContext
+  };
+  static contextType = RecipeContext;
   componentDidMount() {
-    const { recipeId } = this.props
-    this.context.clearError()
+    const { recipeId } = this.props;
+    this.context.clearError();
     RecipeApiService.getRecipeComments(recipeId)
       .then(this.context.setComments)
       .catch(this.context.setError)
@@ -32,9 +32,9 @@ export default class RecipeComments extends Component {
         .catch(this.context.setError)
   }
   submitUpdateComment = ev => {
-    ev.preventDefault()
-    const { recipe } = this.context
-    const { updateComment } = ev.target
+    ev.preventDefault();
+    const { recipe } = this.context;
+    const { updateComment } = ev.target;
     RecipeApiService.updateComment(recipe.id, updateComment.value, this.state.selectedCommentId)
         .then(res => this.context.updateComment(updateComment.value, this.state.selectedCommentId))
         .then(() => {
@@ -50,16 +50,14 @@ export default class RecipeComments extends Component {
   changeComment = (commentId) => {
       this.setState({
         textAreaActive: true,
-        // textAreaActive: commentId === this.state.selectedCommentId 
-        //                 ? !this.state.textAreaActive : true,
         selectedCommentId: commentId,
-      })
+      });
   }
   closeTextArea = () => {
     this.setState({
       textAreaActive: false,
       selectedCommentId: null,
-    })
+    });
   }
 
   manipulateCommentButton = (comment) => {
@@ -76,7 +74,7 @@ export default class RecipeComments extends Component {
           Edit 
         </button> 
       </div>
-    )
+    );
   }
   commentContentArea = (comment, user_id) => {
     return (
@@ -93,10 +91,8 @@ export default class RecipeComments extends Component {
             aria-label='Type a comment...'
             name='updateComment'
             id='updateComment'
-            // cols='30'
             defaultValue={comment.content}
             rows='3'
-            // placeholder='Type a comment..'
           />
           <div className="Recipepage__comment_CommentFormButton">
             <button className="btn_type_2" type='button' onClick={this.closeTextArea}>
@@ -111,8 +107,8 @@ export default class RecipeComments extends Component {
     )
   }
   render() {
-    const user_id = TokenService.hasAuthToken() ? TokenService.readJwtToken().user_id : null
-    const { comments = [], error } = this.context
+    const user_id = TokenService.hasAuthToken() ? TokenService.readJwtToken().user_id : null;
+    const { comments = [], error } = this.context;
     return (
       <>
         <div role='alert'>
@@ -146,5 +142,5 @@ export default class RecipeComments extends Component {
             )} 
         </ul>
       </>
-  )}
+  )};
 }

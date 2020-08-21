@@ -1,26 +1,25 @@
-import React, { Component } from 'react'
-import AuthApiService from '../services/auth-api-service'
-import './RegistrationForm.css'
+import React, { Component } from 'react';
+import AuthApiService from '../services/auth-api-service';
+import './RegistrationForm.css';
 export default class RegistrationForm extends Component {
   static defaultProps = {
     onRegistrationSuccess: () => {}
-  }
+  };
 
-  state = { error: null }
+  state = { error: null };
 
   handleSubmit = ev => {
-    ev.preventDefault()
-    // const { full_name, nick_name, user_name, password } = ev.target
-    const { user_name, password } = ev.target
-    this.setState({ error: null })
+    ev.preventDefault();
+    const { user_name, password } = ev.target;
+    this.setState({ error: null });
     AuthApiService.postUser({
       user_name: user_name.value,
       password: password.value,
     })
       .then(user => {
-        user_name.value = ''
-        password.value = ''
-        this.props.onRegistrationSuccess()
+        user_name.value = '';
+        password.value = '';
+        this.props.onRegistrationSuccess();
       })
       .catch(res => {
         this.setState({ error: res.error })
@@ -69,6 +68,6 @@ export default class RegistrationForm extends Component {
           Register
         </button>
       </form>
-    )
+    );
   }
 }

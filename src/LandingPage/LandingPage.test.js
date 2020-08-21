@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LoginPage from './LoginPage';
+import LandingPage from './LandingPage';
 import { BrowserRouter } from 'react-router-dom';
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <BrowserRouter>
-        <LoginPage />
+        <LandingPage />
     </BrowserRouter>, div)
   ReactDOM.unmountComponentAtNode(div)
 });

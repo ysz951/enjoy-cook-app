@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 const RecipeListContext = React.createContext({
   recipeList: [],
@@ -8,30 +8,30 @@ const RecipeListContext = React.createContext({
   clearError: () => {},
   setRecipeList: () => {},
   setCategoryList: () => {},
-})
+});
 
-export default RecipeListContext
+export default RecipeListContext;
 
 export class RecipeListProvider extends Component {
   state = {
     recipeList: [],
     categoryList: [],
     error: null,
-  }
+  };
 
   setRecipeList = recipeList => {
-    this.setState({ recipeList })
+    this.setState({ recipeList });
   }
   setCategoryList = categoryList => {
-    this.setState({ categoryList })
+    this.setState({ categoryList });
   }
   setError = error => {
-    console.error(error)
-    this.setState({ error })
+    console.error(error);
+    this.setState({ error });
   }
 
   clearError = () => {
-    this.setState({ error: null })
+    this.setState({ error: null });
   }
 
   render() {
@@ -43,11 +43,11 @@ export class RecipeListProvider extends Component {
       clearError: this.clearError,
       setRecipeList: this.setRecipeList,
       setCategoryList: this.setCategoryList,
-    }
+    };
     return (
       <RecipeListContext.Provider value={value}>
         {this.props.children}
       </RecipeListContext.Provider>
-    )
+    );
   }
 }
