@@ -14,11 +14,14 @@ This is the front end for `Enjoy Cook`. The back end can be found at https://git
 * [Live Demo](https://enjoy-cook-app.vercel.app/)
 
 ## Screenshoots
-### Main Page:
-![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/main_page.png)
+### Home page: 
+![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/mobile_home.png)
 
-### Mobile view:
+### Main Page:
 ![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/mobile_search.png)
+
+### Recipe Page:
+![image](https://github.com/ysz951/enjoy-cook-app/blob/master/demo_images/mobile_recipe.png)
 
 ## Built With
 ### Front-End
