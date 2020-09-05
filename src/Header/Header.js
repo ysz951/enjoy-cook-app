@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TokenService from '../services/token-service';
 import IdleService from '../services/idle-service';
 import CollectionListContext from '../context/CollectionListContext';
+import HeaderDropDown from '../HeaderDropDown/HeaderDropDown'
 import './Header.css';
 
 class Header extends Component {
@@ -18,7 +19,13 @@ class Header extends Component {
 
   renderLogoutLink() {
     return (
+      // <HeaderDropDown handleLogoutClick={this.handleLogoutClick}/>
       <div className='Header__log_part'>
+        <Link
+          to ="/users/publish">
+          Publish
+        </Link>
+        {' '}
         <Link
           to='/users/collections'>
           <FontAwesomeIcon icon='star' />
@@ -29,7 +36,7 @@ class Header extends Component {
         <Link
           onClick={this.handleLogoutClick}
           to='/'>
-            <FontAwesomeIcon icon='sign-in-alt' />
+            <FontAwesomeIcon icon='sign-out-alt' />
             {' '}
           Log out
         </Link>
@@ -41,6 +48,11 @@ class Header extends Component {
     return (
       <div className='Header__log_part'>
         <Link
+          to ="/users/publish">
+          Publish
+        </Link>
+        {' '}
+        <Link
           to='/users/collections'>
           <FontAwesomeIcon icon='star' />
           {' '}
@@ -49,7 +61,7 @@ class Header extends Component {
         {' '}
         <Link
           to='/login'>
-            <FontAwesomeIcon icon='sign-out-alt' />
+            <FontAwesomeIcon icon='sign-in-alt' />
             {' '}
           Log in
         </Link>

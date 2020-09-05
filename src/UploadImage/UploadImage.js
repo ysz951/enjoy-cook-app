@@ -1,71 +1,117 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import $ from 'jquery';
+import './UploadImage.css';
+import RecipeApiService from '../services/recipe-api-service';
 export default class UploadImage extends Component {
-  state = {
-    message:''
-  }
+// constructor( props ) {
+//   super( props );
+//   this.state = {
+//     selectedFile: null,
+//     img_src: null,
+//     display_img:null,
+//   }
+//  }
+    state = {
+        selectedFile: null,
+        img_src: null,
+        display_img:null,
+    };
 
-  getImage = e => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      this.setState({ file });
+    singleFileChangedHandler = ( event ) => {
+        this.setState({
+            selectedFile: event.target.files[0],
+            display_img: 
+            event.target.files[0] ? URL.createObjectURL(event.target.files[0]) : null,
+        });
+    };
+    singleFileUploadHandler = ( ) => {
+        const data = new FormData();
+        // If file selected
+        if ( this.state.selectedFile ) {
+            data.append( 'profileImage', this.state.selectedFile, this.state.selectedFile.name);
+            RecipeApiService.upLoadImage(data)
+                .then( ( response ) => {
+                    if ( 200 === response.status ) {
+                        // If file size is larger than expected.
+                        if( response.data.error ) {
+                            if ( 'LIMIT_FILE_SIZE' === response.data.error.code ) {
+                                this.ocShowAlert( 'Max size: 2MB', 'red' );
+                            } 
+                            else {
+                                console.log( response.data );
+                                // If not the given file type
+                                this.ocShowAlert( response.data.error, 'red' );
+                            }
+                        } 
+                        else {
+                            // Success
+                            let fileName = response.data;
+                            this.setState({img_src: fileName.location})
+                            console.log( 'fileName', fileName );
+                            this.ocShowAlert( 'File Uploaded', '#3089cf' );
+                        }
+                    }
+                })
+                .catch( ( error ) => {
+                    // If another error
+                    this.ocShowAlert( error, 'red' );
+                });
+        } 
+        else {
+        // if file not selected throw error
+            this.ocShowAlert( 'Please upload file', 'red' );
+        }
+    };
+    // ShowAlert Function
+    ocShowAlert = ( message, background = '#3089cf' ) => {
+        let alertContainer = document.querySelector( '#oc-alert-container' ),
+        alertEl = document.createElement( 'div' ),
+        textNode = document.createTextNode( message );
+        alertEl.setAttribute( 'class', 'oc-alert-pop-up' );
+        $( alertEl ).css( 'background', background );
+        alertEl.appendChild( textNode );
+        alertContainer.appendChild( alertEl );
+        setTimeout( function () {
+        $( alertEl ).fadeOut( 'slow' );
+        $( alertEl ).remove();
+        }, 3000 );
+    };
+    render() {
+        return(
+            
+        <section className="Publish_section">
+            { this.state.display_img ? <img src={this.state.display_img} alt=""/> : ''}
+            <div className="container">
+                {/* For Alert box*/}
+                <div id="oc-alert-container"></div>
+                {/* Single File Upload*/}
+                <div className="card border-light mb-3 mt-5" style={{ boxShadow: '0 5px 10px 2px rgba(195,192,192,.5)' }}>
+                    <div className="card-header">
+                        <h3 style={{ color: '#555', marginLeft: '12px' }}>
+                            Single Image Upload
+                        </h3>
+                        <p className="text-muted" style={{ marginLeft: '12px' }}>
+                            Upload Size: 250px x 250px ( Max 2MB )
+                        </p>
+                    </div>
+                    <div className="card-body">
+                        <p className="card-text">
+                            Please upload an image for your profile
+                        </p>
+                        <input type="file" onChange={this.singleFileChangedHandler}/>
+                        <div className="mt-5">
+                            <button 
+                                className="btn btn-info" 
+                                onClick={this.singleFileUploadHandler}
+                            >
+                                Upload!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        );
     }
-  };
-
-  uploadFile = e => {
-    e.preventDefault();
-    const { file } = this.state;
-    this.setState({message:'Uploading...'})
-    const contentType = file.type; // eg. image/jpeg or image/svg+xml
-
-    const generatePutUrl = 'http://localhost:8000/generate-put-url';
-    const options = {
-      params: {
-        Key: file.name,
-        ContentType: contentType
-      },
-      headers: {
-        'Content-Type': contentType
-      }
-    }
-
-    axios.get(generatePutUrl, options).then(res => {
-      const {
-        data: { putURL }
-      } = res
-      axios
-        .put(putURL, file, options)
-        .then(res => {
-          this.setState({message:'Upload Successful'})
-          setTimeout(()=>{
-            this.setState({message:''})
-            document.querySelector('#upload-image').value=''
-          }, 2000)
-        })
-        .catch(err => {
-          this.setState({message:'Sorry, something went wrong'})
-          console.log('err', err)
-        })
-    })
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <h1>Upload an image to AWS S3 bucket</h1>
-        <input
-          id='upload-image'
-          type='file'
-          accept='image/*'
-          onChange={this.getImage}
-        />
-        <p>{this.state.message}</p>
-        <form onSubmit={this.uploadFile}>
-          <button id='file-upload-button'>Upload</button>
-        </form>
-      </React.Fragment>
-    )
-  }
 }

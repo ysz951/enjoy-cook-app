@@ -1,5 +1,7 @@
 import config from '../config';
 import TokenService from '../services/token-service';
+import axios from 'axios';
+
 const RecipeApiService = {
     getRecipes() {
         return fetch(`${config.API_ENDPOINT}/recipes`, {
@@ -23,6 +25,15 @@ const RecipeApiService = {
             ? res.json().then(e => Promise.reject(e))
             : res.json()
         )
+    },
+    upLoadImage(data) {
+        return axios.post( `${config.API_ENDPOINT}/aws/profile-img-upload`, data, {
+            headers: {
+            'accept': 'application/json',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+            }
+        })
     },
     getCategories() {
         return fetch(`${config.API_ENDPOINT}/categories`, {

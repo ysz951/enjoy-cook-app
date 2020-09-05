@@ -133,14 +133,17 @@ class App extends Component {
           <Header />
         </header>
         <main className='App__main'>
-          <UploadImage />
+          {/* <UploadImage /> */}
           <Switch>
             <PublicOnlyRoute
               exact
               path={'/'}
               component={LandingPage}
             />
-            
+            <PrivateRoute
+              path={'/users/publish'}
+              component={UploadImage}
+            />
           {/* <Route
               exact
               path={'/'}
