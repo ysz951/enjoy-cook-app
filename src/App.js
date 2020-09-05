@@ -17,6 +17,7 @@ import CollectionListContext  from './context/CollectionListContext';
 import CollectionListPage from './CollectionListPage/CollectionListPage';
 import LandingPage from './LandingPage/LandingPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UploadImage from './UploadImage/UploadImage';
 import './App.css';
 class App extends Component {
   constructor(props) {
@@ -132,12 +133,14 @@ class App extends Component {
           <Header />
         </header>
         <main className='App__main'>
+          <UploadImage />
           <Switch>
             <PublicOnlyRoute
               exact
               path={'/'}
               component={LandingPage}
             />
+            
           {/* <Route
               exact
               path={'/'}
