@@ -18,6 +18,8 @@ import CollectionListPage from './CollectionListPage/CollectionListPage';
 import LandingPage from './LandingPage/LandingPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UploadImage from './UploadImage/UploadImage';
+import HeaderNoSearch from './HeaderNoSearch/HeaderNoSearch';
+
 import './App.css';
 class App extends Component {
   constructor(props) {
@@ -130,7 +132,28 @@ class App extends Component {
           </button>
         )}
         <header className='App__header'>
-          <Header />
+        <Switch>
+            <Route 
+              path={'/search'}
+              component={Header}
+            />
+            <Route
+              path={'/main'}
+              component={Header}
+            />
+            <Route
+              path={'/category'}
+              component={Header}
+            />
+            <Route
+              path={'/recipe'}
+              component={Header}
+            />
+            <Route
+              component={HeaderNoSearch}
+            />  
+          </Switch>
+          {/* <Header /> */}
         </header>
         <main className='App__main'>
           {/* <UploadImage /> */}

@@ -21,7 +21,7 @@ export default class SearchListPage extends Component {
           <div role='alert'>
             {error && <p className='red'>{error}</p>}
           </div>
-          <SearchNav history={this.props.history}/>
+          {/* <SearchNav history={this.props.history}/> */}
           {query && (<p className="Search_query">{recipeList.length} Results for "<span className="italic">{query}</span>"</p>)}
           <RecipeList recipes = {recipeList} history={this.props.history}/>
       </section>

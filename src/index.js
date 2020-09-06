@@ -5,7 +5,8 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faDrumstickBite, faBars, faSearch, faCommentDots, faStar, faUser, 
-faArrowUp, faSignInAlt, faSignOutAlt, faUserEdit, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+faArrowUp, faSignInAlt, faSignOutAlt, faUserEdit, faEdit, faTrashAlt, faFileAlt } 
+from '@fortawesome/free-solid-svg-icons';
 import { RecipeListProvider } from './context/RecipeListContext';
 import { RecipeProvider } from './context/RecipeContext';
 import { CollectionListProvider } from './context/CollectionListContext';
@@ -22,6 +23,7 @@ library.add(
   faUserEdit,
   faEdit,
   faTrashAlt,
+  faFileAlt,
 );
 
 ReactDOM.render(

@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import $ from 'jquery';
 import './UploadImage.css';
 import RecipeApiService from '../services/recipe-api-service';
+import RecipeListContext from '../context/RecipeListContext';
 export default class UploadImage extends Component {
-// constructor( props ) {
-//   super( props );
-//   this.state = {
-//     selectedFile: null,
-//     img_src: null,
-//     display_img:null,
-//   }
-//  }
+    static contextType = RecipeListContext;
     state = {
         selectedFile: null,
         img_src: null,
@@ -25,13 +18,17 @@ export default class UploadImage extends Component {
             event.target.files[0] ? URL.createObjectURL(event.target.files[0]) : null,
         });
     };
-    singleFileUploadHandler = ( ) => {
+    singleFileUploadHandler = (ev) => {
+        ev.preventDefault();
+        const {recipe_name, recipe_content} = ev.target;
+        // const {user_id} = TokenService.readJwtToken();
         const data = new FormData();
+        const category_id = 1;
         // If file selected
         if ( this.state.selectedFile ) {
             data.append( 'profileImage', this.state.selectedFile, this.state.selectedFile.name);
             RecipeApiService.upLoadImage(data)
-                .then( ( response ) => {
+                .then(response=> {
                     if ( 200 === response.status ) {
                         // If file size is larger than expected.
                         if( response.data.error ) {
@@ -48,8 +45,20 @@ export default class UploadImage extends Component {
                             // Success
                             let fileName = response.data;
                             this.setState({img_src: fileName.location})
-                            console.log( 'fileName', fileName );
+                            // console.log( 'fileName', fileName );
+                            console.log(typeof this.state.img_src);
                             this.ocShowAlert( 'File Uploaded', '#3089cf' );
+                            RecipeApiService.postRecipe(
+                                recipe_name.value, 
+                                recipe_content.value, 
+                                this.state.img_src, 
+                                category_id
+                            )
+                            .then(recipe => {
+                                this.context.addRecipe(recipe);
+                                this.props.history.push('/main')
+                            })
+                            .catch(this.context.setError)
                         }
                     }
                 })
@@ -77,11 +86,9 @@ export default class UploadImage extends Component {
         $( alertEl ).remove();
         }, 3000 );
     };
-    render() {
-        return(
-            
-        <section className="Publish_section">
-            { this.state.display_img ? <img src={this.state.display_img} alt=""/> : ''}
+
+    imagePart = () => {
+        return (
             <div className="container">
                 {/* For Alert box*/}
                 <div id="oc-alert-container"></div>
@@ -100,17 +107,76 @@ export default class UploadImage extends Component {
                             Please upload an image for your profile
                         </p>
                         <input type="file" onChange={this.singleFileChangedHandler}/>
-                        <div className="mt-5">
+                        {/* <div className="mt-5">
                             <button 
                                 className="btn btn-info" 
                                 onClick={this.singleFileUploadHandler}
                             >
                                 Upload!
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
+        )
+    }
+
+    render() {
+        
+        return(
+            
+        <section className="Publish_section">
+            { this.state.display_img ? <img src={this.state.display_img} alt=""/> : ''}
+            
+            <form
+                className='RegistrationForm'
+                onSubmit={this.singleFileUploadHandler}
+            >
+                {this.imagePart()}
+                {/* <div role='alert'>
+                {error && <p className='red'>{error}</p>}
+                </div> */}
+                <div className='user_name'>
+                <label htmlFor='Publish__recipeName'>
+                    Recipe name
+                    <span className='Required red'>
+                    &#42;
+                    </span>  
+                </label>
+                <input
+                    name='recipe_name'
+                    type='text'
+                    required
+                    id='Publish__recipeName'/>
+                
+                </div>
+                <div className='password'>
+                <label htmlFor='Publish__recipeContent'>
+                    Recipe Content
+                    <span className='Required red'>
+                    &#42;
+                    </span> 
+                </label>
+                <input
+                    name='recipe_content'
+                    type='text'
+                    required
+                    id='Publish__recipeContent'/>
+                
+                </div>
+                <div className="mt-5">
+                            <button 
+                                className="btn btn-info"
+                                disabled={!this.state.selectedFile} 
+                                type='submit'
+                            >
+                                Upload!
+                            </button>
+                        </div>
+                {/* <button className="RegistrationForm_submit_btn btn_type_1" type='submit'>
+                Go
+                </button> */}
+            </form>
         </section>
         );
     }

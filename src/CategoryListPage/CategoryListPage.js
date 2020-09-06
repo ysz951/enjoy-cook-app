@@ -23,7 +23,7 @@ export default class CategoryListPage extends Component {
         <div role='alert'>
           {error && <p className='red'>{error}</p>}
         </div>
-        <SearchNav history={this.props.history}/>
+        {/* <SearchNav history={this.props.history}/> */}
         { selectedCategory && selectedCategory.name && 
         (<p className="selectedCategory italic">"{selectedCategory.name}"</p>)}
         <RecipeList recipes = {recipeList} history={this.props.history}/>
