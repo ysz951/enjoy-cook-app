@@ -93,7 +93,7 @@ export default class UploadImage extends Component {
                 {/* For Alert box*/}
                 <div id="oc-alert-container"></div>
                 {/* Single File Upload*/}
-                <div className="card border-light mb-3 mt-5" style={{ boxShadow: '0 5px 10px 2px rgba(195,192,192,.5)' }}>
+                <div className="card border-light mb-3 mt-5">
                     <div className="card-header">
                         <h3 style={{ color: '#555', marginLeft: '12px' }}>
                             Single Image Upload
@@ -107,14 +107,10 @@ export default class UploadImage extends Component {
                             Please upload an image for your profile
                         </p>
                         <input type="file" onChange={this.singleFileChangedHandler}/>
-                        {/* <div className="mt-5">
-                            <button 
-                                className="btn btn-info" 
-                                onClick={this.singleFileUploadHandler}
-                            >
-                                Upload!
-                            </button>
-                        </div> */}
+                        <div className="fix250Square"> 
+                        { this.state.display_img ? <img src={this.state.display_img} alt=""/> : ''}
+                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -126,8 +122,6 @@ export default class UploadImage extends Component {
         return(
             
         <section className="Publish_section">
-            { this.state.display_img ? <img src={this.state.display_img} alt=""/> : ''}
-            
             <form
                 className='RegistrationForm'
                 onSubmit={this.singleFileUploadHandler}
@@ -136,7 +130,7 @@ export default class UploadImage extends Component {
                 {/* <div role='alert'>
                 {error && <p className='red'>{error}</p>}
                 </div> */}
-                <div className='user_name'>
+                <div className='recipe_name'>
                 <label htmlFor='Publish__recipeName'>
                     Recipe name
                     <span className='Required red'>

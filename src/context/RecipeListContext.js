@@ -9,6 +9,7 @@ const RecipeListContext = React.createContext({
   setRecipeList: () => {},
   setCategoryList: () => {},
   addRecipe: () => {},
+  deleteRecipe: () => {},
 });
 
 export default RecipeListContext;
@@ -28,6 +29,11 @@ export class RecipeListProvider extends Component {
       ...this.state.recipeList,
       recipe
     ])
+  }
+  deleteRecipe = recipeId => {
+    const newRecipes = 
+      this.state.recipeList.filter(recipe => Number(recipe.id) !== Number(recipeId));
+    this.setRecipeList(newRecipes);
   }
   setCategoryList = categoryList => {
     this.setState({ categoryList });
@@ -51,6 +57,7 @@ export class RecipeListProvider extends Component {
       setRecipeList: this.setRecipeList,
       setCategoryList: this.setCategoryList,
       addRecipe: this.addRecipe,
+      deleteRecipe: this.deleteRecipe,
     };
     return (
       <RecipeListContext.Provider value={value}>

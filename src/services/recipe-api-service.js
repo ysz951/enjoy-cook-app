@@ -89,6 +89,32 @@ const RecipeApiService = {
             : res.json()
         )
     },
+    getAuthorRecipes() {
+        return fetch(`${config.API_ENDPOINT}/users/recipes`, {
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+            })
+            .then(res =>
+                (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+            )
+    },
+    deleteAuthorRecipe(recipeId) {
+        console.log('delete', `${config.API_ENDPOINT}/users/recipes/${recipeId}`)
+        return fetch(`${config.API_ENDPOINT}/users/recipes/${recipeId}`, {
+            method: 'DELETE',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+            })
+            .then(res => {
+                if (!res.ok) {
+                  return res.json().then(error => Promise.reject(error))
+                }
+            })
+    },
     getRecipeComments(recipeId) {
         return fetch(`${config.API_ENDPOINT}/recipes/${recipeId}/comments`, {
         headers: {
@@ -150,9 +176,8 @@ const RecipeApiService = {
             }
           })
     },
-
-    getCollectionList() {
-        return fetch(`${config.API_ENDPOINT}/users/collections`, {
+    getCollectionRecipes() {
+        return fetch(`${config.API_ENDPOINT}/users/collections/recipes`, {
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`,
             },
@@ -162,11 +187,21 @@ const RecipeApiService = {
                 ? res.json().then(e => Promise.reject(e))
                 : res.json()
             )
-        
-        
+    },
+    getCollectionList() {
+        return fetch(`${config.API_ENDPOINT}/users/collections/recipe_set`, {
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+            })
+            .then(res =>
+                (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+            )
     },
     postCollectionList(recId) {
-        return fetch(`${config.API_ENDPOINT}/users/collections`, {
+        return fetch(`${config.API_ENDPOINT}/users/collections/recipe_set`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -183,7 +218,7 @@ const RecipeApiService = {
             )
     },
     deleteCollectionList(recId) {
-        return fetch(`${config.API_ENDPOINT}/users/collections/${recId}`, {
+        return fetch(`${config.API_ENDPOINT}/users/collections/recipe_set/${recId}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',

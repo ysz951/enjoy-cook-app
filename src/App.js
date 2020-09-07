@@ -19,7 +19,7 @@ import LandingPage from './LandingPage/LandingPage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UploadImage from './UploadImage/UploadImage';
 import HeaderNoSearch from './HeaderNoSearch/HeaderNoSearch';
-
+import AuthorRecipeListPage from './AuthorRecipeListPage/AuthorRecipeListPage';
 import './App.css';
 class App extends Component {
   constructor(props) {
@@ -197,6 +197,10 @@ class App extends Component {
             <PrivateRoute
               path={'/users/collections'}
               component={CollectionListPage}
+            />
+            <PrivateRoute
+              path={'/users/recipes'}
+              component={AuthorRecipeListPage}
             />
             <Route
               path='/recipe/:recipeId'

@@ -29,6 +29,11 @@ class HeaderNoSearch extends Component {
         </button>
         <div className="dropdown-content">
             <Link
+            to ="/users/recipes">
+                Recipes
+                </Link>
+                {' '}
+            <Link
             to ="/users/publish">
                 Publish
                 {' '}
@@ -52,47 +57,12 @@ class HeaderNoSearch extends Component {
             </Link>
         </div>
       </div>
-
-      // <HeaderDropDown handleLogoutClick={this.handleLogoutClick}/>
-    //   <div className='Header__log_part'>
-    //     <Link
-    //       to ="/users/publish">
-    //       Publish
-    //     </Link>
-    //     {' '}
-    //     <Link
-    //       to='/users/collections'>
-    //       <FontAwesomeIcon icon='star' />
-    //       {' '}
-    //       Favorite
-    //     </Link>
-    //     {' '}
-    //     <Link
-    //       onClick={this.handleLogoutClick}
-    //       to='/'>
-    //         <FontAwesomeIcon icon='sign-out-alt' />
-    //         {' '}
-    //       Log out
-    //     </Link>
-    //   </div>
     );
   }
 
   renderLoginLink() {
     return (
       <div className='Header__log_part'>
-        <Link
-          to ="/users/publish">
-          Publish
-        </Link>
-        {' '}
-        <Link
-          to='/users/collections'>
-          <FontAwesomeIcon icon='star' />
-          {' '}
-          Favorite
-        </Link>
-        {' '}
         <Link
           to='/login'>
             <FontAwesomeIcon icon='sign-in-alt' />

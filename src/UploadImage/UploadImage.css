@@ -1,3 +1,19 @@
 .Publish_section{
     padding-top: 50px;
 }
+
+.fix250Square{
+    width: 250px;
+    height: 250px;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.fix250Square img {
+    width: 248px;
+    height: 248px;
+}
+
+.recipe_name{
+    margin-top: 20px;
+}

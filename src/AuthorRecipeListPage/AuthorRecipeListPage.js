@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import RecipeListContext from '../context/RecipeListContext';
 import RecipeApiService from '../services/recipe-api-service';
-import CollectionList from '../CollectionList/CollectionList';
-import './CollectionListPage.css';
+import AuthorRecipeList from '../AuthorRecipeList/AuthorRecipeList';
+// import './CollectionListPage.css';
 
-export default class CollectionListPage extends Component {
+export default class AuthorRecipeListPage extends Component {
   static contextType = RecipeListContext;
   componentDidMount() {
       this.context.clearError();
-      RecipeApiService.getCollectionRecipes()
+      RecipeApiService.getAuthorRecipes()
       .then(this.context.setRecipeList)
       .catch(this.context.setError)
   }
@@ -19,8 +19,8 @@ export default class CollectionListPage extends Component {
         <div role='alert'>
           {error && <p className='red'>{error}</p>}
         </div>
-        <h2 className="Favorite_title">Favorite Recipes</h2>
-        <CollectionList recipes={recipeList}/>
+        <h2 className="Favorite_title">Your Recipes</h2>
+        <AuthorRecipeList recipes={recipeList}/>
       </>
     );
   }
