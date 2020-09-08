@@ -46,24 +46,30 @@ export default class UploadImage extends Component {
                             let fileName = response.data;
                             this.setState({img_src: fileName.location})
                             // console.log( 'fileName', fileName );
-                            console.log(typeof this.state.img_src);
+                            console.log(this.state.img_src);
                             this.ocShowAlert( 'File Uploaded', '#3089cf' );
-                            RecipeApiService.postRecipe(
+                            return RecipeApiService.postRecipe(
                                 recipe_name.value, 
                                 recipe_content.value, 
                                 this.state.img_src, 
                                 category_id
                             )
-                            .then(recipe => {
-                                this.context.addRecipe(recipe);
-                                this.props.history.push('/main')
-                            })
-                            .catch(this.context.setError)
+                            
+                            // .catch(this.context.setError)
                         }
+                    }
+                    console.log(response)
+                })
+                .then(recipe => {
+                    if (recipe) {
+                        console.log(recipe)
+                        this.context.addRecipe(recipe);
+                        this.props.history.push('/main')
                     }
                 })
                 .catch( ( error ) => {
                     // If another error
+                    console.log(error)
                     this.ocShowAlert( error, 'red' );
                 });
         } 
