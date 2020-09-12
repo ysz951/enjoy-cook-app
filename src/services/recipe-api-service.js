@@ -102,7 +102,6 @@ const RecipeApiService = {
             )
     },
     deleteAuthorRecipe(recipeId) {
-        console.log('delete', `${config.API_ENDPOINT}/users/recipes/${recipeId}`)
         return fetch(`${config.API_ENDPOINT}/users/recipes/${recipeId}`, {
             method: 'DELETE',
             headers: {
@@ -114,6 +113,39 @@ const RecipeApiService = {
                   return res.json().then(error => Promise.reject(error))
                 }
             })
+    },
+    updateAuthorRecipe(recipe_name, recipe_content, img_src, category_id, recipeId){
+        return fetch(`${config.API_ENDPOINT}/users/recipes/${recipeId}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify({
+                name: recipe_name,
+                content: recipe_content,
+                img_src,
+                category_id,
+            }),
+            })
+            .then(res => {
+                if (!res.ok) {
+                  return res.json().then(error => Promise.reject(error))
+                }
+            })
+        
+    },
+    getAuthorRecipe(recipeId) {
+        return fetch(`${config.API_ENDPOINT}/users/recipes/${recipeId}`, {
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+            })
+            .then(res =>
+                (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+            )
     },
     getRecipeComments(recipeId) {
         return fetch(`${config.API_ENDPOINT}/recipes/${recipeId}/comments`, {
@@ -174,7 +206,7 @@ const RecipeApiService = {
             if (!res.ok) {
               return res.json().then(error => Promise.reject(error))
             }
-          })
+        })
     },
     getCollectionRecipes() {
         return fetch(`${config.API_ENDPOINT}/users/collections/recipes`, {

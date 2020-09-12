@@ -20,7 +20,7 @@ export default class AuthorRecipeListPage extends Component {
           {error && <p className='red'>{error}</p>}
         </div>
         <h2 className="Favorite_title">Your Recipes</h2>
-        <AuthorRecipeList recipes={recipeList}/>
+        <AuthorRecipeList recipes={recipeList} history={this.props.history}/>
       </>
     );
   }

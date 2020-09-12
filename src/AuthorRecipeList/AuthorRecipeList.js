@@ -10,11 +10,17 @@ export default class AuthorRecipeList extends Component {
     recipes: [],
   };
   static contextType = RecipeListContext;
-  handleClick = (repId) => {
+  deleteRecipe = (repId) => {
       RecipeApiService.deleteAuthorRecipe(repId)
         .then(res => {this.context.deleteRecipe(repId)})
         .catch(this.context.setError)
   }
+
+  goToEditRecipe = (repId) => {
+    console.log(this.props)
+    this.props.history.push(`/users/recipes/${repId}`)
+  }
+
   renderRecipes(recipes) {
     return recipes.map(recipe =>
         <li className='Recipe__list_item' key={recipe.id}>
@@ -30,7 +36,8 @@ export default class AuthorRecipeList extends Component {
                 <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
                     <RecipeName recipe={recipe}/>
                 </Link>
-                <button type="button" onClick={() => this.handleClick(recipe.id)}> delete </button>
+                <button type="button" onClick={() => this.deleteRecipe(recipe.id)}> delete </button>
+                <button type="button" onClick={() => this.goToEditRecipe(recipe.id)}> Edit </button>
                 </div>
                 <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
                 <RecipeContent recipe={recipe}/>

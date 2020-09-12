@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UploadImage from './UploadImage/UploadImage';
 import HeaderNoSearch from './HeaderNoSearch/HeaderNoSearch';
 import AuthorRecipeListPage from './AuthorRecipeListPage/AuthorRecipeListPage';
+import EditAuthorRecipe from './EditAuthorRecipe/EditAuthorRecipe';
 import './App.css';
 class App extends Component {
   constructor(props) {
@@ -167,15 +168,6 @@ class App extends Component {
               path={'/users/publish'}
               component={UploadImage}
             />
-          {/* <Route
-              exact
-              path={'/'}
-              render={(routerProps) => 
-                <LandingPage
-                  history={routerProps.history}
-                />
-              }
-            /> */}
             <Route
               exact
               path={'/main'}
@@ -199,8 +191,13 @@ class App extends Component {
               component={CollectionListPage}
             />
             <PrivateRoute
+              exact
               path={'/users/recipes'}
               component={AuthorRecipeListPage}
+            />
+            <PrivateRoute
+              path={'/users/recipes/:recipeId'}
+              component={EditAuthorRecipe}
             />
             <Route
               path='/recipe/:recipeId'

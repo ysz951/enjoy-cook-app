@@ -1,21 +1,37 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import './UploadImage.css';
+// import './UploadImage.css';
 import RecipeApiService from '../services/recipe-api-service';
 import RecipeListContext from '../context/RecipeListContext';
-export default class UploadImage extends Component {
+export default class EditAuthorRecipe extends Component {
     static contextType = RecipeListContext;
     state = {
         selectedFile: null,
         img_src: null,
         display_img:null,
+        recipeName: "",
+        recipeContent: "",
+        categoryId: null,
     };
 
     componentDidMount() {
         this.context.clearError();
-        RecipeApiService.getCategories()
-            .then(this.context.setCategoryList)
+        const {recipeId} = this.props.match.params;
+        console.log('log')
+        Promise.all([RecipeApiService.getCategories(), RecipeApiService.getAuthorRecipe(recipeId)])
+            .then(([cateRes, recRes]) => {
+                this.context.setCategoryList(cateRes);
+                console.log(recRes)
+                this.setState({
+                    img_src: recRes.img_src,
+                    display_img: recRes.img_src,
+                    recipeName: recRes.name,
+                    recipeContent: recRes.content,
+                    categoryId: recRes.category_id,
+                })
+            })
             .catch(this.context.setError)
+            
     }
     singleFileChangedHandler = ( event ) => {
         this.setState({
@@ -27,9 +43,10 @@ export default class UploadImage extends Component {
     singleFileUploadHandler = (ev) => {
         ev.preventDefault();
         const {recipe_name, recipe_content} = ev.target;
+        const {recipeId} = this.props.match.params;
         const data = new FormData();
         const category_id = ev.target['Publish__categoryId'].value || null;
-        // If file selected
+        this.context.clearError();
         if ( this.state.selectedFile ) {
             data.append( 'profileImage', this.state.selectedFile, this.state.selectedFile.name);
             RecipeApiService.upLoadImage(data)
@@ -38,64 +55,51 @@ export default class UploadImage extends Component {
                         // If file size is larger than expected.
                         if( response.data.error ) {
                             if ( 'LIMIT_FILE_SIZE' === response.data.error.code ) {
-                                this.context.setError('Max size: 2MB');
-                                // this.ocShowAlert( 'Max size: 2MB', 'red' );
+                                this.context.setError('Max size: 2MB')
                             } 
                             else {
                                 // If not the given file type
-                                this.context.setError(response.data.error);
-                                // this.ocShowAlert( response.data.error, 'red' );
+                                this.context.setError(response.data.error)
                             }
                         } 
                         else {
                             // Success
                             let fileName = response.data;
                             this.setState({img_src: fileName.location})
-                            
-                            // this.ocShowAlert( 'File Uploaded', '#3089cf' );
-                            return RecipeApiService.postRecipe(
+                            RecipeApiService.updateAuthorRecipe(
                                 recipe_name.value, 
                                 recipe_content.value, 
                                 this.state.img_src, 
-                                category_id
+                                category_id,
+                                recipeId,
                             )
+                            .then(() => {this.props.history.push('/main')})
+                            .catch( this.context.setError);
                         }
                     }
                 })
-                .then(recipe => {
-                    if (recipe) {
-                        this.context.addRecipe(recipe);
-                        this.props.history.push('/main')
-                    }
-                })
-                .catch(this.context.setError);
-        } 
+                .catch( this.context.setError);
+        }
+        else if (this.state.img_src) {
+            RecipeApiService.updateAuthorRecipe(
+                recipe_name.value, 
+                recipe_content.value, 
+                this.state.img_src, 
+                category_id,
+                recipeId,
+            )
+            .then(() => {{this.props.history.push('/main')}})
+            .catch( this.context.setError);
+        }
         else {
         // if file not selected throw error
-            this.context.setError('Please upload file');
-            // this.ocShowAlert( 'Please upload file', 'red' );
+            this.context.setError('Please upload file')
         }
     };
-    // ShowAlert Function
-    ocShowAlert = ( message, background = '#3089cf' ) => {
-        let alertContainer = document.querySelector( '#oc-alert-container' ),
-        alertEl = document.createElement( 'div' ),
-        textNode = document.createTextNode( message );
-        alertEl.setAttribute( 'class', 'oc-alert-pop-up' );
-        $( alertEl ).css( 'background', background );
-        alertEl.appendChild( textNode );
-        alertContainer.appendChild( alertEl );
-        setTimeout( function () {
-        $( alertEl ).fadeOut( 'slow' );
-        $( alertEl ).remove();
-        }, 3000 );
-    };
-
+    
     imagePart = () => {
         return (
             <div className="container">
-                {/* For Alert box*/}
-                {/* <div id="oc-alert-container"></div> */}
                 {/* Single File Upload*/}
                 <div className="card border-light mb-3 mt-5">
                     <div className="card-header">
@@ -113,9 +117,12 @@ export default class UploadImage extends Component {
                                 &#42;
                             </span>  
                         </p>
-                        <input type="file" onChange={this.singleFileChangedHandler}/>
+                        <input type="file" onChange={this.singleFileChangedHandler} />
                         <div className="fix250Square"> 
-                        { this.state.display_img ? <img src={this.state.display_img} alt=""/> : ''}
+                        { this.state.display_img ? 
+                            <img src={this.state.display_img} alt=""/> 
+                            :
+                            <img src={this.state.img_src} alt=""/>}
                         </div>
                        
                     </div>
@@ -126,7 +133,6 @@ export default class UploadImage extends Component {
 
     render() {
         const {categoryList = [], error} = this.context;
-        console.log(categoryList)
         return(
             
         <section className="Publish_section">
@@ -149,8 +155,9 @@ export default class UploadImage extends Component {
                     name='recipe_name'
                     type='text'
                     required
-                    id='Publish__recipeName'/>
-                
+                    id='Publish__recipeName'
+                    defaultValue = {this.state.recipeName}
+                />
                 </div>
                 <div className='password'>
                 <label htmlFor='Publish__recipeContent'>
@@ -163,8 +170,9 @@ export default class UploadImage extends Component {
                     name='recipe_content'
                     type='text'
                     required
-                    id='Publish__recipeContent'/>
-                
+                    id='Publish__recipeContent'
+                    defaultValue = {this.state.recipeContent}
+                />
                 </div>
                 <div className='field'>
                     <label htmlFor='category_select'>
@@ -173,10 +181,18 @@ export default class UploadImage extends Component {
                     <select id='category_select' name='Publish__categoryId'>
                     <option value="">...</option>
                     {categoryList.map(category =>{
+                        console.log(this.state.categoryId)
                         return (
-                            <option key={category.id} value={category.id}>
+                            category.id === this.state.categoryId ?
+                                <option key={category.id} value={category.id} selected>
                                 {category.name}
-                            </option>
+                                </option>  :
+                                <option key={category.id} value={category.id}>
+                                {category.name}
+                                </option>
+                            // <option key={category.id} value={category.id}>
+                            //     {category.name}
+                            // </option>
                         )
                         }
                     )}
@@ -185,7 +201,7 @@ export default class UploadImage extends Component {
                 <div className="mt-5">
                     <button 
                         className="btn btn-info"
-                        disabled={!this.state.selectedFile} 
+                        // disabled={!this.state.selectedFile} 
                         type='submit'
                     >
                         Upload!
