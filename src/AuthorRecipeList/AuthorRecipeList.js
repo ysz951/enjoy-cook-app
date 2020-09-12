@@ -8,6 +8,9 @@ import RecipeListContext from '../context/RecipeListContext';
 export default class AuthorRecipeList extends Component {
   static defaultProps = {
     recipes: [],
+    history: {
+      push: () => {},
+    }
   };
   static contextType = RecipeListContext;
   deleteRecipe = (repId) => {

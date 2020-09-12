@@ -4,6 +4,11 @@ import './UploadImage.css';
 import RecipeApiService from '../services/recipe-api-service';
 import RecipeListContext from '../context/RecipeListContext';
 export default class UploadImage extends Component {
+    static defaultProps = {
+        history: {
+          push: () => {},
+        }
+    };
     static contextType = RecipeListContext;
     state = {
         selectedFile: null,
@@ -39,20 +44,16 @@ export default class UploadImage extends Component {
                         if( response.data.error ) {
                             if ( 'LIMIT_FILE_SIZE' === response.data.error.code ) {
                                 this.context.setError('Max size: 2MB');
-                                // this.ocShowAlert( 'Max size: 2MB', 'red' );
                             } 
                             else {
                                 // If not the given file type
                                 this.context.setError(response.data.error);
-                                // this.ocShowAlert( response.data.error, 'red' );
                             }
                         } 
                         else {
                             // Success
                             let fileName = response.data;
                             this.setState({img_src: fileName.location})
-                            
-                            // this.ocShowAlert( 'File Uploaded', '#3089cf' );
                             return RecipeApiService.postRecipe(
                                 recipe_name.value, 
                                 recipe_content.value, 
@@ -73,24 +74,8 @@ export default class UploadImage extends Component {
         else {
         // if file not selected throw error
             this.context.setError('Please upload file');
-            // this.ocShowAlert( 'Please upload file', 'red' );
         }
     };
-    // ShowAlert Function
-    ocShowAlert = ( message, background = '#3089cf' ) => {
-        let alertContainer = document.querySelector( '#oc-alert-container' ),
-        alertEl = document.createElement( 'div' ),
-        textNode = document.createTextNode( message );
-        alertEl.setAttribute( 'class', 'oc-alert-pop-up' );
-        $( alertEl ).css( 'background', background );
-        alertEl.appendChild( textNode );
-        alertContainer.appendChild( alertEl );
-        setTimeout( function () {
-        $( alertEl ).fadeOut( 'slow' );
-        $( alertEl ).remove();
-        }, 3000 );
-    };
-
     imagePart = () => {
         const {error} = this.context;
         return (

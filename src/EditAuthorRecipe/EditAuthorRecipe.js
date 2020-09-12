@@ -4,6 +4,14 @@ import $ from 'jquery';
 import RecipeApiService from '../services/recipe-api-service';
 import RecipeListContext from '../context/RecipeListContext';
 export default class EditAuthorRecipe extends Component {
+    static defaultProps = {
+        history: {
+          push: () => {},
+        },
+        match: {
+            params: {}
+        }
+    };
     static contextType = RecipeListContext;
     state = {
         selectedFile: null,

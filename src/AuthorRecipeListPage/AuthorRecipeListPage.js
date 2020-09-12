@@ -4,7 +4,7 @@ import RecipeApiService from '../services/recipe-api-service';
 import AuthorRecipeList from '../AuthorRecipeList/AuthorRecipeList';
 // import './CollectionListPage.css';
 
-export default class AuthorRecipeListPage extends Component {
+export default class AuthorRecipeListPage extends Component {  
   static contextType = RecipeListContext;
   componentDidMount() {
       this.context.clearError();
