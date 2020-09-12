@@ -17,11 +17,9 @@ export default class EditAuthorRecipe extends Component {
     componentDidMount() {
         this.context.clearError();
         const {recipeId} = this.props.match.params;
-        console.log('log')
         Promise.all([RecipeApiService.getCategories(), RecipeApiService.getAuthorRecipe(recipeId)])
             .then(([cateRes, recRes]) => {
                 this.context.setCategoryList(cateRes);
-                console.log(recRes)
                 this.setState({
                     img_src: recRes.img_src,
                     display_img: recRes.img_src,
@@ -98,8 +96,12 @@ export default class EditAuthorRecipe extends Component {
     };
     
     imagePart = () => {
+        const {error} = this.context;
         return (
             <div className="container">
+                <div role='alert'>
+                {error && <p className='red'>{error}</p>}
+                </div>
                 {/* Single File Upload*/}
                 <div className="card border-light mb-3 mt-5">
                     <div className="card-header">
@@ -132,18 +134,15 @@ export default class EditAuthorRecipe extends Component {
     }
 
     render() {
-        const {categoryList = [], error} = this.context;
+        const {categoryList = []} = this.context;
         return(
-            
         <section className="Publish_section">
             <form
                 className='RegistrationForm'
                 onSubmit={this.singleFileUploadHandler}
             >
                 {this.imagePart()}
-                <div role='alert'>
-                {error && <p className='red'>{error}</p>}
-                </div>
+                
                 <div className='recipe_name'>
                 <label htmlFor='Publish__recipeName'>
                     Recipe name
@@ -181,7 +180,6 @@ export default class EditAuthorRecipe extends Component {
                     <select id='category_select' name='Publish__categoryId'>
                     <option value="">...</option>
                     {categoryList.map(category =>{
-                        console.log(this.state.categoryId)
                         return (
                             category.id === this.state.categoryId ?
                                 <option key={category.id} value={category.id} selected>
@@ -190,9 +188,6 @@ export default class EditAuthorRecipe extends Component {
                                 <option key={category.id} value={category.id}>
                                 {category.name}
                                 </option>
-                            // <option key={category.id} value={category.id}>
-                            //     {category.name}
-                            // </option>
                         )
                         }
                     )}

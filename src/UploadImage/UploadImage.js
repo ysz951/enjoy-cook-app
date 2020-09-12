@@ -92,10 +92,12 @@ export default class UploadImage extends Component {
     };
 
     imagePart = () => {
+        const {error} = this.context;
         return (
             <div className="container">
-                {/* For Alert box*/}
-                {/* <div id="oc-alert-container"></div> */}
+                <div role='alert'>
+                {error && <p className='red'>{error}</p>}
+                </div>
                 {/* Single File Upload*/}
                 <div className="card border-light mb-3 mt-5">
                     <div className="card-header">
@@ -125,19 +127,15 @@ export default class UploadImage extends Component {
     }
 
     render() {
-        const {categoryList = [], error} = this.context;
-        console.log(categoryList)
+        const {categoryList = []} = this.context;
         return(
-            
         <section className="Publish_section">
             <form
                 className='RegistrationForm'
                 onSubmit={this.singleFileUploadHandler}
             >
                 {this.imagePart()}
-                <div role='alert'>
-                {error && <p className='red'>{error}</p>}
-                </div>
+                
                 <div className='recipe_name'>
                 <label htmlFor='Publish__recipeName'>
                     Recipe name

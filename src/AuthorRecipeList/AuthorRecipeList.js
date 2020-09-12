@@ -17,7 +17,6 @@ export default class AuthorRecipeList extends Component {
   }
 
   goToEditRecipe = (repId) => {
-    console.log(this.props)
     this.props.history.push(`/users/recipes/${repId}`)
   }
 
