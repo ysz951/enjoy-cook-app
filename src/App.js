@@ -23,14 +23,14 @@ import AuthorRecipeListPage from './AuthorRecipeListPage/AuthorRecipeListPage';
 import EditAuthorRecipe from './EditAuthorRecipe/EditAuthorRecipe';
 import './App.css';
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state={ 
-      hasError: false, 
-      is_visible: false,
-    };
-  }
-  // state = { hasError: false, is_visible:false }
+  // constructor(props) {
+  //   super(props);
+  //   this.state={ 
+  //     hasError: false, 
+  //     is_visible: false,
+  //   };
+  // }
+  state = { hasError: false, is_visible:false }
   static contextType = CollectionListContext;
   static getDerivedStateFromError(error) {
     console.error(error);
@@ -46,7 +46,7 @@ class App extends Component {
     if (window.location.pathname !== '/login' ) window.localStorage.pathname = window.location.pathname;
   }
 
-  toggleVisibility() {
+  toggleVisibility= () => {
     if (window.pageYOffset > 300) {
       this.setState({
         is_visible: true

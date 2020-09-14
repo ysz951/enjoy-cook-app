@@ -5,7 +5,7 @@
     /* background-color:rgb(245, 245, 245); */
 }
 
-.RecipePage__comment:hover .Recipepage__comment_manipulateCommentButton{
+.RecipePage__comment_group:hover .Recipepage__comment_manipulateCommentButton{
     display: inline-flex;
 }
 

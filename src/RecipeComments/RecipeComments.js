@@ -5,7 +5,7 @@ import TokenService from '../services/token-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {format} from 'date-fns';
 import './RecipeComments.css';
-
+import RecipeCommentsReplies from '../RecipeCommentsReplies/RecipeCommentsReplies';
 export default class RecipeComments extends Component {
   static defaultProps = {
     updateCommentNumber: () => {},
@@ -36,15 +36,18 @@ export default class RecipeComments extends Component {
     const { recipe } = this.context;
     const { updateComment } = ev.target;
     RecipeApiService.updateComment(recipe.id, updateComment.value, this.state.selectedCommentId)
-        .then(res => this.context.updateComment(updateComment.value, this.state.selectedCommentId))
         .then(() => {
-          updateComment.value = ''
-            this.setState({
-              textAreaActive: false,
-              selectedCommentId: null,
-            })
+          // updateComment.value = ''
+          console.log(updateComment.value, this.state.selectedCommentId)
+          // this.context.updateComment(updateComment.value, this.state.selectedCommentId)
+          this.setState({
+            textAreaActive: false,
+            selectedCommentId: null,
+          })
         })
-        .catch(this.context.setError)
+        .catch(err => {
+          console.log(err)
+        })
     
   }
   changeComment = (commentId) => {
@@ -112,32 +115,46 @@ export default class RecipeComments extends Component {
     return (
       <>
         <div role='alert'>
-          {error && <p className='red'>{error}</p>}
+          {/* {error && <p className='red'>{error}</p>} */}
         </div>
         <ul className='RecipePage__comment_list'>
             {comments.map(comment =>
               <li key={comment.id} className='RecipePage__comment'>
-                <div className="RecipePage__comment_poster_control_group">
-                  <p className="RecipePage__comment_poster"> 
-                    {comment.user.id === user_id 
-                    ? <span className="bold"> {comment.user.user_name}</span>
-                    : comment.user.user_name}
-                  </p>
-                  {comment.date_created && 
-                    <p className="RecipePage__comment_dateCreated">
-                      {format(new Date(comment.date_created), 'MM-dd-yyyy')}
+                <div className="RecipePage__comment_group">
+                  <div className="RecipePage__comment_poster_control_group">
+                    <p className="RecipePage__comment_poster"> 
+                      {comment.user.id === user_id 
+                      ? <span className="bold"> {comment.user.user_name}</span>
+                      : comment.user.user_name}
                     </p>
-                  }
-                  { comment.user.id === user_id 
-                    ? !this.state.textAreaActive && !this.state.selectedCommentId 
-                    ? this.manipulateCommentButton(comment)
-                    : comment.id !== this.state.selectedCommentId && this.state.textAreaActive 
-                    ? this.manipulateCommentButton(comment)
-                    : ''
-                    : ''
-                  }
+                    {comment.date_created && 
+                      <p className="RecipePage__comment_dateCreated">
+                        {format(new Date(comment.date_created), 'MM-dd-yyyy')}
+                      </p>
+                    }
+                    { comment.user.id === user_id 
+                      ? !this.state.textAreaActive && !this.state.selectedCommentId 
+                      ? this.manipulateCommentButton(comment)
+                      : comment.id !== this.state.selectedCommentId && this.state.textAreaActive 
+                      ? this.manipulateCommentButton(comment)
+                      : ''
+                      : ''
+                    }
+                  </div>
+                  { this.commentContentArea(comment, user_id)}
                 </div>
-                { this.commentContentArea(comment, user_id)}
+                <div className="RecipePage__comment_group">
+                <RecipeCommentsReplies 
+                  commentId={comment.id}
+                  textAreaActive = {this.state.textAreaActive}
+                  selectedCommentId = {this.state.selectedCommentId}
+                  changeComment ={this.changeComment}
+                  closeTextArea={this.closeTextArea}
+                  commentContentArea={this.commentContentArea}
+                  manipulateCommentButton={this.manipulateCommentButton}
+                  // updateCommentNumber={this.props.updateCommentNumber}
+                />
+                </div>
               </li>   
             )} 
         </ul>

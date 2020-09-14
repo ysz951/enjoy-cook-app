@@ -1,0 +1,18 @@
+.RecipePage__comment_reply{
+    margin-left: 20px;
+}
+
+.RecipePage__comment_reply p{
+    color: black;
+}
+
+.Reply_item p:first-of-type {
+    /* margin-top: 0; */
+}
+
+.Reply_item{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+

@@ -158,6 +158,17 @@ const RecipeApiService = {
             : res.json()
         )
     },
+    getCommentReply(commentId) {
+        return fetch(`${config.API_ENDPOINT}/comments/replies/${commentId}`, {
+        headers: {
+        },
+        })
+        .then(res =>
+            (!res.ok)
+            ? res.json().then(e => Promise.reject(e))
+            : res.json()
+        )
+    },
     postComment(recipeId, content) {
         return fetch(`${config.API_ENDPOINT}/comments`, {
         method: 'POST',
