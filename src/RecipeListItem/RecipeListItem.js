@@ -85,7 +85,7 @@ export default class RecipeListItem extends Component {
 function RecipeName({ recipe }) {
   return (
     <p className='RecipeListItem_name Lustria'>
-        {truncate(recipe.name, 20)}
+        {truncate(recipe.name, 15)}
     </p>
   );
 }

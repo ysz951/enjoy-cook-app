@@ -84,12 +84,10 @@ export default class UploadImage extends Component {
                 {error && <p className='red'>{error}</p>}
                 </div>
                 {/* Single File Upload*/}
-                <div className="card border-light mb-3 mt-5">
-                    <div className="card-header">
-                        <h3 style={{ color: '#555', marginLeft: '12px' }}>
-                            Single Image Upload
-                        </h3>
-                        <p className="text-muted" style={{ marginLeft: '12px' }}>
+                <div>
+                    <div>
+                        
+                        <p className="text-muted">
                             Upload Size: 250px x 250px ( Max 2MB )
                         </p>
                     </div>
@@ -115,8 +113,11 @@ export default class UploadImage extends Component {
         const {categoryList = []} = this.context;
         return(
         <section className="Publish_section">
+            <h2 className="Publish_titie">
+                Upload your recipe
+            </h2>
             <form
-                className='RegistrationForm'
+                className='Publish_form'
                 onSubmit={this.singleFileUploadHandler}
             >
                 {this.imagePart()}
@@ -142,11 +143,12 @@ export default class UploadImage extends Component {
                     &#42;
                     </span> 
                 </label>
-                <input
-                    name='recipe_content'
-                    type='text'
+                <textarea
                     required
-                    id='Publish__recipeContent'/>
+                    name='recipe_content'
+                    id='Publish__recipeContent'
+                    rows='3'
+                />
                 
                 </div>
                 <div className='field'>
@@ -165,7 +167,7 @@ export default class UploadImage extends Component {
                     )}
                     </select>
                 </div> 
-                <div className="mt-5">
+                <div className="btn-div">
                     <button 
                         className="btn btn-info"
                         disabled={!this.state.selectedFile} 
@@ -174,9 +176,6 @@ export default class UploadImage extends Component {
                         Upload!
                     </button>
                 </div>
-                {/* <button className="RegistrationForm_submit_btn btn_type_1" type='submit'>
-                Go
-                </button> */}
             </form>
         </section>
         );

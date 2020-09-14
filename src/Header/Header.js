@@ -7,7 +7,7 @@ export default function Header (props) {
   return (
     <>
       <HeaderNoSearch />
-      <SearchNav/>
+      <SearchNav history={props.history}/>
     </>
   );
 }

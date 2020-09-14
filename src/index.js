@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faDrumstickBite, faBars, faSearch, faCommentDots, faStar, faUser, 
-faArrowUp, faSignInAlt, faSignOutAlt, faUserEdit, faEdit, faTrashAlt, faFileAlt } 
+faArrowUp, faSignInAlt, faSignOutAlt, faUserEdit, faEdit, faTrashAlt, faFileAlt, faFileUpload } 
 from '@fortawesome/free-solid-svg-icons';
 import { RecipeListProvider } from './context/RecipeListContext';
 import { RecipeProvider } from './context/RecipeContext';
@@ -24,6 +24,7 @@ library.add(
   faEdit,
   faTrashAlt,
   faFileAlt,
+  faFileUpload
 );
 
 ReactDOM.render(

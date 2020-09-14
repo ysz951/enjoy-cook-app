@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-// import './UploadImage.css';
+import './EditAuthorRecipe.css';
 import RecipeApiService from '../services/recipe-api-service';
 import RecipeListContext from '../context/RecipeListContext';
 export default class EditAuthorRecipe extends Component {
@@ -113,10 +112,7 @@ export default class EditAuthorRecipe extends Component {
                 {/* Single File Upload*/}
                 <div className="card border-light mb-3 mt-5">
                     <div className="card-header">
-                        <h3 style={{ color: '#555', marginLeft: '12px' }}>
-                            Single Image Upload
-                        </h3>
-                        <p className="text-muted" style={{ marginLeft: '12px' }}>
+                        <p className="text-muted">
                             Upload Size: 250px x 250px ( Max 2MB )
                         </p>
                     </div>
@@ -140,13 +136,16 @@ export default class EditAuthorRecipe extends Component {
             </div>
         )
     }
-
+    goBack = () => {
+        this.props.history.push("/users/recipes")
+    }
     render() {
         const {categoryList = []} = this.context;
         return(
-        <section className="Publish_section">
+        <section className="Edit_section">
+            <h2 className="Edit_title">Edit your recipe</h2>
             <form
-                className='RegistrationForm'
+                className='EditForm'
                 onSubmit={this.singleFileUploadHandler}
             >
                 {this.imagePart()}
@@ -173,11 +172,11 @@ export default class EditAuthorRecipe extends Component {
                     &#42;
                     </span> 
                 </label>
-                <input
-                    name='recipe_content'
-                    type='text'
+                <textarea
                     required
+                    name='recipe_content'
                     id='Publish__recipeContent'
+                    rows='3'
                     defaultValue = {this.state.recipeContent}
                 />
                 </div>
@@ -201,18 +200,21 @@ export default class EditAuthorRecipe extends Component {
                     )}
                     </select>
                 </div> 
-                <div className="mt-5">
+                <div className="btn-div">
+                    <button 
+                        className="btn"
+                        type="button"
+                        onClick={() => this.goBack()}
+                    >
+                        Cancel
+                    </button>
                     <button 
                         className="btn btn-info"
-                        // disabled={!this.state.selectedFile} 
                         type='submit'
                     >
-                        Upload!
+                        Update
                     </button>
                 </div>
-                {/* <button className="RegistrationForm_submit_btn btn_type_1" type='submit'>
-                Go
-                </button> */}
             </form>
         </section>
         );

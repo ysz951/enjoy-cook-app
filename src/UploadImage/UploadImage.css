@@ -1,12 +1,39 @@
-.Publish_section{
-    padding-top: 50px;
+.Publish_titie{
+    margin-top: 50px;
+    margin-left: 5%;
+}
+
+.Publish_form {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.Publish_form label{
+    display: block;
+}
+
+.Publish_form input{
+    margin: 10px 0;
+    width: 100%;
+}
+
+.Publish_form textarea{
+    margin: 10px 0;
+    width: 100%;
+}
+
+.Publish_form select{
+    margin: 10px 0;
+    width: 50%;
 }
 
 .fix250Square{
+
     width: 250px;
     height: 250px;
     border: 1px solid black;
     margin: auto;
+    margin-top: 20px;
 }
 
 .fix250Square img {
@@ -16,4 +43,9 @@
 
 .recipe_name{
     margin-top: 20px;
+}
+
+.btn-div{
+    display: flex;
+    justify-content: flex-end;
 }

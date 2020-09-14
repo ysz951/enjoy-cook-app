@@ -1,0 +1,31 @@
+.Edit_title{
+    margin-top: 50px;
+    margin-left: 5%;
+}
+
+.EditForm{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.EditForm label{
+    display: block;
+}
+
+.EditForm input{
+    margin: 10px 0;
+    width: 100%;
+}
+
+.EditForm textarea{
+    margin: 10px 0;
+    width: 100%;
+}
+
+.EditForm select{
+    margin: 10px 0;
+    width: 50%;
+}
+
+.btn-div button:last-of-type{
+    margin-left: 20px;
+}

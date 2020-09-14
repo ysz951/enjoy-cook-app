@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import RecipeListItem from '../RecipeListItem/RecipeListItem';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RecipeApiService from '../services/recipe-api-service';
-import TokenService from '../services/token-service';
 import RecipeListContext from '../context/RecipeListContext';
+import './AuthorRecipeList.css';
+
 export default class AuthorRecipeList extends Component {
   static defaultProps = {
     recipes: [],
@@ -25,25 +25,26 @@ export default class AuthorRecipeList extends Component {
 
   renderRecipes(recipes) {
     return recipes.map(recipe =>
-        <li className='Recipe__list_item' key={recipe.id}>
-            {/* <div role='alert'>
-                {error && <p className='red'>{error}</p>}
-            </div> */}
-            <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
-                <div className="RecipeListItem_image" style={{backgroundImage: `url(${recipe.img_src})`}}>
+        <li className='Publish__listItem' key={recipe.id}>
+            <div className="Publish__listItemGroup">
+                <div className="RecipiListItem_nameBtnGroup">
+                  <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
+                      <RecipeName recipe={recipe}/>
+                  </Link>
+                  <div className="Publish_handleBtnGroup">
+                    <button type="button" onClick={() => this.deleteRecipe(recipe.id)}> 
+                      <FontAwesomeIcon icon="trash-alt"/>
+                      {' '}
+                      Delete  
+                    </button>
+                    <button type="button" onClick={() => this.goToEditRecipe(recipe.id)}> 
+                      <FontAwesomeIcon icon="edit"/>
+                      {' '}
+                      Edit 
+                    </button>
+                  </div>
                 </div>
-            </Link>
-            <div className="RecipeListItem_group">
-                <div className="RecipeListItem_name_favorite_group">
-                <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
-                    <RecipeName recipe={recipe}/>
-                </Link>
-                <button type="button" onClick={() => this.deleteRecipe(recipe.id)}> delete </button>
-                <button type="button" onClick={() => this.goToEditRecipe(recipe.id)}> Edit </button>
-                </div>
-                <Link to={`/recipe/${recipe.id}`} className="RecipeListItem_link">
                 <RecipeContent recipe={recipe}/>
-                </Link>
             </div>
         </li>
     );
@@ -51,7 +52,7 @@ export default class AuthorRecipeList extends Component {
   render() {
     const { recipes } = this.props;
     return (
-      <ul className="Recipe__list">
+      <ul className="Publish_recipeList">
         {this.renderRecipes(recipes)}
       </ul>
     );
@@ -61,15 +62,15 @@ export default class AuthorRecipeList extends Component {
 
 function RecipeName({ recipe }) {
     return (
-      <p className='RecipeListItem_name Lustria'>
-          {truncate(recipe.name, 20)}
+      <p className='Publish_itemName Lustria bold'>
+          {recipe.name}
       </p>
     );
   }
   function RecipeContent({recipe}){
     return (
-      <p className='RecipeListItem_content Crimson'>
-          {truncate(recipe.content, 10, 'split')}
+      <p className='Publish_content Crimson'>
+          {truncate(recipe.content, 50, 'split')}
       </p>
     );
   }

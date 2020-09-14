@@ -6,6 +6,11 @@ import CategoryLinkSpread from '../CategoryLinkSpread/CategoryLinkSpread';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SearchNav.css';
 export default class SearchNav extends Component {
+  static defaultProps = {
+    history: {
+      push: () => {},
+    },
+  };
   state = { 
     query: "",
     searchCategory: "",

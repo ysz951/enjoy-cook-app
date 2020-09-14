@@ -1,0 +1,87 @@
+.RecipiListItem_nameBtnGroup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.RecipiListItem_nameBtnGroup button{
+    border: none;
+    outline: none;
+    background: none;
+    font-size: small;
+}
+
+.RecipiListItem_nameBtnGroup button:hover{
+    opacity: 0.8;
+}
+
+.RecipiListItem_nameBtnGroup button:last-of-type{
+    margin-left: 10px;
+}
+
+.Publish_recipeList {
+    list-style: none;
+    /* display: flex;
+    flex-wrap: wrap; */
+    padding: 0;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.Publish__listItem {
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px -8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Publish__listItemGroup{
+    padding: 20px;
+}
+.Publish_itemName{
+    color: rgb(0, 0, 0);
+    max-width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+.Publish_itemName:hover{
+    text-decoration: underline;
+}
+
+
+.Publish_content{
+    margin:0;
+}
+
+
+@media screen and (min-width: 480px) {
+    .Publish_itemName{
+        max-width: 200px;
+    }
+    .RecipiListItem_nameBtnGroup button:last-of-type{
+        margin-left: 20px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .Publish_itemName{
+        max-width: 300px;
+    }
+    .RecipiListItem_nameBtnGroup button{
+        font-size: initial;
+    }
+}
+
+
+@media screen and (min-width: 800px) {
+    .Publish_itemName{
+        max-width: 500px;
+    }
+  
+}

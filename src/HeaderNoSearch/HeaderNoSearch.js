@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TokenService from '../services/token-service';
 import IdleService from '../services/idle-service';
 import CollectionListContext from '../context/CollectionListContext';
-import HeaderDropDown from '../HeaderDropDown/HeaderDropDown'
 import './HeaderNoSearch.css';
 
 class HeaderNoSearch extends Component {
@@ -24,37 +23,38 @@ class HeaderNoSearch extends Component {
       <div className="dropdown">
         <p className="dropdown-userName"> {userName} </p>
         <button className="dropbtn">
-            {/* {userName} */}
-            <FontAwesomeIcon icon='user' />
+          <FontAwesomeIcon icon='user' />
         </button>
         <div className="dropdown-content">
-            <Link
-            to ="/users/recipes">
-                Recipes
-                </Link>
-                {' '}
-            <Link
-            to ="/users/publish">
-                Publish
-                {' '}
-            <FontAwesomeIcon icon='file-alt' />
-            </Link>
-            <Link
-            to='/users/collections'>
-                Favorite
-                {' '}
-            <FontAwesomeIcon icon='star' /> 
-            </Link>
-            <Link
-                to='/'
-                onClick={this.handleLogoutClick}
-            >
-                Log out
-                {' '}
-                <FontAwesomeIcon icon='sign-out-alt' />
-                
-            
-            </Link>
+          <Link
+          to ="/users/recipes">
+              Recipes
+              {' '}
+          <FontAwesomeIcon icon='file-alt' />
+          </Link>
+              {' '}
+          <Link
+          to ="/users/publish">
+              Publish
+              {' '}
+          <FontAwesomeIcon icon='file-upload' />
+          </Link>
+          <Link
+          to='/users/collections'>
+              Favorite
+              {' '}
+          <FontAwesomeIcon icon='star' /> 
+          </Link>
+          <Link
+              to='/'
+              onClick={this.handleLogoutClick}
+          >
+              Log out
+              {' '}
+              <FontAwesomeIcon icon='sign-out-alt' />
+              
+          
+          </Link>
         </div>
       </div>
     );
