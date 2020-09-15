@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 import './UploadImage.css';
 import RecipeApiService from '../services/recipe-api-service';
 import RecipeListContext from '../context/RecipeListContext';
